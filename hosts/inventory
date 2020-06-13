@@ -1,0 +1,5 @@
+[monitoring]
+prometheus ansible_host=prometheus.local
+
+[downloader]
+satan ansible_host=satan.local

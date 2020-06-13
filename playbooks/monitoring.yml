@@ -1,0 +1,9 @@
+---
+
+- import_playbook: base.yml
+
+- hosts: monitoring
+  gather_facts: no
+
+  roles:
+    - { role: packages, tags: [ "packages" ] }
