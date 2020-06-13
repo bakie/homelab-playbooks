@@ -1,0 +1,7 @@
+{% if item.registry is defined %}
+FROM {{ item.registry }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
+
+RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y sudo bash ca-certificates systemd systemd-sysv && apt-get clean; fi

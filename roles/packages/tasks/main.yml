@@ -1,0 +1,8 @@
+---
+
+- name: Install packages
+  become: yes
+  apt:
+    name: [ "python3-apt", "aptitude", "curl", "htop", "rsync", "sudo", "vim", "build-essential" ]
+    state: present
+    install_recommends: no
