@@ -5,3 +5,11 @@
   service:
     name: openvpn
     state: restarted
+  listen: restart openvpn
+
+- name: restart openvpn {{ openvpn_name }}
+  become: yes
+  service:
+    name: "openvpn@{{ openvpn_name }}"
+    state: restarted
+  listen: restart openvpn

@@ -1,5 +1,10 @@
 # Role variables
 
+### openvpn_name
+The name of this specific vpn client connection
+
+Default value is "openvpn_name"
+
 ### openvpn_remote
 The endpoint of the openvpn server
 

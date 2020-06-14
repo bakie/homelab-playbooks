@@ -1,2 +1,7 @@
+# Intellij
 .idea
+# testinfra
+*__pycache__*
+*.pyc
+# secrets file
 hosts/group_vars/all/secrets.yml

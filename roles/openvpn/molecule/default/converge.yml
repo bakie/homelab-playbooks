@@ -3,6 +3,7 @@
 - name: Converge
   hosts: all
   vars:
+    openvpn_name: "testName"
     openvpn_remote: "testRemote"
     openvpn_remote_port: 8000
     openvpn_ca: "randomCa"

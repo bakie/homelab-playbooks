@@ -12,7 +12,7 @@
   become: true
   template:
     src: client.conf.j2
-    dest: "/etc/openvpn/client.conf"
+    dest: "/etc/openvpn/{{ openvpn_name }}.conf"
     mode: 0640
   notify: restart openvpn
 
@@ -22,3 +22,11 @@
     name: openvpn
     enabled: yes
     state: started
+
+- name: "start and enable openvpn {{ openvpn_name }}"
+  become: yes
+  systemd:
+    name: "openvpn@{{ openvpn_name }}"
+    enabled: yes
+    state: started
+    daemon_reload: yes
