@@ -1,0 +1,10 @@
+---
+
+- import_playbook: base.yml
+
+- hosts: searcher
+  gather_facts: no
+
+  roles:
+    - { role: openvpn, tags: [ "openvpn" ] }
+    - { role: nfs_client, tags: [ "nfs_client" ] }

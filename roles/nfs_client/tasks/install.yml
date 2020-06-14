@@ -1,0 +1,7 @@
+---
+
+- name: install nfs-common
+  become: yes
+  apt:
+    name: [ "nfs-common" ]
+    state: present

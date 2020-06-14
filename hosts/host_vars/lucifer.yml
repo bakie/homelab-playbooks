@@ -1,0 +1,20 @@
+---
+
+# nfs_client
+nfs_imports:
+  - local_dir: "/media/nas/tvshows"
+    remote_dir: "/share/MD0_DATA/Multimedia/tvshows/"
+    nfs_server: "azmodan.local"
+    state: present
+  - local_dir: "/media/nas/music"
+    remote_dir: "/share/MD0_DATA/Multimedia/music/"
+    nfs_server: "azmodan.local"
+    state: absent
+  - local_dir: "/media/nas/movies"
+    remote_dir: "/share/MD0_DATA/Multimedia/movies/"
+    nfs_server: "azmodan.local"
+    state: present
+  - local_dir: "/media/sabnzbd"
+    remote_dir: "/opt/sabnzbd"
+    nfs_server: "satan.local"
+    state: present

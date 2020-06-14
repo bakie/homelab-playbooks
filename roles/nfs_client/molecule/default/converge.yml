@@ -1,0 +1,13 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    nfs_imports:
+      - local_dir: "/media/dir"
+        remote_dir: "/home/user/dir"
+        nfs_server: 10.1.1.1
+        state: present
+
+  roles:
+    - role: nfs_client
