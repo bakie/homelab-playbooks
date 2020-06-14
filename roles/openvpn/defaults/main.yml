@@ -1,0 +1,8 @@
+---
+
+openvpn_remote: "default_openvpn_remote"
+openvpn_remote_port: 443
+openvpn_ca: "openvpn_ca"
+openvpn_cert: "openvpn_cert"
+openvpn_key: "openvpn_key"
+openvpn_tls_auth: "openvpn_tls_auth"

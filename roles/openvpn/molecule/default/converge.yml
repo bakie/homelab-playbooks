@@ -1,0 +1,14 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    openvpn_remote: "testRemote"
+    openvpn_remote_port: 8000
+    openvpn_ca: "randomCa"
+    openvpn_cert: "randomCert"
+    openvpn_key: "randomKey"
+    openvpn_tls_auth: "randomTlsAuth"
+
+  roles:
+    - role: openvpn

@@ -1,0 +1,24 @@
+---
+
+- name: configure openvpn
+  become: yes
+  lineinfile:
+    path: "/etc/default/openvpn"
+    line: "AUTOSTART=\"all\""
+    regexp: "^(#)?AUTOSTART=\"all\""
+    state: present
+
+- name: create openvpn config file
+  become: true
+  template:
+    src: client.conf.j2
+    dest: "/etc/openvpn/client.conf"
+    mode: 0640
+  notify: restart openvpn
+
+- name: start and enable openvpn
+  become: yes
+  service:
+    name: openvpn
+    enabled: yes
+    state: started
