@@ -1,0 +1,13 @@
+---
+
+- name: change the default settings of sabnzbdplus
+  become: yes
+  lineinfile:
+    path: "/etc/default/sabnzbdplus"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: "^USER=", line: "USER={{ sabnzbd_user }}" }
+    - { regexp: "^HOST=", line: "HOST={{ sabnzbd_host }}" }
+    - { regexp: "^PORT=", line: "PORT={{ sabnzbd_port }}" }
+  notify: restart sabnzbd

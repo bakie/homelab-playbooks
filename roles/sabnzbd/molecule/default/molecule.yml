@@ -1,0 +1,37 @@
+---
+
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint -c ../../.config/yamllint .
+  ansible-lint
+  flake8 --config ../../.config/flake8
+platforms:
+  - name: ${PLATFORM_NAME_UBUNTU_FOCAL_FOSSA:-ubuntu_focal_fossa}
+    image: bakie/docker-images:ubuntu-focal-fossa
+    privileged: true
+    pre_build_image: true
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    command: "/sbin/init"
+provisioner:
+  name: ansible
+  log: True
+  config_options:
+    defaults:
+      strategy_plugins: $VIRTUAL_ENV/lib/python3.8/site-packages/ansible_mitogen/plugins/strategy/
+      strategy: mitogen_linear
+      callback_whitelist: timer, profile_tasks
+      stdout_callback: debug
+scenario:
+  name: default
+  converge_sequence:
+    - lint
+    - create
+    - converge
+    - idempotence
+verifier:
+  name: testinfra

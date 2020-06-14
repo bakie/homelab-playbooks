@@ -1,0 +1,42 @@
+---
+
+- name: add sabnzbd ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_ppa_repository }}"
+
+- name: add sabnzbd-addons ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_addons_ppa_repository }}"
+
+- name: add sabnzbd group
+  become: yes
+  group:
+    name: "{{ sabnzbd_group }}"
+    state: present
+
+- name: create sabnzbd user
+  become: yes
+  user:
+    name: "{{ sabnzbd_user }}"
+    home: "{{ sabnzbd_user_home }}"
+    system: yes
+    group: "{{ sabnzbd_group }}"
+    state: present
+
+- name: create nesessary dirs
+  become: yes
+  file:
+    path: "{{ sabnzbd_user_home }}/{{ item }}"
+    state: directory
+    owner: "{{ sabnzbd_user }}"
+    group: "{{ sabnzbd_group }}"
+  loop:
+    - ".sabnzbd"
+    - "incomplete"
+    - "complete"
+    - "complete/tv"
+    - "complete/movies"
+    - "complete/music"
+    - "nzb"

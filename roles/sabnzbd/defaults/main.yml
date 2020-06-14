@@ -1,0 +1,10 @@
+---
+
+sabnzbd_group: "sabnzbd"
+sabnzbd_user: "sabnzbd"
+sabnzbd_user_home: "/opt/sabnzbd"
+sabnzbd_host: 0.0.0.0
+sabnzbd_port: 8080
+
+sabnzbd_ppa_repository: "ppa:jcfp/ppa"
+sabnzbd_addons_ppa_repository: "ppa:jcfp/sab-addons"
