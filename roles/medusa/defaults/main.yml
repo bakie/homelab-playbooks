@@ -1,0 +1,8 @@
+---
+
+medusa_group: "medusa"
+medusa_user: "medusa"
+medusa_user_home: "/opt/medusa"
+medusa_repo: "https://github.com/pymedusa/Medusa.git"
+medusa_install_dir: "/opt/medusa"
+medusa_version: "master"

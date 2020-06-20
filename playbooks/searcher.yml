@@ -8,3 +8,4 @@
   roles:
     - { role: openvpn, tags: [ "openvpn" ] }
     - { role: nfs_client, tags: [ "nfs_client" ] }
+    - { role: medusa, tags: [ "medusa" ] }
