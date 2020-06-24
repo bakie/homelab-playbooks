@@ -1,0 +1,13 @@
+---
+
+- name: set config variables in the settings.json file
+  become: yes
+  lineinfile:
+    dest: "{{ transmission_settings_file_path }}"
+    insertafter: "^    {{ item.option }}: "
+    regexp: "^    {{ item.option }}: (?! {{ item.value }})"
+    line: "    {{ item.option }}: {{ item.value }},"
+    state: present
+  loop:
+    "{{ transmission_settings }}"
+  notify: reload transmission

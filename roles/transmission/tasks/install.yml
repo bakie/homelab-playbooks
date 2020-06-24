@@ -1,0 +1,15 @@
+---
+
+- name: install transmission
+  become: yes
+  apt:
+    name: [ "transmission-cli", "transmission-common", "transmission-daemon" ]
+    state: present
+    install_recommends: no
+
+- name: start transmission
+  become: yes
+  service:
+    name: transmission-daemon
+    state: started
+    enabled: yes

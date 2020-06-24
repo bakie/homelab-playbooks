@@ -1,0 +1,7 @@
+---
+
+- name: reload transmission
+  become: yes
+  service:
+    name: transmission-daemon
+    state: reloaded

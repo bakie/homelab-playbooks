@@ -1,0 +1,36 @@
+---
+
+transmission_group: "transmission"
+transmission_user: "transmission"
+transmission_user_home: "/opt/transmission"
+transmission_settings_file_path: "/etc/transmission-daemon/settings.json"
+
+# settings.json variables
+transmission_rpc_username: "\"transmission\""
+transmission_rpc_password: "\"transmission\""
+transmission_settings_alt_speed_down: 500
+transmission_settings_alt_speed_up: 1
+transmission_settings_download_dir: "\"{{ transmission_user_home }}/completed\""
+transmission_settings_encryption: 2
+transmission_settings_incomplete_dir: "\"{{ transmission_user_home }}/incomplete\""
+transmission_settings_incomplete_dir_enabled: "true"
+transmission_rpc_whitelist_enabled: "false"
+transmission_settings:
+  - option: "\"rpc-username\""
+    value: "{{ transmission_rpc_username }}"
+  - option: "\"rpc-password\""
+    value: "{{ transmission_rpc_password }}"
+  - option: "\"alt-speed-down\""
+    value: "{{ transmission_settings_alt_speed_down }}"
+  - option: "\"alt-speed-up\""
+    value: "{{ transmission_settings_alt_speed_up }}"
+  - option: "\"download-dir\""
+    value: "{{ transmission_settings_download_dir }}"
+  - option: "\"encryption\""
+    value: "{{ transmission_settings_encryption }}"
+  - option: "\"incomplete-dir\""
+    value: "{{ transmission_settings_incomplete_dir }}"
+  - option: "\"incomplete-dir-enabled\""
+    value: "{{ transmission_settings_incomplete_dir_enabled }}"
+  - option: "\"rpc-whitelist-enabled\""
+    value: "{{ transmission_rpc_whitelist_enabled }}"

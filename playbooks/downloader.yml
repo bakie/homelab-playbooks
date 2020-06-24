@@ -8,3 +8,4 @@
     - { role: openvpn, tags: [ 'openvpn' ] }
     - { role: sabnzbd, tags: [ "sabnzbd" ] }
     - { role: nfs_server, tags: [ 'nfs_server' ] }
+    - { role: transmission, tags: [ 'transmission' ] }
