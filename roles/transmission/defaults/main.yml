@@ -1,9 +1,9 @@
 ---
 
-transmission_group: "transmission"
-transmission_user: "transmission"
+transmission_group: "debian-transmission"
+transmission_user: "debian-transmission"
 transmission_user_home: "/opt/transmission"
-transmission_settings_file_path: "/etc/transmission-daemon/settings.json"
+transmission_settings_file_path: "{{ transmission_user_home }}/.config/transmission-daemon/settings.json"
 
 # settings.json variables
 transmission_rpc_username: "\"transmission\""
@@ -14,6 +14,7 @@ transmission_settings_download_dir: "\"{{ transmission_user_home }}/completed\""
 transmission_settings_encryption: 2
 transmission_settings_incomplete_dir: "\"{{ transmission_user_home }}/incomplete\""
 transmission_settings_incomplete_dir_enabled: "true"
+transmission_rpc_host_whitelist_enabled: "false"
 transmission_rpc_whitelist_enabled: "false"
 transmission_settings:
   - option: "\"rpc-username\""
@@ -32,5 +33,7 @@ transmission_settings:
     value: "{{ transmission_settings_incomplete_dir }}"
   - option: "\"incomplete-dir-enabled\""
     value: "{{ transmission_settings_incomplete_dir_enabled }}"
+  - option: "\"rpc-host-whitelist-enabled\""
+    value: "{{ transmission_rpc_host_whitelist_enabled }}"
   - option: "\"rpc-whitelist-enabled\""
     value: "{{ transmission_rpc_whitelist_enabled }}"

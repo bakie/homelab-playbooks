@@ -7,9 +7,18 @@
     state: present
     install_recommends: no
 
+- name: set correct user in systemd file
+  become: yes
+  lineinfile:
+    dest: "/lib/systemd/system/transmission-daemon.service"
+    regexp: "^User={{ transmission_user }}"
+    line: "User={{ transmission_user }}"
+    state: present
+
 - name: start transmission
   become: yes
-  service:
+  systemd:
     name: transmission-daemon
     state: started
     enabled: yes
+    daemon-reload: yes
