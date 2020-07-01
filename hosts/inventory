@@ -6,3 +6,6 @@ satan ansible_host=satan.local
 
 [searcher]
 lucifer ansible_host=lucifer.local
+
+[dns]
+pihole ansible_host=pihole.local

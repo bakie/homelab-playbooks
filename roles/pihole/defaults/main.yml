@@ -1,0 +1,4 @@
+---
+
+pihole_group: "pihole"
+pihole_user: "pihole"

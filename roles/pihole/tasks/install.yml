@@ -1,0 +1,36 @@
+---
+
+- name: check if pihole is already installed
+  become: yes
+  stat:
+    path: "/opt/pihole"
+  register: pihole_dir
+
+- name: install pihole
+  block:
+    - name: 'Template the setupVars for unattended install'
+      become: yes
+      template:
+        src: setupVars.conf.j2
+        dest: /etc/pihole/setupVars.conf
+        owner: "{{ pihole_user }}"
+        group: "{{ pihole_group }}"
+        mode: 0775
+
+    - name: download the pihole installer
+      become: yes
+      get_url:
+        url: "https://install.pi-hole.net"
+        dest: "/tmp/pihole-install.sh"
+        mode: 0755
+
+    - name: run pihole installer
+      become: yes
+      shell: "./pihole-install.sh --unattended"
+      args:
+        executable: "/bin/bash"
+        chdir: "/tmp"
+      environment:
+        TERM: "xterm"
+
+  when: not pihole_dir.stat.exists

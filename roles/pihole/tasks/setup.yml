@@ -1,0 +1,17 @@
+---
+
+- name: add pihole group
+  become: yes
+  group:
+    name: "{{ pihole_group }}"
+    state: present
+
+- name: create pihole user
+  become: yes
+  user:
+    name: "{{ pihole_user }}"
+    home: "/etc/pihole" # can't change this as the setupVars need to be in this folder for the --unattended to work
+    create_home: yes
+    system: yes
+    group: "{{ pihole_group }}"
+    state: present
