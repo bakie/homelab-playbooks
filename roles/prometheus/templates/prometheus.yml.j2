@@ -6,7 +6,7 @@ global:
   evaluation_interval: 15s
 
 rule_files:
-  - {{ prometheus_config_dir }}/rules/*.rules
+  - {{ prometheus_config_path }}/rules/*.rules
 
 scrape_configs:
   - job_name: "prometheus"

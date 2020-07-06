@@ -15,8 +15,8 @@ The home dir of the prometheus user
 
 Default value is "/opt/prometheus"
 
-### prometheus_config_dir
-The dir for the configurations required for prometheus
+### prometheus_config_path
+The path for the configurations required for prometheus
 
 Default value is "/opt/prometheus/config"
 

@@ -9,11 +9,9 @@ User={{ prometheus_user }}
 Group={{ prometheus_group }}
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStart={{ prometheus_home }}/prometheus \
-  --config.file={{ prometheus_config_dir }}/prometheus.yml \
+  --config.file={{ prometheus_config_path }}/prometheus.yml \
   --storage.tsdb.path={{ prometheus_home }} \
   --storage.tsdb.retention.time={{ prometheus_storage_retention }} \
-#  --web.console.libraries={{ prometheus_config_dir }}/console_libraries \
-#  --web.console.templates={{ prometheus_config_dir }}/consoles \
   --web.listen-address={{ prometheus_web_listen_address }} \
   --web.external-url=/
 
