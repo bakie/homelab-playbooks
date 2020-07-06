@@ -1,0 +1,27 @@
+---
+
+- name: add prometheus group
+  become: yes
+  group:
+    name: "{{ prometheus_group }}"
+    system: yes
+    state: present
+
+- name: create prometheus user
+  become: yes
+  user:
+    name: "{{ prometheus_user }}"
+    home: "{{ prometheus_home }}"
+    create_home: no
+    system: yes
+    group: "{{ prometheus_group }}"
+    state: present
+
+- name: create prometheus home
+  become: yes
+  file:
+    path: "{{ prometheus_home }}"
+    state: directory
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
+    mode: 0755

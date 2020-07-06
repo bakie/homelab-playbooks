@@ -5,4 +5,4 @@
 - hosts: monitoring
 
   roles:
-    - { role: packages, tags: [ "packages" ] }
+    - { role: prometheus, tags: [ "prometheus" ] }

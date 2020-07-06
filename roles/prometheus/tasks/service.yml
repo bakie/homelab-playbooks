@@ -1,0 +1,19 @@
+---
+
+- name: create service file
+  become: yes
+  template:
+    src: prometheus.service.j2
+    dest: /lib/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart prometheus
+
+- name: enable and start prometheus
+  become: yes
+  service:
+    daemon_reload: yes
+    name: prometheus
+    state: started
+    enabled: yes

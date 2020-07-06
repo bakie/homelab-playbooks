@@ -1,0 +1,42 @@
+---
+
+- name: stat prometheus binary
+  stat:
+    path: "{{ prometheus_home }}/prometheus"
+  register: prometheus_binary
+
+- name: stat current prometheus version
+  shell: "./prometheus --version 2>&1 | head -1 | awk '{print $3}'"
+  args:
+    chdir: "{{ prometheus_home }}"
+  when: prometheus_binary.stat.exists
+  register: prometheus_current_version
+  changed_when: false
+
+- name: install prometheus block
+  block:
+    - name: unarchive prometheus
+      become: yes
+      become_user: "{{ prometheus_user }}"
+      unarchive:
+        src: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+        dest: "/tmp"
+        remote_src: yes
+
+    - name: copy prometheus, promtool and tsdb binaries
+      become: yes
+      become_user: "{{ prometheus_user }}"
+      copy:
+        src: "/tmp/prometheus-{{ prometheus_version }}.linux-amd64/{{ item }}"
+        dest: "{{ prometheus_home }}/{{ item }}"
+        remote_src: yes
+        mode: 0755
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_group }}"
+      with_items:
+        - prometheus
+        - promtool
+        - tsdb
+      notify:
+        - restart prometheus
+  when: not prometheus_binary.stat.exists or prometheus_current_version.stdout != prometheus_version
