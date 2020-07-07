@@ -24,3 +24,17 @@ Default value is "http://{{ grafana_url }}"
 The port on which grafana should listen
 
 Default value is 3000
+
+
+### grafana_datasources
+A lists of datasources that will be added to the provisioning dir of grafana
+
+Default value is
+```
+grafana_datasources:
+  - name: Prometheus
+    options:
+      type: prometheus
+      access: proxy
+      url: "http://prometheus.local:9090"
+```

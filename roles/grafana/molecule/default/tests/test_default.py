@@ -25,3 +25,7 @@ def test_config_root_url(host):
 
 def test_listening_on_port(host):
     assert host.socket("tcp://0.0.0.0:3000").is_listening
+
+
+def test_datasources(host):
+    assert host.file("/etc/grafana/provisioning/datasources/datasources.yml").exists

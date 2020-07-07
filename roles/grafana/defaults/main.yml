@@ -5,3 +5,9 @@ grafana_admin_user: "grafana"
 grafana_admin_password: "grafana"
 grafana_config_root_url: "http://{{ grafana_url }}"
 grafana_http_port: 3000
+grafana_datasources:
+  - name: Prometheus
+    options:
+      type: prometheus
+      access: proxy
+      url: "http://prometheus.local:9090"

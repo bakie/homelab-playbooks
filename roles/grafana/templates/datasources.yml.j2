@@ -1,0 +1,10 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+apiVersion: 1
+
+datasources:
+  {% for datasource in grafana_datasources %}
+  - name: {{ datasource.name }}
+    type: {{ datasource.options.type }}
+    access: {{ datasource.options.access }}
+    url: {{ datasource.options.url }}
+  {% endfor %}

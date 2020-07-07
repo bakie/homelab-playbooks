@@ -13,6 +13,15 @@
     - { regexp: '^;?http_port(.*)', replace: 'http_port = {{ grafana_http_port }}' }
   notify: restart grafana
 
+- name: template the datasources
+  become: yes
+  template:
+    src: datasources.yml.j2
+    dest: "/etc/grafana/provisioning/datasources/datasources.yml"
+    group: "grafana"
+    mode: "0640"
+  notify: restart grafana
+
 - name: enable and start grafana
   become: yes
   service:
