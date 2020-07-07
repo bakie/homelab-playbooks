@@ -1,0 +1,20 @@
+---
+
+- name: create prometheus_node_exporter config directory
+  become: yes
+  become_user: "{{ prometheus_node_exporter_user }}"
+  file:
+    path: "{{ prometheus_node_exporter_config_path }}"
+    state: directory
+    group: "{{ prometheus_node_exporter_group }}"
+    mode: 0775
+
+- name: configure prometheus_node_exporter config.yml
+  become: yes
+  become_user: "{{ prometheus_node_exporter_user }}"
+  template:
+    src: "config.yml.j2"
+    dest: "{{ prometheus_node_exporter_config_path }}/config.yml"
+    group: "{{ prometheus_node_exporter_group }}"
+    mode: 0640
+  notify: restart prometheus_node_exporter
