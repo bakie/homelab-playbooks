@@ -1,0 +1,21 @@
+---
+
+- name: configure Grafana
+  become: yes
+  replace:
+    path: "/etc/grafana/grafana.ini"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  loop:
+    - { regexp: '^;?root_url(.*)', replace: 'root_url = {{ grafana_config_root_url }}' }
+    - { regexp: '^;?admin_user(.*)', replace: 'admin_user = {{ grafana_admin_user }}' }
+    - { regexp: '^;?admin_password(.*)', replace: 'admin_password = {{ grafana_admin_password }}' }
+    - { regexp: '^;?http_port(.*)', replace: 'http_port = {{ grafana_http_port }}' }
+  notify: restart grafana
+
+- name: enable and start grafana
+  become: yes
+  service:
+    name: grafana-server
+    state: started
+    enabled: yes
