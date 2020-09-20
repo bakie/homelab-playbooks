@@ -23,7 +23,7 @@ Default value is "/opt/prometheus_node_exporter"
 ### prometheus_node_exporter_config_path
 The path for the configurations required for prometheus_node_exporter
 
-Default value is "/opt/prometheus_node_exporter/config"
+Default value is "/etc/prometheus_node_exporter/config"
 
 ### prometheus_node_exporter_web_listen_port
 The port on which prometheus_node_exporter should listen

@@ -12,9 +12,9 @@ def ansible_defaults():
 
 
 @pytest.mark.parametrize("dir", [
-    prometheus_config_path + "/config/rules",
-    prometheus_config_path + "/config/file_sd",
-    prometheus_config_path + "/config/conf.d"
+    prometheus_config_path + "/rules",
+    prometheus_config_path + "/file_sd",
+    prometheus_config_path + "/conf.d"
 ])
 def test_directories(host, dir):
     d = host.file(dir)
@@ -23,7 +23,7 @@ def test_directories(host, dir):
 
 
 @pytest.mark.parametrize("file", [
-    prometheus_config_path + "/config/prometheus.yml",
+    prometheus_config_path + "/prometheus.yml",
     prometheus_home + "/prometheus",
     prometheus_home + "/promtool",
     prometheus_home + "/tsdb",

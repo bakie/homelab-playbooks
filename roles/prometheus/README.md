@@ -18,7 +18,7 @@ Default value is "/opt/prometheus"
 ### prometheus_config_path
 The path for the configurations required for prometheus
 
-Default value is "/opt/prometheus/config"
+Default value is "/etc/prometheus"
 
 ### prometheus_web_listen_port
 The port on which prometheus should listen
