@@ -1,27 +1,27 @@
 ---
 
-- name: add prometheus_node_exporter group
+- name: add node_exporter group
   become: yes
   group:
-    name: "{{ prometheus_node_exporter_group }}"
+    name: "{{ node_exporter_group }}"
     system: yes
     state: present
 
-- name: create prometheus_node_exporter user
+- name: create node_exporter user
   become: yes
   user:
-    name: "{{ prometheus_node_exporter_user }}"
-    home: "{{ prometheus_node_exporter_home }}"
+    name: "{{ node_exporter_user }}"
+    home: "{{ node_exporter_home }}"
     create_home: no
     system: yes
-    group: "{{ prometheus_node_exporter_group }}"
+    group: "{{ node_exporter_group }}"
     state: present
 
-- name: create prometheus_node_exporter home
+- name: create node_exporter home
   become: yes
   file:
-    path: "{{ prometheus_node_exporter_home }}"
+    path: "{{ node_exporter_home }}"
     state: directory
-    owner: "{{ prometheus_node_exporter_user }}"
-    group: "{{ prometheus_node_exporter_group }}"
+    owner: "{{ node_exporter_user }}"
+    group: "{{ node_exporter_group }}"
     mode: 0755

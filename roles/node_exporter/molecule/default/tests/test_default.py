@@ -1,8 +1,8 @@
 import pytest
 import yaml
 
-prometheus_node_exporter_home = "/opt/prometheus_node_exporter"
-prometheus_node_exporter_config_path = "/etc/prometheus_node_exporter/config"
+node_exporter_home = "/opt/node_exporter"
+node_exporter_config_path = "/etc/node_exporter/config"
 
 
 @pytest.fixture()
@@ -12,14 +12,14 @@ def AnsibleDefaults():
 
 
 def test_user(host):
-    assert host.group("prometheus_node_exporter").exists
-    assert host.user("prometheus_node_exporter").exists
+    assert host.group("node_exporter").exists
+    assert host.user("node_exporter").exists
 
 
 @pytest.mark.parametrize("file", [
-    prometheus_node_exporter_home + "/node_exporter",
-    prometheus_node_exporter_config_path + "/config.yml",
-    "/lib/systemd/system/prometheus_node_exporter.service",
+    node_exporter_home + "/node_exporter",
+    node_exporter_config_path + "/config.yml",
+    "/lib/systemd/system/node_exporter.service",
 ])
 def test_files(host, file):
     f = host.file(file)
@@ -28,7 +28,7 @@ def test_files(host, file):
 
 
 @pytest.mark.parametrize("dir", [
-    prometheus_node_exporter_home
+    node_exporter_home
 ])
 def test_directories(host, dir):
     d = host.file(dir)
@@ -37,7 +37,7 @@ def test_directories(host, dir):
 
 
 def test_service(host):
-    assert host.service("prometheus_node_exporter").is_running
+    assert host.service("node_exporter").is_running
 
 
 def test_socket(host):
@@ -46,6 +46,6 @@ def test_socket(host):
 
 
 def test_version(host, AnsibleDefaults):
-    version = AnsibleDefaults['prometheus_node_exporter_version']
-    out = host.run(prometheus_node_exporter_home + "/node_exporter --version").stderr
+    version = AnsibleDefaults['node_exporter_version']
+    out = host.run(node_exporter_home + "/node_exporter --version").stderr
     assert "node_exporter, version " + version in out
