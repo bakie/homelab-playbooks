@@ -3,7 +3,7 @@
 - name: configure Grafana
   become: yes
   replace:
-    path: "/etc/grafana/grafana.ini"
+    path: "{{ grafana_config_path }}/grafana.ini"
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace }}"
   loop:
@@ -17,7 +17,7 @@
   become: yes
   template:
     src: datasources.yml.j2
-    dest: "/etc/grafana/provisioning/datasources/datasources.yml"
+    dest: "{{ grafana_config_path }}/provisioning/datasources/datasources.yml"
     group: "grafana"
     mode: "0640"
   notify: restart grafana

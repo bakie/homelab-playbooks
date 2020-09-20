@@ -20,6 +20,11 @@ The url for grafana which is used in the grafana config file
 
 Default value is "http://{{ grafana_url }}"
 
+### grafana_config_path
+The path of the configuration files
+
+Default value is "/etc/grafana"
+
 ### grafana_http_port
 The port on which grafana should listen
 
