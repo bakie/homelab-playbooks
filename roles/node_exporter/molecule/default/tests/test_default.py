@@ -2,7 +2,7 @@ import pytest
 import yaml
 
 node_exporter_home = "/opt/node_exporter"
-node_exporter_config_path = "/etc/node_exporter/config"
+node_exporter_config_path = "/etc/node_exporter"
 
 
 @pytest.fixture()

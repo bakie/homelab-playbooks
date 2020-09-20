@@ -23,7 +23,7 @@ Default value is "/opt/node_exporter"
 ### node_exporter_config_path
 The path for the configurations required for node_exporter
 
-Default value is "/etc/node_exporter/config"
+Default value is "/etc/node_exporter"
 
 ### node_exporter_web_listen_port
 The port on which node_exporter should listen
