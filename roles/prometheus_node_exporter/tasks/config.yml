@@ -2,10 +2,10 @@
 
 - name: create prometheus_node_exporter config directory
   become: yes
-  become_user: "{{ prometheus_node_exporter_user }}"
   file:
     path: "{{ prometheus_node_exporter_config_path }}"
     state: directory
+    owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"
     mode: 0775
 

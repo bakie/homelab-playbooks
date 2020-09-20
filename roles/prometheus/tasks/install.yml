@@ -6,9 +6,12 @@
   register: prometheus_binary
 
 - name: stat current prometheus version
-  shell: "./prometheus --version 2>&1 | head -1 | awk '{print $3}'"
+  shell: |
+    set -o pipefail
+    ./prometheus --version 2>&1 | head -1 | awk '{print $3}'
   args:
     chdir: "{{ prometheus_home }}"
+    executable: "/bin/bash"
   when: prometheus_binary.stat.exists
   register: prometheus_current_version
   changed_when: false

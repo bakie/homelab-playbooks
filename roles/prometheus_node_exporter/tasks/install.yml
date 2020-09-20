@@ -6,9 +6,12 @@
   register: prometheus_node_exporter_binary
 
 - name: stat current prometheus_node_exporter version
-  shell: "./node_exporter --version 2>&1 | head -1 | awk '{print $3}'"
+  shell: |
+    set -o pipefail
+    ./node_exporter --version 2>&1 | head -1 | awk '{print $3}'
   args:
     chdir: "{{ prometheus_node_exporter_home }}"
+    executable: "/bin/bash"
   when: prometheus_node_exporter_binary.stat.exists
   register: prometheus_node_exporter_current_version
   changed_when: false
@@ -19,7 +22,7 @@
       become: yes
       become_user: "{{ prometheus_node_exporter_user }}"
       unarchive:
-        src: "https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_exporter_version }}/node_exporter-{{ prometheus_node_exporter_version }}.linux-amd64.tar.gz"
+        src: "{{ prometheus_node_exporter_download_url }}"
         dest: "/tmp"
         remote_src: yes
 

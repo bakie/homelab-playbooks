@@ -2,18 +2,19 @@ import pytest
 import yaml
 
 prometheus_home = "/opt/prometheus"
+prometheus_config_path = "/etc/prometheus"
 
 
 @pytest.fixture()
-def AnsibleDefaults():
+def ansible_defaults():
     with open("../../defaults/main.yml", 'r') as stream:
         return yaml.load(stream)
 
 
 @pytest.mark.parametrize("dir", [
-    prometheus_home + "/config/rules",
-    prometheus_home + "/config/file_sd",
-    prometheus_home + "/config/conf.d"
+    prometheus_config_path + "/config/rules",
+    prometheus_config_path + "/config/file_sd",
+    prometheus_config_path + "/config/conf.d"
 ])
 def test_directories(host, dir):
     d = host.file(dir)
@@ -22,7 +23,7 @@ def test_directories(host, dir):
 
 
 @pytest.mark.parametrize("file", [
-    prometheus_home + "/config/prometheus.yml",
+    prometheus_config_path + "/config/prometheus.yml",
     prometheus_home + "/prometheus",
     prometheus_home + "/promtool",
     prometheus_home + "/tsdb",
@@ -48,7 +49,7 @@ def test_socket(host):
     assert s.is_listening
 
 
-def test_version(host, AnsibleDefaults):
-    version = AnsibleDefaults['prometheus_version']
+def test_version(host, ansible_defaults):
+    version = ansible_defaults['prometheus_version']
     out = host.run(prometheus_home + "/prometheus --version").stderr
     assert "prometheus, version " + version in out

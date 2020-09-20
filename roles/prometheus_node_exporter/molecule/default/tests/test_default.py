@@ -2,7 +2,7 @@ import pytest
 import yaml
 
 prometheus_node_exporter_home = "/opt/prometheus_node_exporter"
-prometheus_node_exporter_config_path = "/opt/prometheus_node_exporter/config"
+prometheus_node_exporter_config_path = "/etc/prometheus_node_exporter/config"
 
 
 @pytest.fixture()

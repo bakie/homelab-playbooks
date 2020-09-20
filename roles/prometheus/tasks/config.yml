@@ -2,10 +2,10 @@
 
 - name: create prometheus config directories
   become: yes
-  become_user: "{{ prometheus_user }}"
   file:
     path: "{{ prometheus_config_path }}/{{ item }}"
     state: directory
+    owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     mode: 0770
   with_items:
