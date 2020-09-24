@@ -13,4 +13,17 @@ node_exporter_enabled_collectors:
   - bonding
   - cpu
   - diskstats
+  - filefd
+  - filesystem
+  - loadavg
+  - mdadm
+  - meminfo
+  - netdev
+  - netstat
+  - stat
+  - systemd
+  - tcpstat
+  - time
+  - uname
+  - vmstat
 node_exporter_disabled_collectors: []
