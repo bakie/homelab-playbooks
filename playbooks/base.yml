@@ -4,3 +4,4 @@
 
   roles:
     - { role: packages, tags: [ "packages" ] }
+    - { role: node_exporter, tags: [ "node_exporter" ] }
