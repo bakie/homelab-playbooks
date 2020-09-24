@@ -9,7 +9,12 @@ rule_files:
   - {{ prometheus_config_path }}/rules/*.rules
 
 scrape_configs:
-  - job_name: "prometheus"
+  - job_name: "metrics"
     metrics_path: "/metrics"
     static_configs:
-      - targets: ['localhost:9090']
+      - targets:
+          - prometheus.local:9100
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*)\\.(.*)"
+        target_label: instance

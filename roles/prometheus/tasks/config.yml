@@ -8,7 +8,7 @@
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     mode: 0770
-  with_items:
+  loop:
     - "rules"
     - "file_sd"
     - "conf.d"

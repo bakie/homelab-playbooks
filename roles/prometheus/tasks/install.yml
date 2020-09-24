@@ -36,7 +36,7 @@
         mode: 0755
         owner: "{{ prometheus_user }}"
         group: "{{ prometheus_group }}"
-      with_items:
+      loop:
         - prometheus
         - promtool
         - tsdb
