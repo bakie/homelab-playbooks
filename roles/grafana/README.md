@@ -1,5 +1,10 @@
 ## Role Variables
 
+### grafana_group
+The group for the grafana user
+
+Default value is "grafana"
+
 ### grafana_url
 The url for grafana which is used in the apache vhost
 
@@ -57,4 +62,23 @@ grafana_config_settings:
     replace: "root_url = {{ grafana_config_root_url }}"
   - regexp: "^;?http_port(.*)"
     replace: "http_port = {{ grafana_http_port }}"
+```
+
+### grafana_dashboards_config_path
+The path to the location of the dashboards json configs
+
+Default value is "/etc/grafana/dashboards"
+
+### grafana_dashboards
+A list of src and dest of grafana dashboard in json format.
+The src will be searched in the files directory of the role.
+
+Default value is
+```
+  - src: "application/apps_dashboard.json"
+    dest: "{{ grafan_dashboards_config_path }}/application"
+  - src: "server/common_dashboard.json"
+    dest: "{{ grafan_dashboards_config_path }}/server"
+  - src: "server/network_dashboard.json"
+    dest: "{{ grafan_dashboards_config_path }}/server"
 ```

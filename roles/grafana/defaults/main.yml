@@ -1,5 +1,6 @@
 ---
 
+grafana_group: "grafana"
 grafana_url: "{{ inventory_hostname }}.local"
 grafana_admin_user: "grafana"
 grafana_admin_password: "grafana"
@@ -21,3 +22,11 @@ grafana_config_settings:
     replace: "root_url = {{ grafana_config_root_url }}"
   - regexp: "^;?http_port(.*)"
     replace: "http_port = {{ grafana_http_port }}"
+grafana_dashboards_config_path: "/etc/grafana/dashboards"
+grafana_dashboards:
+  - src: "dashboards/application/apps_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/application"
+  - src: "dashboards/server/common_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/server"
+  - src: "dashboards/server/network_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/server"

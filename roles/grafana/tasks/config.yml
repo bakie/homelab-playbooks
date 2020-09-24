@@ -9,13 +9,47 @@
   loop: "{{ grafana_config_settings }}"
   notify: restart grafana
 
-- name: template the datasources
+- name: template the provisioning datasources
   become: yes
   template:
-    src: datasources.yml.j2
-    dest: "{{ grafana_config_path }}/provisioning/datasources/datasources.yml"
-    group: "grafana"
+    src: datasources.yaml.j2
+    dest: "{{ grafana_config_path }}/provisioning/datasources/datasources.yaml"
+    group: "{{ grafana_group }}"
     mode: "0640"
+  notify: restart grafana
+
+- name: template the provisioning dashboards
+  become: yes
+  template:
+    src: dashboards.yaml.j2
+    dest: "{{ grafana_config_path }}/provisioning/dashboards/dashboards.yaml"
+    group: "{{ grafana_group }}"
+    mode: "0640"
+  notify: restart grafana
+
+- name: create the dashboards config path
+  become: yes
+  file:
+    state: directory
+    group: "{{ grafana_group }}"
+    path: "{{ grafana_dashboards_config_path }}"
+
+- name: create the dashboards paths
+  become: yes
+  file:
+    state: directory
+    group: "{{ grafana_group }}"
+    path: "{{ item.dest }}"
+  loop: "{{ grafana_dashboards }}"
+
+- name: copy the dashboards
+  become: yes
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    group: "{{ grafana_group }}"
+    mode: 0755
+  loop: "{{ grafana_dashboards }}"
   notify: restart grafana
 
 - name: enable and start grafana
