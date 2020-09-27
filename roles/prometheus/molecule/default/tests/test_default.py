@@ -26,7 +26,6 @@ def test_directories(host, dir):
     prometheus_config_path + "/prometheus.yml",
     prometheus_home + "/prometheus",
     prometheus_home + "/promtool",
-    prometheus_home + "/tsdb",
     "/lib/systemd/system/prometheus.service",
 ])
 def test_files(host, file):

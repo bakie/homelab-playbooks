@@ -26,7 +26,7 @@
         dest: "/tmp"
         remote_src: yes
 
-    - name: copy prometheus, promtool and tsdb binaries
+    - name: copy prometheus and promtool binaries
       become: yes
       become_user: "{{ prometheus_user }}"
       copy:
@@ -39,7 +39,6 @@
       loop:
         - prometheus
         - promtool
-        - tsdb
       notify:
         - restart prometheus
   when: not prometheus_binary.stat.exists or prometheus_current_version.stdout != prometheus_version

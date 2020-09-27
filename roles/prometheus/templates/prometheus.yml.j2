@@ -13,7 +13,9 @@ scrape_configs:
     metrics_path: "/metrics"
     static_configs:
       - targets:
-          - prometheus.local:9100
+        {% for host in groups['all'] %}
+        - {{ host }}.local:9100
+        {% endfor %}
     relabel_configs:
       - source_labels: [__address__]
         regex: "(.*)\\.(.*)"

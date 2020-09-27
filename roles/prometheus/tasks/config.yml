@@ -23,3 +23,23 @@
     mode: 0640
     validate: "{{ prometheus_home }}/promtool check config %s"
   notify: reload prometheus
+
+- name: get avahi local hosts and ips
+  shell: |
+    set -o pipefail
+    getent hosts {{ item }}.local
+  args:
+    executable: "/bin/bash"
+  loop: "{{ groups['all'] | difference(ansible_play_hosts) }}" # Monitoring hosts can resolve themselves
+  register: hosts_ips
+  changed_when: no
+
+- name: add the hosts and ips to /etc/hosts
+  become: yes
+  lineinfile:
+    dest: "/etc/hosts"
+    regex: "{{ item.stdout | regex_replace(' +', ' ') }}"
+    line: "{{ item.stdout | regex_replace(' +', ' ') }}"
+    insertafter: "127.0.0.1 localhost"
+    state: present
+  loop: "{{ hosts_ips.results }}"

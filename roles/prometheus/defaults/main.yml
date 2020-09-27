@@ -4,7 +4,7 @@ prometheus_group: "prometheus"
 prometheus_user: "prometheus"
 prometheus_home: "/opt/prometheus"
 prometheus_config_path: "/etc/prometheus"
-prometheus_version: 2.19.2
+prometheus_version: 2.21.0
 prometheus_web_listen_port: 9090
 prometheus_web_listen_address: "0.0.0.0:{{ prometheus_web_listen_port }}"
 prometheus_storage_retention: "30d"
