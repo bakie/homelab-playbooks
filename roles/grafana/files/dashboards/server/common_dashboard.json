@@ -101,7 +101,7 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -332,42 +332,17 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "prometheus",
-          "value": "prometheus"
-        },
+        "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(instance)",
-        "hide": 2,
+        "hide": 0,
         "includeAll": false,
-        "label": null,
+        "label": "Instance",
         "multi": false,
         "name": "instance_name",
-        "options": [
-          {
-            "selected": false,
-            "text": "localhost:9090",
-            "value": "localhost:9090"
-          },
-          {
-            "selected": false,
-            "text": "localhost:9100",
-            "value": "localhost:9100"
-          },
-          {
-            "selected": true,
-            "text": "prometheus",
-            "value": "prometheus"
-          },
-          {
-            "selected": false,
-            "text": "prometheus.local",
-            "value": "prometheus.local"
-          }
-        ],
+        "options": [],
         "query": "label_values(instance)",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
