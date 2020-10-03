@@ -63,19 +63,19 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=\"${instance_name}\"}",
+          "expr": "node_memory_MemAvailable_bytes{instance=~\"${instance_name}\"}",
           "interval": "",
           "legendFormat": "Free ({{ instance }})",
           "refId": "A"
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=\"${instance_name}\"} - node_memory_MemAvailable_bytes{instance=\"${instance_name}\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"${instance_name}\"} - node_memory_MemAvailable_bytes{instance=~\"${instance_name}\"}",
           "interval": "",
           "legendFormat": "Used ({{ instance }})",
           "refId": "B"
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=\"${instance_name}\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"${instance_name}\"}",
           "interval": "",
           "legendFormat": "Total ({{ instance }})",
           "refId": "C"
@@ -169,10 +169,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_filesystem_size_bytes{instance=\"${instance_name}\"} - node_filesystem_avail_bytes{instance=\"${instance_name}\"}",
+          "expr": "node_filesystem_size_bytes{instance=~\"${instance_name}\"} - node_filesystem_avail_bytes{instance=~\"${instance_name}\"}",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "{{ mountpoint }}",
+          "legendFormat": "{{ mountpoint }} ({{ instance }})",
           "refId": "A"
         }
       ],
@@ -264,21 +264,21 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_load1{instance=\"${instance_name}\"}",
+          "expr": "node_load1{instance=~\"${instance_name}\"}",
           "interval": "",
-          "legendFormat": "Load 1m",
+          "legendFormat": "Load 1m ({{ instance }})",
           "refId": "A"
         },
         {
-          "expr": "node_load5{instance=\"${instance_name}\"}",
+          "expr": "node_load5{instance=~\"${instance_name}\"}",
           "interval": "",
-          "legendFormat": "Load 5m",
+          "legendFormat": "Load 5m ({{ instance }})",
           "refId": "B"
         },
         {
-          "expr": "node_load15{instance=\"${instance_name}\"}",
+          "expr": "node_load15{instance=~\"${instance_name}\"}",
           "interval": "",
-          "legendFormat": "Load 15m",
+          "legendFormat": "Load 15m ({{ instance }})",
           "refId": "C"
         }
       ],
@@ -331,12 +331,12 @@
   "templating": {
     "list": [
       {
-        "allValue": null,
+        "allValue": ".*",
         "current": {},
         "datasource": "Prometheus",
         "definition": "label_values(instance)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Instance",
         "multi": false,
         "name": "instance_name",

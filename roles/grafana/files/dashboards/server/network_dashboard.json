@@ -62,13 +62,13 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{instance=\"${instance_name}\"}[5m])*8",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"${instance_name}\"}[5m])*8",
           "interval": "",
           "legendFormat": "{{ device }} - Receive",
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_transmit_bytes_total{instance=\"${instance_name}\"}[5m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"${instance_name}\"}[5m])*8",
           "interval": "",
           "legendFormat": "{{ device }} - Transmit",
           "refId": "B"
@@ -94,8 +94,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:440",
-          "format": "short",
+          "format": "decbytes",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -103,7 +102,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:441",
           "format": "short",
           "label": null,
           "logBase": 1,
