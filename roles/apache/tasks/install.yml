@@ -1,0 +1,7 @@
+---
+
+- name: install apache2 and required packages
+  become: yes
+  apt:
+    name: [ "apache2", "python-passlib" ]
+    state: present
