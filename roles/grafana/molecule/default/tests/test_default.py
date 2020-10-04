@@ -22,8 +22,7 @@ def test_config(host, config):
 
 def test_config_root_url(host):
     file = host.file(GRAFANA_CONFIG_PATH + "/grafana.ini")
-    assert file.contains("^root_url = http://debian_buster.local",) \
-        or file.contains("^root_url = http://ubuntu_focal_fossa.local",)
+    assert file.contains("^root_url = http://grafana.homelab.net",)
 
 
 def test_listening_on_port(host):
@@ -45,3 +44,11 @@ def test_dashboards_provisioning(host):
 ])
 def test_dashboards(host, dashboard):
     assert host.file("/etc/grafana/dashboards/" + dashboard).exists
+
+
+def test_apache_vhost_sites_available(host):
+    assert host.file("/etc/apache2/sites-available/grafana.conf").exists
+
+
+def test_apache_vhost_sites_enabled(host):
+    assert host.file("/etc/apache2/sites-enabled/grafana.conf").is_symlink

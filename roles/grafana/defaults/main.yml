@@ -1,12 +1,12 @@
 ---
 
 grafana_group: "grafana"
-grafana_url: "{{ inventory_hostname }}.local"
+grafana_url: "grafana.{{ top_lvl_domain }}"
 grafana_admin_user: "grafana"
 grafana_admin_password: "grafana"
 grafana_config_root_url: "http://{{ grafana_url }}"
 grafana_config_path: "/etc/grafana"
-grafana_http_port: 3000
+grafana_listen_port: 3000
 grafana_datasources:
   - name: Prometheus
     options:
@@ -21,7 +21,7 @@ grafana_config_settings:
   - regexp: "^;?root_url(.*)"
     replace: "root_url = {{ grafana_config_root_url }}"
   - regexp: "^;?http_port(.*)"
-    replace: "http_port = {{ grafana_http_port }}"
+    replace: "http_port = {{ grafana_listen_port }}"
 grafana_dashboards_config_path: "/etc/grafana/dashboards"
 grafana_dashboards:
   - src: "dashboards/application/apps_dashboard.json"

@@ -8,7 +8,7 @@ Default value is "grafana"
 ### grafana_url
 The url for grafana which is used in the apache vhost
 
-Default value is "{{ inventory_hostname }}.local"
+Default value is "grafana.{{ top_lvl_domain }}"
 
 ### grafana_admin_user
 The username for the grafana login
@@ -30,7 +30,7 @@ The path of the configuration files
 
 Default value is "/etc/grafana"
 
-### grafana_http_port
+### grafana_listen_port
 The port on which grafana should listen
 
 Default value is 3000

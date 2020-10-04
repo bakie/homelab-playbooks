@@ -20,3 +20,8 @@ scrape_configs:
       - source_labels: [__address__]
         regex: "(.*)\\.(.*)"
         target_label: instance
+  - job_name: "blackbox"
+    metrics_path: "/probe"
+    static_configs:
+      - targets:
+        - http://sabnzbd.home/
