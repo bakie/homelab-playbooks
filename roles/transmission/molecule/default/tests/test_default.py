@@ -1,11 +1,7 @@
 import pytest
-import yaml
 
 
-@pytest.fixture()
-def AnsibleDefaults():
-    with open("../../defaults/main.yml", 'r') as stream:
-        return yaml.load(stream)
+TRANSMISSION_SETTINGS_PATH = "/opt/transmission/.config/transmission-daemon/settings.json"
 
 
 def test_transmission_group_exists(host):
@@ -38,8 +34,8 @@ def test_dir_exists(host, directory):
     "\"incomplete-dir-enabled\": true",
     "\"rpc-whitelist-enabled\": false"
 ])
-def test_transmission_settings_file_contains(host, setting, AnsibleDefaults):
-    assert host.file(AnsibleDefaults['transmission_settings_file_path']).contains(setting)
+def test_transmission_settings_file_contains(host, setting):
+    assert host.file(TRANSMISSION_SETTINGS_PATH).contains(setting)
 
 
 def test_transmission_is_running(host):
@@ -48,3 +44,11 @@ def test_transmission_is_running(host):
 
 def test_transmission_is_enabled(host):
     assert host.service("transmission-daemon").is_enabled
+
+
+def test_apache_vhost_sites_available(host):
+    assert host.file("/etc/apache2/sites-available/transmission.conf").exists
+
+
+def test_apache_vhost_sites_enabled(host):
+    assert host.file("/etc/apache2/sites-enabled/transmission.conf").is_symlink

@@ -20,6 +20,16 @@ The location of the transmission settings file
 
 Default value is "{{ transmission_user_home }}/.config/transmission-daemon/settings.json"
 
+### transmission_url
+The url which is used in the vhost.
+
+Default value is "transmission.{{ top_lvl_domain }}"
+
+###transmission_listen_port
+The port on which transmission is listening which is used in the vhost for the proxying.
+
+Default value is 9091
+
 
 ## Next settings are for the settings file
 ### transmission_rpc_username

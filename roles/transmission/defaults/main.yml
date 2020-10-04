@@ -4,6 +4,8 @@ transmission_group: "debian-transmission"
 transmission_user: "debian-transmission"
 transmission_user_home: "/opt/transmission"
 transmission_settings_file_path: "{{ transmission_user_home }}/.config/transmission-daemon/settings.json"
+transmission_url: "transmission.{{ top_lvl_domain }}"
+transmission_listen_port: 9091
 
 # settings.json variables
 transmission_rpc_username: "\"transmission\""
