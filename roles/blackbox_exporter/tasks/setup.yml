@@ -1,0 +1,27 @@
+---
+
+- name: add blackbox_exporter group
+  become: yes
+  group:
+    name: "{{ blackbox_exporter_group }}"
+    system: yes
+    state: present
+
+- name: create blackbox_exporter user
+  become: yes
+  user:
+    name: "{{ blackbox_exporter_user }}"
+    home: "{{ blackbox_exporter_home }}"
+    create_home: no
+    system: yes
+    group: "{{ blackbox_exporter_group }}"
+    state: present
+
+- name: create blackbox_exporter home
+  become: yes
+  file:
+    path: "{{ blackbox_exporter_home }}"
+    state: directory
+    owner: "{{ blackbox_exporter_user }}"
+    group: "{{ blackbox_exporter_group }}"
+    mode: 0755

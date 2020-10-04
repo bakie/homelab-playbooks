@@ -1,0 +1,47 @@
+---
+
+- name: stat blackbox_exporter binary
+  stat:
+    path: "{{ blackbox_exporter_home }}/blackbox_exporter"
+  register: blackbox_exporter_binary
+
+- name: stat current blackbox_exporter version
+  shell: |
+    set -o pipefail
+    ./blackbox_exporter --version 2>&1 | head -1 | awk '{print $3}'
+  args:
+    chdir: "{{ blackbox_exporter_home }}"
+    executable: "/bin/bash"
+  when: blackbox_exporter_binary.stat.exists
+  register: blackbox_exporter_current_version
+  changed_when: false
+
+- name: install blackbox_exporter block
+  block:
+    - name: unarchive blackbox_exporter
+      become: yes
+      become_user: "{{ blackbox_exporter_user }}"
+      unarchive:
+        src: "{{ blackbox_exporter_download_url }}"
+        dest: "/tmp"
+        remote_src: yes
+
+    - name: copy blackbox_exporter
+      become: yes
+      become_user: "{{ blackbox_exporter_user }}"
+      copy:
+        src: "/tmp/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64/blackbox_exporter"
+        dest: "{{ blackbox_exporter_home }}/blackbox_exporter"
+        remote_src: yes
+        mode: 0755
+        owner: "{{ blackbox_exporter_user }}"
+        group: "{{ blackbox_exporter_group }}"
+      notify:
+        - restart blackbox_exporter
+
+    - name: remove downloaded files
+      become: yes
+      file:
+        path: "/tmp/blackbox_exporter-{{ blackbox_exporter_version }}.linux-amd64"
+        state: absent
+  when: not blackbox_exporter_binary.stat.exists or blackbox_exporter_current_version.stdout != blackbox_exporter_version

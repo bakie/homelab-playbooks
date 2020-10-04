@@ -1,0 +1,37 @@
+
+[Unit]
+Description=Prometheus Blackbox Exporter
+After=network-online.target
+StartLimitInterval=0
+
+[Service]
+Type=simple
+User={{ blackbox_exporter_user }}
+Group={{ blackbox_exporter_group }}
+ExecStart={{ blackbox_exporter_home }}/blackbox_exporter \
+  --config.file={{ blackbox_exporter_config_path }}/config.yml \
+  {% for flag, flag_value in blackbox_exporter_cli_flags.items() -%}
+  --{{ flag }}={{ flag_value }} \
+  {% endfor -%}
+  --web.listen-address={{ blackbox_exporter_web_listen_address }}
+
+SyslogIdentifier=blackbox_exporter
+Restart=always
+RestartSec=1
+
+LockPersonality=true
+NoNewPrivileges=true
+MemoryDenyWriteExecute=true
+PrivateTmp=true
+ProtectHome=true
+RemoveIPC=true
+RestrictSUIDSGID=true
+
+AmbientCapabilities=CAP_NET_RAW
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,27 @@
+---
+
+- name: create blackbox_exporter config directory
+  become: yes
+  file:
+    path: "{{ blackbox_exporter_config_path }}"
+    state: directory
+    owner: "{{ blackbox_exporter_user }}"
+    group: "{{ blackbox_exporter_group }}"
+    mode: 0775
+
+- name: configure blackbox_exporter config.yml
+  become: yes
+  become_user: "{{ blackbox_exporter_user }}"
+  template:
+    src: "config.yml.j2"
+    dest: "{{ blackbox_exporter_config_path }}/config.yml"
+    group: "{{ blackbox_exporter_group }}"
+    mode: 0640
+  notify: restart blackbox_exporter
+
+- name: ensure blackbox exporter binary has cap_net_raw capability
+  become: yes
+  capabilities:
+    path: '{{ blackbox_exporter_home }}/blackbox_exporter'
+    capability: cap_net_raw+ep
+    state: present
