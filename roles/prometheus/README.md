@@ -20,15 +20,21 @@ The path for the configurations required for prometheus
 
 Default value is "/etc/prometheus"
 
-### prometheus_web_listen_port
+### prometheus_listen_port
 The port on which prometheus should listen
 
 Default value is 9090
 
-### prometheus_web_listen_address
+### prometheus_listen_address
 The address on which prometheus should listen
 
-Default value is "0.0.0.0:{{ prometheus_web_listen_port }}"
+Default value is "0.0.0.0:{{ prometheus_listen_port }}"
+
+### prometheus_url
+The url for prometheus which is used in the apache vhost
+
+Default value is "prometheus.{{ top_lvl_domain }}"
+
 
 ### prometheus_storage_retention
 The retention for the data

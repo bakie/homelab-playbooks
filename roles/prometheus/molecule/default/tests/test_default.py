@@ -52,3 +52,11 @@ def test_version(host, ansible_defaults):
     version = ansible_defaults['prometheus_version']
     out = host.run(prometheus_home + "/prometheus --version").stderr
     assert "prometheus, version " + version in out
+
+
+def test_apache_vhost_sites_available(host):
+    assert host.file("/etc/apache2/sites-available/prometheus.conf").exists
+
+
+def test_apache_vhost_sites_enabled(host):
+    assert host.file("/etc/apache2/sites-enabled/prometheus.conf").is_symlink

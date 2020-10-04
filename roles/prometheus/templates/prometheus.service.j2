@@ -12,7 +12,7 @@ ExecStart={{ prometheus_home }}/prometheus \
   --config.file={{ prometheus_config_path }}/prometheus.yml \
   --storage.tsdb.path={{ prometheus_home }} \
   --storage.tsdb.retention.time={{ prometheus_storage_retention }} \
-  --web.listen-address={{ prometheus_web_listen_address }} \
+  --web.listen-address={{ prometheus_listen_address }} \
   --web.external-url=/
 
 CapabilityBoundingSet=CAP_SET_UID
