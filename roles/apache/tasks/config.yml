@@ -53,7 +53,7 @@
     state: present
     create: yes
   loop:
-    - { regexp: '^ServerName', line: 'ServerName {{ansible_hostname}}' }
+    - { regexp: '^ServerName', line: 'ServerName {{ ansible_hostname }}' }
   notify: reload apache
 
 - name: enable the hostname configs
