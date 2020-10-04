@@ -7,7 +7,7 @@ driver:
 lint: |
   set -e
   yamllint -c ../../.config/yamllint .
-  ansible-lint
+  ansible-lint -c ../../.config/ansible-lint
   flake8 --config ../../.config/flake8
 platforms:
   - name: ${PLATFORM_NAME_DEBIAN_BUSTER:-debian_buster}
