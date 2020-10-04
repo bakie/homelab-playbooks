@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+    ServerName {{ medusa_url }}
+
+    ProxyPreserveHost On
+    ProxyPass / http://0.0.0.0:{{ medusa_listen_port }}/
+    ProxyPassReverse / http://0.0.0.0:{{ medusa_listen_port }}/
+
+    LogFormat "%v:%p %h %l %u %t \"%r\" %>s \"%{Referer}i\" \"%{User-Agent}i\"" log
+    CustomLog ${APACHE_LOG_DIR}/medusa.access.log log
+    ErrorLog ${APACHE_LOG_DIR}/medusa.error.log
+
+</VirtualHost>

@@ -29,3 +29,13 @@ Default value is "/opt/medusa"
 The version of medusa that needs to be installed
 
 Default value is "master"
+
+### medusa_url
+The url which is used in the vhost.
+
+Default value is "medusa.{{ top_lvl_domain }}"
+
+###medusa_listen_port
+The port on which medusa is listening which is used in the vhost for the proxying.
+
+Default value is 8081

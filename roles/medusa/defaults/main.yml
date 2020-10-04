@@ -6,3 +6,5 @@ medusa_user_home: "/opt/medusa"
 medusa_repo: "https://github.com/pymedusa/Medusa.git"
 medusa_install_dir: "/opt/medusa"
 medusa_version: "master"
+medusa_url: "medusa.{{ top_lvl_domain }}"
+medusa_listen_port: 8081
