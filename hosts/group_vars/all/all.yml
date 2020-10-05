@@ -1,3 +1,19 @@
 ---
 
-top_lvl_domain: "homelab.net"
+top_lvl_domain: "homelab.local"
+grafana_url: "grafana.{{ top_lvl_domain }}"
+medusa_url: "medusa.{{ top_lvl_domain }}"
+prometheus_url: "prometheus.{{ top_lvl_domain }}"
+sabnzbd_url: "sabnzbd.{{ top_lvl_domain }}"
+transmission_url: "transmission.{{ top_lvl_domain }}"
+pihole_custom_dns_entries:
+  - ip: 10.1.1.100
+    url: "{{ grafana_url }}"
+  - ip: 10.1.1.100
+    url: "{{ prometheus_url }}"
+  - ip: 10.1.1.101
+    url: "{{ sabnzbd_url }}"
+  - ip: 10.1.1.101
+    url: "{{ transmission_url }}"
+  - ip: 10.1.1.102
+    url: "{{ medusa_url }}"
