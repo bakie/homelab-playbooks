@@ -1,0 +1,19 @@
+---
+
+- name: install software-properties-common
+  become: yes
+  apt:
+    name: [ "software-properties-common" ]
+    state: present
+
+- name: add sabnzbd ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_ppa_repository }}"
+
+- name: add sabnzbd-addons ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_addons_ppa_repository }}"
+
+- include_tasks: "setup.yml"

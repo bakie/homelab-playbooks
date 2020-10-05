@@ -35,3 +35,11 @@ def test_sabnzbd_is_running(host):
 
 def test_listening_on_port(host):
     assert host.socket("tcp://0.0.0.0:8080").is_listening
+
+
+def test_apache_vhost_sites_available(host):
+    assert host.file("/etc/apache2/sites-available/sabnzbd.conf").exists
+
+
+def test_apache_vhost_sites_enabled(host):
+    assert host.file("/etc/apache2/sites-enabled/sabnzbd.conf").is_symlink

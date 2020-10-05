@@ -1,15 +1,5 @@
 ---
 
-- name: add sabnzbd ppa repository
-  become: yes
-  apt_repository:
-    repo: "{{ sabnzbd_ppa_repository }}"
-
-- name: add sabnzbd-addons ppa repository
-  become: yes
-  apt_repository:
-    repo: "{{ sabnzbd_addons_ppa_repository }}"
-
 - name: add sabnzbd group
   become: yes
   group:

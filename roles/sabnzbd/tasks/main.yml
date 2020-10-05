@@ -1,5 +1,6 @@
 ---
 
-- import_tasks: setup.yml
-- import_tasks: install.yml
+- include_tasks: "setup_{{ ansible_distribution | lower }}.yml"
+- include_tasks: "install_{{ ansible_distribution | lower }}.yml"
 - import_tasks: config.yml
+- import_tasks: vhost.yml

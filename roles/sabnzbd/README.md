@@ -20,10 +20,15 @@ The host on which sabnzbd shoud listen
 
 Default value is 0.0.0.0
 
-### sabnzbd_port
+### sabnzbd_listen_port
 The port on which sabnzbd should listen
 
 Default value is 8080
+
+### sabnzbd_url
+The url which is used in the vhost.
+
+Default value is "sabnzbd.{{ top_lvl_domain }}"
 
 ### sabnzbd_ppa_repository
 The ppa repository of sabnzbd

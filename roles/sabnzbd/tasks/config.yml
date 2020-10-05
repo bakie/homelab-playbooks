@@ -9,5 +9,5 @@
   loop:
     - { regexp: "^USER=", line: "USER={{ sabnzbd_user }}" }
     - { regexp: "^HOST=", line: "HOST={{ sabnzbd_host }}" }
-    - { regexp: "^PORT=", line: "PORT={{ sabnzbd_port }}" }
+    - { regexp: "^PORT=", line: "PORT={{ sabnzbd_listen_port }}" }
   notify: restart sabnzbd
