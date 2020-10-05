@@ -26,11 +26,10 @@
 
     - name: run pihole installer
       become: yes
-      shell: "./pihole-install.sh --unattended"
+      command: "./pihole-install.sh --unattended"
       args:
         executable: "/bin/bash"
         chdir: "/tmp"
       environment:
         TERM: "xterm"
-
   when: not pihole_dir.stat.exists
