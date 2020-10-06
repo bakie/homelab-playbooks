@@ -3,6 +3,6 @@
 - name: install sabnzbd and dependencies
   become: yes
   apt:
-    name: [ "sabnzbdplus", "par2-tbb", "unrar-free" ]
+    name: "{{ install_packages }}"
     state: present
     install_recommends: no

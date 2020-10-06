@@ -11,3 +11,18 @@
     - { regexp: "^HOST=", line: "HOST={{ sabnzbd_host }}" }
     - { regexp: "^PORT=", line: "PORT={{ sabnzbd_listen_port }}" }
   notify: restart sabnzbd
+
+- name: start and enable sabnzbd
+  become: yes
+  service:
+    name: sabnzbdplus
+    state: started
+    enabled: yes
+
+- name: add the sabnzbd_url to host_whitelist
+  become: yes
+  lineinfile:
+    path: "{{ sabnzbd_user_home }}/.sabnzbd/sabnzbd.ini"
+    regexp: "^host_whitelist"
+    line: "host_whitelist = {{ inventory_hostname }}, {{ sabnzbd_url }}"
+  notify: restart sabnzbd

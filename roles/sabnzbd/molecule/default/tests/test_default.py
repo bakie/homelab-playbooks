@@ -43,3 +43,8 @@ def test_apache_vhost_sites_available(host):
 
 def test_apache_vhost_sites_enabled(host):
     assert host.file("/etc/apache2/sites-enabled/sabnzbd.conf").is_symlink
+
+
+def test_host_whitelist(host):
+    assert host.file("/opt/sabnzbd/.sabnzbd/sabnzbd.ini").contains("host_whitelist = ubuntu_focal_fossa, sabnzbd.homelab.net") \
+        or host.file("/opt/sabnzbd/.sabnzbd/sabnzbd.ini").contains("host_whitelist = debian_buster, sabnzbd.homelab.net")

@@ -1,0 +1,3 @@
+---
+
+install_packages: [ "sabnzbdplus", "par2-tbb", "unrar-free" ]

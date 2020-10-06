@@ -1,5 +1,8 @@
 ---
 
+- name: include distribution specific setup steps
+  include_tasks: "setup_{{ ansible_distribution | lower }}.yml"
+
 - name: add sabnzbd group
   become: yes
   group:

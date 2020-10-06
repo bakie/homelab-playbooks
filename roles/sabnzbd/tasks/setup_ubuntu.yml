@@ -15,5 +15,3 @@
   become: yes
   apt_repository:
     repo: "{{ sabnzbd_addons_ppa_repository }}"
-
-- include_tasks: "setup.yml"

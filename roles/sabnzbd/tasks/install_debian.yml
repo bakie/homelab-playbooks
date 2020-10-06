@@ -1,8 +1,0 @@
----
-
-- name: install sabnzbd and dependencies
-  become: yes
-  apt:
-    name: [ "sabnzbdplus", "unrar-free" ]
-    state: present
-    install_recommends: no
