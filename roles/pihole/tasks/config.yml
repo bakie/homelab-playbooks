@@ -1,11 +1,11 @@
 ---
 
-- name: add custom dns entries
+- name: template the dns records
   become: yes
-  lineinfile:
-    create: yes
-    path: "{{ pihole_config_path }}/custom.list"
-    line: "{{ item.ip }} {{ item.url }}"
-    regexp: "^{{ item.ip }} {{ item.url }}"
-    state: present
-  loop: "{{ pihole_custom_dns_entries }}"
+  template:
+    src: "dns_records.j2"
+    dest: "{{ pihole_config_path }}/custom.list"
+    owner: "{{ pihole_user }}"
+    group: "{{ pihole_group }}"
+    mode: 0644
+  notify: reload dns

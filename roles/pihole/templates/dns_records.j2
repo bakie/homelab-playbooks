@@ -1,0 +1,3 @@
+{% for dns_entry in pihole_custom_dns_entries %}
+{{ dns_entry.ip }} {{ dns_entry.url }}
+{% endfor %}
