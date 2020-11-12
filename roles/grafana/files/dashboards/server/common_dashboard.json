@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1601117019178,
+  "id": 3,
+  "iteration": 1605198594610,
   "links": [],
   "panels": [
     {
@@ -52,8 +53,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -63,20 +67,20 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_memory_MemAvailable_bytes{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_memory_MemAvailable_bytes{instance=~\"$instance\"}",
+          "interval": "$interval",
           "legendFormat": "Free ({{ instance }})",
           "refId": "A"
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"${instance_name}\"} - node_memory_MemAvailable_bytes{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$instance\"} - node_memory_MemAvailable_bytes{instance=~\"${instance}\"}",
+          "interval": "$interval",
           "legendFormat": "Used ({{ instance }})",
           "refId": "B"
         },
         {
-          "expr": "node_memory_MemTotal_bytes{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$instance\"}",
+          "interval": "$interval",
           "legendFormat": "Total ({{ instance }})",
           "refId": "C"
         }
@@ -158,8 +162,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -169,8 +176,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_filesystem_size_bytes{instance=~\"${instance_name}\"} - node_filesystem_avail_bytes{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_filesystem_size_bytes{instance=~\"$instance\"} - node_filesystem_avail_bytes{instance=~\"$instance\"}",
+          "interval": "$interval",
           "intervalFactor": 1,
           "legendFormat": "{{ mountpoint }} ({{ instance }})",
           "refId": "A"
@@ -196,7 +203,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:154",
           "format": "decbytes",
           "label": null,
           "logBase": 1,
@@ -205,7 +211,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:155",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -253,8 +258,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -264,20 +272,20 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_load1{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_load1{instance=~\"$instance\"}",
+          "interval": "$interval",
           "legendFormat": "Load 1m ({{ instance }})",
           "refId": "A"
         },
         {
-          "expr": "node_load5{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_load5{instance=~\"$instance\"}",
+          "interval": "$interval",
           "legendFormat": "Load 5m ({{ instance }})",
           "refId": "B"
         },
         {
-          "expr": "node_load15{instance=~\"${instance_name}\"}",
-          "interval": "",
+          "expr": "node_load15{instance=~\"$instance\"}",
+          "interval": "$interval",
           "legendFormat": "Load 15m ({{ instance }})",
           "refId": "C"
         }
@@ -331,17 +339,114 @@
   "templating": {
     "list": [
       {
+        "auto": true,
+        "auto_count": "10",
+        "auto_min": "10s",
+        "current": {
+          "selected": false,
+          "text": "5s",
+          "value": "5s"
+        },
+        "hide": 0,
+        "label": "Interval",
+        "name": "interval",
+        "options": [
+          {
+            "selected": false,
+            "text": "auto",
+            "value": "$__auto_interval_interval"
+          },
+          {
+            "selected": true,
+            "text": "5s",
+            "value": "5s"
+          },
+          {
+            "selected": false,
+            "text": "10s",
+            "value": "10s"
+          },
+          {
+            "selected": false,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
+      },
+      {
         "allValue": ".*",
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": "Prometheus",
-        "definition": "label_values(instance)",
+        "definition": "label_values({job=~\"metrics\"}, instance)",
         "hide": 0,
         "includeAll": true,
-        "label": "Instance",
-        "multi": false,
-        "name": "instance_name",
+        "label": "",
+        "multi": true,
+        "name": "instance",
         "options": [],
-        "query": "label_values(instance)",
+        "query": "label_values({job=~\"metrics\"}, instance)",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -386,5 +491,5 @@
   "timezone": "",
   "title": "Common",
   "uid": "5MwrHqOMz",
-  "version": 12
+  "version": 3
 }
