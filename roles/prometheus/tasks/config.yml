@@ -24,6 +24,15 @@
     validate: "{{ prometheus_home }}/promtool check config %s"
   notify: reload prometheus
 
+- name: template the blackbox_targets.yml
+  become: yes
+  become_user: "{{ prometheus_user }}"
+  template:
+    src: "blackbox_targets.json.j2"
+    dest: "{{ prometheus_config_path }}/file_sd/blackbox_targets.json"
+    group: "{{ prometheus_group }}"
+    mode: 0640
+
 - name: get avahi local hosts and ips
   shell: |
     set -o pipefail

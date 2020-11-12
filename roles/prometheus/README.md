@@ -40,3 +40,8 @@ Default value is "prometheus.{{ top_lvl_domain }}"
 The retention for the data
 
 Default value is "30d"
+
+### prometheus_blackbox_targets
+A map of targets to monitor for the blackbox exporter
+
+Default value is {}

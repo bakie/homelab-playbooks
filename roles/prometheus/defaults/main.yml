@@ -9,3 +9,10 @@ prometheus_listen_port: 9090
 prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
 prometheus_url: "prometheus.{{ top_lvl_domain }}"
 prometheus_storage_retention: "30d"
+prometheus_blackbox_targets:
+  - url: "transmission.{{ top_lvl_domain }}"
+    job: "blackbox"
+  - url: "sabnzbd.{{ top_lvl_domain }}"
+    job: "blackbox"
+  - url: "medusa.{{ top_lvl_domain }}"
+    job: "blackbox"

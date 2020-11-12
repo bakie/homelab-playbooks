@@ -1,0 +1,13 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+[
+{% for target in prometheus_blackbox_targets %}
+  {
+    "targets": [
+      "{{ target.url }}"
+    ],
+    "labels": {
+      "job": "{{ target.job }}"
+    }
+  }{% if not loop.last %},{% endif %}
+{% endfor %}
+]
