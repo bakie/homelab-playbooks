@@ -3,5 +3,6 @@
 - include_tasks: setup.yml
 - include_tasks: install.yml
 - include_tasks: config.yml
+- include_tasks: alerting_rules.yml
 - include_tasks: service.yml
 - include_tasks: vhost.yml

@@ -60,3 +60,23 @@ def test_apache_vhost_sites_available(host):
 
 def test_apache_vhost_sites_enabled(host):
     assert host.file("/etc/apache2/sites-enabled/prometheus.conf").is_symlink
+
+
+@pytest.mark.parametrize(("target_url", "target_label"), [
+    ("blackbox_green.com", "blackbox_green"),
+    ("blackbox_blue.com", "blackbox_blue"),
+])
+def test_blackbox_targets(host, target_url, target_label):
+    assert host.file(prometheus_config_path + "/file_sd/blackbox_targets.json").contains(target_url)
+    assert host.file(prometheus_config_path + "/file_sd/blackbox_targets.json").contains(target_label)
+
+
+@pytest.mark.parametrize(("group_name", "alert_rule", "alert_expr"), [
+    ("group1", "single_rule", "up == 0"),
+    ("group2", "rule one", "up == 0"),
+    ("group2", "rule two", "up == 0")
+])
+def test_alerting_rules(host, group_name, alert_rule, alert_expr):
+    assert host.file(prometheus_config_path + "/rules/alerting_rules.yml").contains(group_name)
+    assert host.file(prometheus_config_path + "/rules/alerting_rules.yml").contains(alert_rule)
+    assert host.file(prometheus_config_path + "/rules/alerting_rules.yml").contains(alert_expr)

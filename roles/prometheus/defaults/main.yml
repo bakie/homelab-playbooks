@@ -16,3 +16,10 @@ prometheus_blackbox_targets:
     job: "blackbox"
   - url: "medusa.{{ top_lvl_domain }}"
     job: "blackbox"
+alerting_rules:
+  - group_name: applications
+    rules:
+      - name: "application"
+        expr: "probe_success{job=\"blackbox\"} == 0"
+        severity: "critical"
+        summary: "Application is down"
