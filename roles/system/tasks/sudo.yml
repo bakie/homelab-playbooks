@@ -1,0 +1,15 @@
+---
+
+# as of ubuntu 19.10 sudo handles $HOME different. If we don't preserve the HOME env, then we need to become sudo with
+# `sudo --preserve-env=HOME bash` to preserve the HOME so the user's bashrc is being loaded and not the root bashrc.
+# By creating the keep-home file with env_keep += "HOME" the HOME is always preserved.
+# We can also preserve everything with `sudo -E bash`.
+# https://askubuntu.com/questions/1186999/how-does-sudo-handle-home-differently-since-19-10
+- name: create the keep-home file in sudoers.d
+  become: yes
+  copy:
+    dest: "/etc/sudoers.d/keep-home"
+    content: |
+      Defaults    env_keep += "HOME"
+
+    validate: /usr/sbin/visudo -csf %s

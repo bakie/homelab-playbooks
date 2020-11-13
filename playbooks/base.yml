@@ -3,5 +3,5 @@
 - hosts: all
 
   roles:
-    - { role: packages, tags: [ "packages" ] }
+    - { role: system, tags: [ "system" ] }
     - { role: node_exporter, tags: [ "node_exporter" ] }

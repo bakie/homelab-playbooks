@@ -1,0 +1,2 @@
+export PLATFORM_NAME_DEBIAN_BUSTER=system-debian-buster
+export PLATFORM_NAME_UBUNTU_FOCAL_FOSSA=system-ubuntu-focal-fossa
