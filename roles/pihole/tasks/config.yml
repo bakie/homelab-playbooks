@@ -9,3 +9,30 @@
     group: "{{ pihole_group }}"
     mode: 0644
   notify: reload dns
+
+- name: get the the firebog blocklists
+  become: yes
+  become_user: "{{ pihole_user }}"
+  get_url:
+    url: https://v.firebog.net/hosts/lists.php?type=nocross
+    dest: "{{ pihole_config_path }}/firebog_lists"
+  notify: firebog lists update
+
+- name: allow user {{ pihole_user }} to execut pihole as root without password
+  become: yes
+  copy:
+    dest: "/etc/sudoers.d/pihole"
+    validate: /usr/sbin/visudo -csf %s
+    content: |
+      {{ pihole_user }} ALL=(ALL) NOPASSWD:/usr/local/bin/pihole
+
+- name: add a cronjob to update the blocklists at night
+  become: yes
+  cron:
+    name: "refresh firebox blocklists"
+    user: "{{ pihole_user }}"
+    hour: "*/6"
+    job: >
+      wget -qO - https://v.firebog.net/hosts/lists.php?type=nocross |
+      xargs -I {} sqlite3 {{ pihole_config_path }}/gravity.db 'INSERT OR IGNORE INTO adlist (Address) VALUES ('{}');'
+      && sudo pihole -g

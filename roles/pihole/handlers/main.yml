@@ -3,3 +3,19 @@
 - name: reload dns
   become: yes
   command: "pihole restartdns reload"
+
+- name: update gravity database
+  become: yes
+  become_user: "{{ pihole_user }}"
+  shell: |
+    set -o pipefail
+    cat {{ pihole_config_path }}/firebog_lists |
+    xargs -I {} sqlite3 {{ pihole_config_path }}/gravity.db "INSERT OR IGNORE INTO adlist (Address) VALUES ('{}');"
+  args:
+    executable: "/bin/bash"
+  listen: firebog lists update
+
+- name: run pihole -g
+  become: yes
+  command: pihole -g
+  listen: firebog lists update

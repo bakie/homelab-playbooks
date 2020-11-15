@@ -28,3 +28,9 @@ pihole_custom_dns_entries:
 ```
 
 Default value is []
+
+### pihole_automatic_update
+Automatically update pihole to the latest version.
+If set to false if will not update pihole to the latest version once intalled.
+
+Default value is true

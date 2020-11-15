@@ -15,3 +15,45 @@
     system: yes
     group: "{{ pihole_group }}"
     state: present
+
+- name: get latest github release
+  github_release:
+    action: latest_release
+    repo: "pi-hole"
+    user: "pi-hole"
+    token: "{{ github_token }}"
+  register: pihole_latest_release
+  delegate_to: 127.0.0.1
+  run_once: yes
+
+- name: check for pihole executable
+  become: yes
+  command: "/bin/which pihole"
+  register: pihole_executable
+  failed_when: no
+  changed_when: no
+
+- name: check the current version
+  become: yes
+  shell: |
+    set -o pipefail
+    pihole version --current 2>&1 | grep Pi-hole | grep {{ pihole_latest_release.tag }}
+  args:
+    executable: "/bin/bash"
+  when: pihole_executable is defined and pihole_executable.rc == 0
+  register: pihole_installed
+  failed_when: no
+  changed_when: no
+
+- name: set fact to run pihole installer
+  set_fact:
+    run_pihole_installer: >
+      {{
+        ((
+          (pihole_executable is defined and pihole_executable.rc != 0)
+          or
+          (pihole_installed is defined and pihole_installed.rc != 0)
+        )
+        and
+        pihole_automatic_update) | bool
+      }}

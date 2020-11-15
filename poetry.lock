@@ -4,7 +4,7 @@ description = "Radically simple IT automation"
 name = "ansible"
 optional = false
 python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*"
-version = "2.9.9"
+version = "2.9.15"
 
 [[package]]
 category = "dev"
@@ -95,7 +95,7 @@ version = "1.3.2"
 setuptools = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python package for providing Mozilla's CA Bundle."
 name = "certifi"
 optional = false
@@ -103,7 +103,7 @@ python-versions = "*"
 version = "2020.4.5.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Foreign Function Interface for Python calling C code."
 name = "cffi"
 optional = false
@@ -114,7 +114,7 @@ version = "1.14.0"
 pycparser = "*"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Universal encoding detector for Python 2 and 3"
 name = "chardet"
 optional = false
@@ -185,7 +185,7 @@ requests = ">=2.23.0"
 six = ">=1.10"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
 name = "cryptography"
 optional = false
@@ -263,7 +263,25 @@ pycodestyle = ">=2.6.0a1,<2.7.0"
 pyflakes = ">=2.2.0,<2.3.0"
 
 [[package]]
-category = "dev"
+category = "main"
+description = "Python wrapper for the GitHub API(http://developer.github.com/v3)"
+name = "github3.py"
+optional = false
+python-versions = "*"
+version = "1.3.0"
+
+[package.dependencies]
+jwcrypto = ">=0.5.0"
+python-dateutil = ">=2.6.0"
+requests = ">=2.18"
+uritemplate = ">=3.0.0"
+
+[package.extras]
+sni = ["pyopenssl", "ndg-httpsclient", "pyasn1"]
+test = ["betamax (>=0.8.0)", "pytest (>2.3.5)", "betamax-matchers (>=0.1.0)", "unittest2 (0.5.1)", "mock"]
+
+[[package]]
+category = "main"
 description = "Internationalized Domain Names in Applications (IDNA)"
 name = "idna"
 optional = false
@@ -295,6 +313,17 @@ version = "0.2.0"
 [package.dependencies]
 arrow = "*"
 jinja2 = "*"
+
+[[package]]
+category = "main"
+description = "Implementation of JOSE Web standards"
+name = "jwcrypto"
+optional = false
+python-versions = "*"
+version = "0.8"
+
+[package.dependencies]
+cryptography = ">=2.3"
 
 [[package]]
 category = "dev"
@@ -465,7 +494,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 version = "2.6.0"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "C parser in Python"
 name = "pycparser"
 optional = false
@@ -527,7 +556,7 @@ checkqa-mypy = ["mypy (v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Extensions to the standard Python datetime module"
 name = "python-dateutil"
 optional = false
@@ -578,7 +607,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 version = "5.3.1"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python HTTP for Humans."
 name = "requests"
 optional = false
@@ -652,7 +681,7 @@ python-versions = "!=3.0,!=3.1,!=3.2,!=3.3,>=2.6"
 version = "1.3.2"
 
 [[package]]
-category = "dev"
+category = "main"
 description = "Python 2 and 3 compatibility utilities"
 name = "six"
 optional = false
@@ -707,7 +736,15 @@ version = "0.1.2"
 dev = ["pytest (>=2.7.1)", "testtools (>=1.8.0)"]
 
 [[package]]
-category = "dev"
+category = "main"
+description = "URI templates"
+name = "uritemplate"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "3.0.1"
+
+[[package]]
+category = "main"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
 optional = false
@@ -751,12 +788,12 @@ pathspec = ">=0.5.3"
 pyyaml = "*"
 
 [metadata]
-content-hash = "9d4004faad61c189f4187f84a5c1fd7ca80208cf2344935422bcfb28efe5572c"
+content-hash = "1955505dc23852883ce4a9738383078abd69a040e3de0bcf8b3274fd25b85bec"
 python-versions = "^3.8"
 
 [metadata.files]
 ansible = [
-    {file = "ansible-2.9.9.tar.gz", hash = "sha256:e83d84ae8bf131c0499d8a4c0e1144bf969454c43086e61cca3c224227df29d1"},
+    {file = "ansible-2.9.15.tar.gz", hash = "sha256:736a19fa6d608b4df2d6b48d31fec057b3f95abf62b7fda69ffa4a743e2f55b6"},
 ]
 ansible-lint = [
     {file = "ansible-lint-4.2.0.tar.gz", hash = "sha256:eb925d8682d70563ccb80e2aca7b3edf84fb0b768cea3edc6846aac7abdc414a"},
@@ -899,6 +936,10 @@ flake8 = [
     {file = "flake8-3.8.3-py2.py3-none-any.whl", hash = "sha256:15e351d19611c887e482fb960eae4d44845013cc142d42896e9862f775d8cf5c"},
     {file = "flake8-3.8.3.tar.gz", hash = "sha256:f04b9fcbac03b0a3e58c0ab3a0ecc462e023a9faf046d57794184028123aa208"},
 ]
+"github3.py" = [
+    {file = "github3.py-1.3.0-py2.py3-none-any.whl", hash = "sha256:50833b5da35546b8cced0e8d7ff4c50a9afc2c8e46cc4d07dc4b66d26467c708"},
+    {file = "github3.py-1.3.0.tar.gz", hash = "sha256:15a115c18f7bfcf934dfef7ab103844eb9f620c586bad65967708926da47cbda"},
+]
 idna = [
     {file = "idna-2.9-py2.py3-none-any.whl", hash = "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"},
     {file = "idna-2.9.tar.gz", hash = "sha256:7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb"},
@@ -910,6 +951,10 @@ jinja2 = [
 jinja2-time = [
     {file = "jinja2-time-0.2.0.tar.gz", hash = "sha256:d14eaa4d315e7688daa4969f616f226614350c48730bfa1692d2caebd8c90d40"},
     {file = "jinja2_time-0.2.0-py2.py3-none-any.whl", hash = "sha256:d3eab6605e3ec8b7a0863df09cc1d23714908fa61aa6986a845c20ba488b4efa"},
+]
+jwcrypto = [
+    {file = "jwcrypto-0.8-py2.py3-none-any.whl", hash = "sha256:16e17faa4dce36551ade3a3ccb06236a61e5924ea1db163c9be9827acf935a82"},
+    {file = "jwcrypto-0.8.tar.gz", hash = "sha256:b7fee2635bbefdf145399392f5be26ad54161c8271c66b5fe107b4b452f06c24"},
 ]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
@@ -1118,6 +1163,10 @@ text-unidecode = [
 tree-format = [
     {file = "tree-format-0.1.2.tar.gz", hash = "sha256:a538523aa78ae7a4b10003b04f3e1b37708e0e089d99c9d3b9e1c71384c9a7f9"},
     {file = "tree_format-0.1.2-py2-none-any.whl", hash = "sha256:b5056228dbedde1fb81b79f71fb0c23c98e9d365230df9b29af76e8d8003de11"},
+]
+uritemplate = [
+    {file = "uritemplate-3.0.1-py2.py3-none-any.whl", hash = "sha256:07620c3f3f8eed1f12600845892b0e036a2420acf513c53f7de0abd911a5894f"},
+    {file = "uritemplate-3.0.1.tar.gz", hash = "sha256:5af8ad10cec94f215e3f48112de2022e1d5a37ed427fbd88652fa908f2ab7cae"},
 ]
 urllib3 = [
     {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
