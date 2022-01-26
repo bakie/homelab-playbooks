@@ -1,6 +1,6 @@
 ---
 
-name: "server.playbooks.apache_vhosts"
+name: "bakie.homelab.apache_vhosts"
 on:
   push:
     paths:
