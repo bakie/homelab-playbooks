@@ -4,29 +4,3 @@ grafana_group: "grafana"
 grafana_url: "grafana.{{ top_lvl_domain }}"
 grafana_admin_user: "grafana"
 grafana_admin_password: "grafana"
-grafana_config_root_url: "http://{{ grafana_url }}"
-grafana_config_path: "/etc/grafana"
-grafana_listen_port: 3000
-grafana_datasources:
-  - name: Prometheus
-    options:
-      type: prometheus
-      access: proxy
-      url: "http://prometheus.local:9090"
-grafana_config_settings:
-  - regexp: "^;?admin_user(.*)"
-    replace: "admin_user = {{ grafana_admin_user }}"
-  - regexp: "^;?admin_password(.*)"
-    replace: "admin_password = {{ grafana_admin_password }}"
-  - regexp: "^;?root_url(.*)"
-    replace: "root_url = {{ grafana_config_root_url }}"
-  - regexp: "^;?http_port(.*)"
-    replace: "http_port = {{ grafana_listen_port }}"
-grafana_dashboards_config_path: "/etc/grafana/dashboards"
-grafana_dashboards:
-  - src: "dashboards/application/apps_dashboard.json"
-    dest: "{{ grafana_dashboards_config_path }}/application"
-  - src: "dashboards/server/common_dashboard.json"
-    dest: "{{ grafana_dashboards_config_path }}/server"
-  - src: "dashboards/server/network_dashboard.json"
-    dest: "{{ grafana_dashboards_config_path }}/server"

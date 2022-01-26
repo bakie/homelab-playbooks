@@ -1,0 +1,9 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    top_lvl_domain: "homelab.net"
+
+  roles:
+    - role: medusa

@@ -1,0 +1,16 @@
+---
+
+- name: create the local dirs
+  become: yes
+  file:
+    path: "{{ nfs_import.local_dir }}"
+    state: "{% if nfs_import.state == 'absent' %}absent{% else %}directory{% endif %}"
+
+- name: add the imports to fstab
+  become: yes
+  mount:
+    src: "{{ nfs_import.nfs_server }}:{{ nfs_import.remote_dir }}"
+    path: "{{ nfs_import.local_dir }}"
+    fstype: nfs
+    opts: user,auto
+    state: "{{ nfs_import.state | default('mounted') }}"

@@ -1,0 +1,3 @@
+---
+
+base_setup_packages: [ "python3-apt", "aptitude", "curl", "htop", "rsync", "sudo", "vim", "build-essential" ]

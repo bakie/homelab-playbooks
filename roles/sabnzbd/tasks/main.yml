@@ -1,8 +1,5 @@
 ---
 
-- name: include distribution specific vars
-  include_vars: "{{ ansible_distribution | lower }}.yml"
 - include_tasks: setup.yml
 - include_tasks: install.yml
-- import_tasks: config.yml
-- import_tasks: vhost.yml
+- include_tasks: configure.yml

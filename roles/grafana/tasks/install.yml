@@ -1,13 +1,7 @@
 ---
 
-- name: install required packages
-  become: yes
-  apt:
-    name: [ "adduser", "libfontconfig" ]
-    state: present
-
 - name: install grafana
   become: yes
   apt:
-    name: "grafana"
+    name: "grafana={{ grafana_version }}"
     state: present

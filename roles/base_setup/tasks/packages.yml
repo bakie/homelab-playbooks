@@ -1,0 +1,14 @@
+---
+
+- name: Install base packages
+  become: yes
+  apt:
+    name: "{{ base_setup_packages }}"
+    state: present
+    install_recommends: no
+
+- name: install additional packages
+  become: yes
+  apt:
+    name: "{{ base_setup_additional_packages }}"
+    state: present

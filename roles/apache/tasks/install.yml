@@ -1,7 +1,13 @@
 ---
 
-- name: install apache2 and required packages
+- name: install required packages
   become: yes
   apt:
-    name: [ "apache2", "python-passlib" ]
+    name: "{{ apache_required_packages }}"
+    state: present
+
+- name: install apache2
+  become: yes
+  apt:
+    name: "apache2"
     state: present

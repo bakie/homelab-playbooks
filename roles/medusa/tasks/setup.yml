@@ -1,9 +1,9 @@
 ---
 
-- name: install necessary packages
+- name: install required packages
   become: yes
   apt:
-    name: [ "git-core", "python3", "mediainfo", "unrar-free", "openssl", "libssl-dev" ]
+    name: "{{ medusa_required_packages }}"
     state: present
 
 - name: add medusa group

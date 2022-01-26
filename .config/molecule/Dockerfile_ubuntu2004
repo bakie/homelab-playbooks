@@ -1,0 +1,3 @@
+FROM ubuntu:20.04
+
+RUN if [ $(command -v apt) ]; then apt update && apt upgrade -y && apt install -y sudo bash ca-certificates systemd systemd-sysv python3 net-tools gnupg iproute2 cron vim && apt clean; fi

@@ -1,7 +1,0 @@
----
-
-- name: add contrib repository
-  become: yes
-  apt_repository:
-    repo: "deb http://deb.debian.org/debian {{ ansible_distribution_release }} main contrib"
-    state: present

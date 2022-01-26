@@ -1,0 +1,40 @@
+---
+
+name: "bakie.homelab.prometheus"
+on:
+  push:
+    paths:
+      - 'roles/prometheus/**'
+      - 'molecule/prometheus/**'
+      - '.github/workflows/prometheus.yml'
+  pull_request:
+    paths:
+      - 'roles/prometheus/**'
+      - 'molecule/prometheus/**'
+      - '.github/workflows/prometheus.yml'
+  schedule:
+    - cron: '20 3 * * 6'
+  workflow_dispatch:
+jobs:
+  molecule:
+    runs-on: ubuntu-20.04
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          python -m pip install poetry==1.1.11
+          python -m poetry install
+
+      - name: Run role tests
+        run: |
+          python -m poetry run molecule test -s prometheus

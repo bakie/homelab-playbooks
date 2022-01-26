@@ -1,0 +1,7 @@
+---
+
+medusa_required_packages: [ "git-core", "python3", "mediainfo", "unrar-free", "openssl", "libssl-dev" ]
+medusa_repo_url: "https://github.com/pymedusa/Medusa.git"
+medusa_install_path: "{{ medusa_user_home }}"
+medusa_version: "master"
+medusa_listen_port: 8081

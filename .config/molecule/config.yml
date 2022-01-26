@@ -2,43 +2,64 @@
 
 dependency:
   name: galaxy
+  options:
+    ignore_warnings: true
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint -c ../../.config/yamllint .
-  ansible-lint -c ../../.config/ansible-lint
-  flake8 --config ../../.config/flake8
+# lint: |
+#   set -e
+#   yamllint -c .config/yamllint .
+#   ansible-lint -c .config/ansible-lint roles/${MOLECULE_SCENARIO_NAME}
+#   flake8 --config .config/flake8
 platforms:
-  - name: ${PLATFORM_NAME_DEBIAN_BUSTER:-debian_buster}
-    image: bakie/docker-images:debian-buster
+  - name: ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
+    image: ubuntu:20.04
     privileged: true
-    pre_build_image: true
-    volume_mounts:
+    pre_build_image: false
+    command: "/lib/systemd/systemd"
+    volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    command: "/sbin/init"
-  - name: ${PLATFORM_NAME_UBUNTU_FOCAL_FOSSA:-ubuntu_focal_fossa}
-    image: bakie/docker-images:ubuntu-focal-fossa
-    privileged: true
-    pre_build_image: true
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    command: "/sbin/init"
 provisioner:
   name: ansible
   log: True
   config_options:
     defaults:
-      strategy_plugins: $VIRTUAL_ENV/lib/python3.8/site-packages/ansible_mitogen/plugins/strategy/
-      strategy: mitogen_linear
-      callback_whitelist: timer, profile_tasks
+      callbacks_enabled: timer, profile_tasks
       stdout_callback: debug
+      interpreter_python: auto_silent
+  env:
+    PY_COLORS: '1'
+    ANSIBLE_FORCE_COLOR: '1'
+verifier:
+  name: testinfra
+  options:
+    # We specify the connection and hosts here so the pytest runs faster.
+    # Without these options pytest takes about 10 - 20 times longer to run
+    connection: docker
+    hosts: root@ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
 scenario:
-  name: default
+  create_sequence:
+    - create
+  check_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+    - check
+    - destroy
   converge_sequence:
     - lint
     - create
     - converge
     - idempotence
-verifier:
-  name: testinfra
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - lint
+    - destroy
+    - syntax
+    - create
+    - converge
+    - idempotence
+    - verify
+    - destroy

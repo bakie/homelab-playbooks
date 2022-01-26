@@ -6,18 +6,18 @@ authors = ["Bakie <bakelants.developer@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-ansible = "~2.9.0"
-mitogen = "^0.2.9"
-"github3.py" = "^1.3.0"
+ansible = "^4.8.0"
+"github3.py" = "^3.0.0"
+
 
 [tool.poetry.dev-dependencies]
-ansible-lint = "^4.2.0"
-flake8 = "^3.7.9"
-testinfra = "^5.0.0"
-pytest = "^5.4.1"
-molecule = {version = "~3.1.0", extras = ["docker"]}
-docker = "~4.3.0"
-
+ansible-lint = "^5.2.1"
+yamllint = "^1.26.3"
+flake8 = "^4.0.1"
+molecule = "^3.5.2"
+molecule-docker = "^1.1.0"
+docker = "^5.0.3"
+pytest-testinfra = "^6.4.0"
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"

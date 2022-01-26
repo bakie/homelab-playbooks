@@ -1,0 +1,9 @@
+---
+
+- name: install grafana plugins
+  become: yes
+  grafana_plugin:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ grafana_plugins }}"
+  notify: restart grafana

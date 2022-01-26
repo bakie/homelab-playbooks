@@ -1,6 +1,5 @@
 ---
 
-
 - name: 'Template the setupVars for unattended install'
   become: yes
   template:
@@ -16,14 +15,11 @@
     url: "https://install.pi-hole.net"
     dest: "/tmp/pihole-install.sh"
     mode: 0755
-  when: run_pihole_installer
 
 - name: run pihole installer
   become: yes
   command: "./pihole-install.sh --unattended"
   args:
-    executable: "/bin/bash"
     chdir: "/tmp"
   environment:
     TERM: "xterm"
-  when: run_pihole_installer

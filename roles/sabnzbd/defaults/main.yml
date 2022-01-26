@@ -3,9 +3,4 @@
 sabnzbd_group: "sabnzbd"
 sabnzbd_user: "sabnzbd"
 sabnzbd_user_home: "/opt/sabnzbd"
-sabnzbd_host: 0.0.0.0
-sabnzbd_listen_port: 8080
-sabnzbd_url: "sabnzbd.{{ top_lvl_domain }}"
-
-sabnzbd_ppa_repository: "ppa:jcfp/ppa"
-sabnzbd_addons_ppa_repository: "ppa:jcfp/sab-addons"
+sabnzbd_url: "sabnzbd.local.dev"

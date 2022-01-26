@@ -1,0 +1,17 @@
+---
+
+- name: configure apache vhost {{ apache_vhost_var }}
+  become: yes
+  template:
+    src: "{{ apache_vhost_var }}_vhost.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ apache_vhost_var }}.conf"
+    mode: 0644
+  notify: reload apache
+
+- name: link apache vhost {{ apache_vhost_var }}
+  become: yes
+  file:
+    src: "/etc/apache2/sites-available/{{ apache_vhost_var }}.conf"
+    dest: "/etc/apache2/sites-enabled/{{ apache_vhost_var }}.conf"
+    state: link
+  notify: reload apache

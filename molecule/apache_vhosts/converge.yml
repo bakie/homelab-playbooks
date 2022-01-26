@@ -1,0 +1,12 @@
+---
+
+- name: converge
+  hosts: all
+  vars:
+    required_apache_vhosts: [ "molecule_test" ]
+    molecule_test_url: "some.random.url"
+    molecule_test_listen_port: 9003
+    skip_apache_vhosts_reload_handler: true
+
+  roles:
+    - { role: apache_vhosts }

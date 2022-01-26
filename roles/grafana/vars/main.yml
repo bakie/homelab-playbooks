@@ -1,0 +1,34 @@
+---
+
+grafana_required_packages: [ "apt-transport-https", "adduser", "libfontconfig" ]
+grafana_apt_key_url: "https://packages.grafana.com/gpg.key"
+grafana_apt_repo_url: "deb https://packages.grafana.com/oss/deb stable main"
+grafana_version: "8.3.4"
+grafana_plugins:
+  - grafana-piechart-panel
+grafana_config_root_url: "http://{{ grafana_url }}"
+grafana_config_path: "/etc/grafana"
+grafana_listen_port: 3000
+grafana_datasources:
+  - name: Prometheus
+    options:
+      type: prometheus
+      access: proxy
+      url: "http://prometheus.local:9090"
+grafana_config_settings:
+  - regexp: "^;?admin_user(.*)"
+    replace: "admin_user = {{ grafana_admin_user }}"
+  - regexp: "^;?admin_password(.*)"
+    replace: "admin_password = {{ grafana_admin_password }}"
+  - regexp: "^;?root_url(.*)"
+    replace: "root_url = {{ grafana_config_root_url }}"
+  - regexp: "^;?http_port(.*)"
+    replace: "http_port = {{ grafana_listen_port }}"
+grafana_dashboards_config_path: "/etc/grafana/dashboards"
+grafana_dashboards:
+  - src: "dashboards/application/apps_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/application"
+  - src: "dashboards/server/common_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/server"
+  - src: "dashboards/server/network_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/server"

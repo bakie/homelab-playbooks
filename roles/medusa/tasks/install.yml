@@ -3,8 +3,8 @@
 - name: clone the medusa gitrepo
   become: yes
   git:
-    repo: "{{ medusa_repo }}"
-    dest: "{{ medusa_install_dir }}"
+    repo: "{{ medusa_repo_url }}"
+    dest: "{{ medusa_install_path }}"
     version: "{{ medusa_version }}"
     depth: 1
   notify: set owner/group on medusa gitrepo

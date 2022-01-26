@@ -1,0 +1,9 @@
+---
+
+- name: reload apache
+  become: yes
+  service:
+    name: apache2
+    state: reloaded
+  when: not skip_apache_vhosts_reload_handler | default(false)
+  # The skip_apache_vhosts_reload_handler allows for the molecule tests to skip the reload. Otherwise we also have to run the apache role.

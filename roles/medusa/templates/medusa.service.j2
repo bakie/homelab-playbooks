@@ -3,7 +3,7 @@ Description=Medusa Daemon
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/python3 {{ medusa_install_dir }}/start.py -q --daemon --nolaunch --datadir={{ medusa_install_dir }}
+ExecStart=/usr/bin/python3 {{ medusa_install_path }}/start.py -q --daemon --nolaunch --datadir={{ medusa_install_path }}
 GuessMainPID=no
 Type=forking
 User={{ medusa_user }}

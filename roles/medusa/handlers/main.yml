@@ -3,7 +3,7 @@
 - name: set owner/group on medusa gitrepo
   become: yes
   file:
-    path: "{{ medusa_install_dir }}"
+    path: "{{ medusa_install_path }}"
     owner: "{{ medusa_user }}"
     group: "{{ medusa_group }}"
     recurse: yes

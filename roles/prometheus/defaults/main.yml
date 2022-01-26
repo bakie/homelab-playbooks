@@ -3,23 +3,6 @@
 prometheus_group: "prometheus"
 prometheus_user: "prometheus"
 prometheus_home: "/opt/prometheus"
-prometheus_config_path: "/etc/prometheus"
-prometheus_version: 2.21.0
-prometheus_listen_port: 9090
-prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
-prometheus_url: "prometheus.{{ top_lvl_domain }}"
 prometheus_storage_retention: "30d"
-prometheus_blackbox_targets:
-  - url: "transmission.{{ top_lvl_domain }}"
-    job: "blackbox"
-  - url: "sabnzbd.{{ top_lvl_domain }}"
-    job: "blackbox"
-  - url: "medusa.{{ top_lvl_domain }}"
-    job: "blackbox"
-alerting_rules:
-  - group_name: applications
-    rules:
-      - name: "application"
-        expr: "probe_success{job=\"blackbox\"} == 0"
-        severity: "critical"
-        summary: "Application is down"
+prometheus_blackbox_targets: []
+prometheus_alerting_rules: []

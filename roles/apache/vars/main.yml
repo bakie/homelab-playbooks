@@ -1,0 +1,27 @@
+---
+
+apache_required_packages: [ "python-passlib" ]
+apache_modules:
+  - autoindex
+  - deflate
+  - expires
+  - filter
+  - headers
+  - include
+  - mime
+  - rewrite
+  - setenvif
+  - ssl
+  - proxy_html
+  - proxy_http
+  - xml2enc
+apache_security_config:
+  - { regexp: '^ServerTokens', line: 'ServerTokens Prod' }
+  - { regexp: '^ServerSignature', line: 'ServerSignature Off' }
+apache_ssl_config:
+  - { regexp: '^SSLCipherSuite', line: 'SSLCipherSuite HIGH:!aNULL:!SHA1' }
+apache_hostname_config:
+  - { regexp: '^ServerName', line: 'ServerName {{ ansible_hostname }}' }
+apache_listen_ports_config:
+  - { regexp: 'Listen 80', replace: 'Listen 0.0.0.0:80' }
+  - { regexp: 'Listen 443', replace: 'Listen 0.0.0.0:443' }

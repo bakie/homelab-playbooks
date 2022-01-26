@@ -2,6 +2,8 @@
 .*
 !.gitignore
 !.config
+!.github
+!.python-version
 # Intellij
 .idea
 # testinfra

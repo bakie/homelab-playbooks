@@ -1,0 +1,10 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    base_setup_additional_packages:
+      - sl
+
+  roles:
+    - role: base_setup

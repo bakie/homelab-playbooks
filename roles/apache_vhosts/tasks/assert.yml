@@ -1,0 +1,17 @@
+---
+
+- name: ls the available templates in a variable
+  command: "ls {{ role_path }}/templates"
+  delegate_to: 127.0.0.1
+  register: "ls_templates"
+  changed_when: no
+
+- name: create list of available templates
+  set_fact:
+    available_apache_vhosts: '{{ ls_templates.stdout_lines | regex_replace("_vhost.conf.j2", "") }}'
+
+- name: test that all required_apache_vhosts are known
+  assert:
+    that: required_apache_vhosts | difference(available_apache_vhosts) | length == 0
+    fail_msg: "Unknown apache vhost(s) found. {{ required_apache_vhosts | difference(available_apache_vhosts) }}"
+    quiet: yes

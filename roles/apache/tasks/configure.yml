@@ -1,0 +1,64 @@
+---
+
+- name: enable modules
+  become: yes
+  apache2_module:
+    state: present
+    name: "{{ item }}"
+  loop: "{{ apache_modules }}"
+  notify: reload apache
+
+- name: configure the security settings
+  become: yes
+  lineinfile:
+    dest: "/etc/apache2/conf-available/security.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop: "{{ apache_security_config }}"
+  notify: reload apache
+
+- name: configure the ssl settings
+  become: yes
+  lineinfile:
+    dest: "/etc/apache2/mods-available/ssl.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop: "{{ apache_ssl_config }}"
+  notify: reload apache
+
+- name: configure the hostname settings
+  become: yes
+  lineinfile:
+    dest: "/etc/apache2/conf-available/hostname.conf"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+    create: yes
+  loop: "{{ apache_hostname_config }}"
+  notify: reload apache
+
+- name: enable the hostname configs
+  become: yes
+  file:
+    src: "/etc/apache2/conf-available/hostname.conf"
+    dest: "/etc/apache2/conf-enabled/hostname.conf"
+    state: link
+  notify: reload apache
+
+- name: change the listen ports to 0.0.0.0
+  become: yes
+  replace:
+    path: "/etc/apache2/ports.conf"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
+  loop: "{{ apache_listen_ports_config }}"
+  notify: reload apache
+
+- name: enable apache2 and start it
+  become: yes
+  service:
+    name: apache2
+    state: started
+    enabled: yes

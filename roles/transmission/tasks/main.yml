@@ -2,5 +2,4 @@
 
 - import_tasks: setup.yml
 - import_tasks: install.yml
-- import_tasks: config.yml
-- import_tasks: vhost.yml
+- import_tasks: configure.yml

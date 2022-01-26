@@ -1,7 +1,20 @@
 ---
 
-- name: include distribution specific setup steps
-  include_tasks: "setup_{{ ansible_distribution | lower }}.yml"
+- name: install required packages
+  become: yes
+  apt:
+    name: "{{ sabnzbd_required_packages }}"
+    state: present
+
+- name: add sabnzbd ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_ppa_repository }}"
+
+- name: add sabnzbd-addons ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ sabnzbd_addons_ppa_repository }}"
 
 - name: add sabnzbd group
   become: yes
@@ -18,18 +31,12 @@
     group: "{{ sabnzbd_group }}"
     state: present
 
-- name: create nesessary dirs
+- name: create nesessary directories
   become: yes
   file:
-    path: "{{ sabnzbd_user_home }}/{{ item }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ sabnzbd_user }}"
     group: "{{ sabnzbd_group }}"
-  loop:
-    - ".sabnzbd"
-    - "incomplete"
-    - "complete"
-    - "complete/tv"
-    - "complete/movies"
-    - "complete/music"
-    - "nzb"
+    mode: 0755
+  loop: "{{ sabnzbd_required_paths }}"
