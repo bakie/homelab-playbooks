@@ -9,7 +9,8 @@ import pytest
     "rsync",
     "sudo",
     "vim",
-    "build-essential"
+    "build-essential",
+    "acl"
 ])
 def test_package_installed(host, package):
     assert host.package(package).is_installed
