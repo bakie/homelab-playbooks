@@ -1,0 +1,13 @@
+---
+
+pihole_custom_dns_entries:
+  - ip: 10.1.1.100
+    url: "{{ grafana_url }}"
+  - ip: 10.1.1.100
+    url: "{{ prometheus_url }}"
+  - ip: 10.1.1.101
+    url: "{{ sabnzbd_url }}"
+  - ip: 10.1.1.101
+    url: "{{ transmission_url }}"
+  - ip: 10.1.1.102
+    url: "{{ medusa_url }}"
