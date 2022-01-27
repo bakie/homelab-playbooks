@@ -1,6 +1,7 @@
 ---
 
 prometheus_version: 2.32.1
+prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
 prometheus_listen_port: 9090
 prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
 prometheus_config_path: "/etc/prometheus"

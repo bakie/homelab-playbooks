@@ -34,10 +34,6 @@ ProtectKernelModules=true
 ProtectKernelTunables=true
 ProtectSystem=strict
 
-{% if http_proxy is defined %}
-Environment="HTTP_PROXY={{ http_proxy }}"{% if https_proxy is defined %} "HTTPS_PROXY={{ https_proxy }}{% endif %}"
-{% endif %}
-
 SyslogIdentifier=prometheus
 Restart=always
 

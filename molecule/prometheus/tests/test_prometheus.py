@@ -39,8 +39,12 @@ def test_user(host):
     assert host.user("prometheus").exists
 
 
-def test_service(host):
+def test_prometheus_is_running(host):
     assert host.service("prometheus").is_running
+
+
+def test_prometheus_is_enabled(host):
+    assert host.service("prometheus").is_enabled
 
 
 def test_socket(host):
@@ -71,3 +75,11 @@ def test_alerting_rules(host, group_name, alert_rule, alert_expr):
     assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(group_name)
     assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(alert_rule)
     assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(alert_expr)
+
+
+@pytest.mark.parametrize("setting", [
+    "alerting",
+    "- targets: \\['localhost:9093'\\]"
+])
+def test_prometheus_config_file(host, setting):
+    assert host.file(PROMETHEUS_CONFIG_PATH + "/prometheus.yml").contains(setting)

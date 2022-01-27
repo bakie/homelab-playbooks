@@ -5,6 +5,14 @@ global:
   scrape_timeout: 10s
   evaluation_interval: 15s
 
+{% if prometheus_alertmanagers is defined %}
+alerting:
+  alertmanagers:
+    - static_configs:
+      - targets: {{ prometheus_alertmanagers }}
+{% endif %}
+
+
 rule_files:
   - {{ prometheus_config_path }}/rules/*.yml
 

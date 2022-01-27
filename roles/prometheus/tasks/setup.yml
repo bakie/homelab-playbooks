@@ -25,3 +25,23 @@
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     mode: 0755
+
+- name: stat prometheus binary
+  stat:
+    path: "{{ prometheus_home }}/prometheus"
+  register: prometheus_binary
+
+- name: stat current prometheus version
+  shell: |
+    set -o pipefail
+    ./prometheus --version 2>&1 | head -1 | awk '{print $3}'
+  args:
+    chdir: "{{ prometheus_home }}"
+    executable: "/bin/bash"
+  when: prometheus_binary.stat.exists
+  register: prometheus_current_version
+  changed_when: false
+
+- name: set fact to install prometheus
+  set_fact:
+    install_prometheus: "{{ not prometheus_binary.stat.exists or prometheus_current_version.stdout != prometheus_version }}"

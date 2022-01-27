@@ -25,6 +25,7 @@
             expr: "up == 0"
             severity: "critical"
             summary: "rule two is down"
+    prometheus_alertmanagers: ["localhost:9093"]
 
   roles:
     - role: prometheus
