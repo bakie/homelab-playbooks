@@ -1,0 +1,19 @@
+---
+
+- name: create service file
+  become: yes
+  template:
+    src: alertmanager.service.j2
+    dest: /lib/systemd/system/alertmanager.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart alertmanager
+
+- name: enable and start alertmanager
+  become: yes
+  service:
+    daemon_reload: yes
+    name: alertmanager
+    state: started
+    enabled: yes

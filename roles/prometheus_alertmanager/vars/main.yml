@@ -1,0 +1,11 @@
+---
+
+prometheus_alertmanager_version: 0.23.0
+prometheus_alertmanager_download_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/alertmanager-{{ prometheus_alertmanager_version }}.linux-amd64.tar.gz"
+prometheus_alertmanager_listen_port: 9093
+prometheus_alertmanager_listen_address: "localhost"
+prometheus_alertmanager_url: "http://{{ prometheus_alertmanager_listen_address }}:{{ prometheus_alertmanager_listen_port }}"
+prometheus_alertmanager_config_path: "/etc/alertmanager"
+prometheus_alertmanager_config_file_path: "{{ prometheus_alertmanager_config_path }}/alertmanager.yml"
+prometheus_alertmanager_amtool_config_path: "/etc/amtool"
+prometheus_alertmanager_amtool_config_file_path: "{{ prometheus_alertmanager_amtool_config_path }}/config.yml"

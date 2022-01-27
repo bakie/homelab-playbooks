@@ -1,0 +1,13 @@
+---
+
+- name: restart alertmanager
+  become: yes
+  service:
+    name: alertmanager
+    state: restarted
+
+- name: reload alertmanager
+  become: yes
+  service:
+    name: alertmanager
+    state: reloaded

@@ -1,0 +1,16 @@
+[Unit]
+Description=Prometheus Alertmanager
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ prometheus_alertmanager_user }}
+Group={{ prometheus_alertmanager_group }}
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart={{ prometheus_alertmanager_home }}/alertmanager \
+  --config.file {{ prometheus_alertmanager_config_file_path }} \
+  --storage.path {{ prometheus_alertmanager_home }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

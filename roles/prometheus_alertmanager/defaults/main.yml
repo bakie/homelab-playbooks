@@ -1,0 +1,5 @@
+---
+
+prometheus_alertmanager_group: "alertmanager"
+prometheus_alertmanager_user: "alertmanager"
+prometheus_alertmanager_home: "/opt/prometheus_alertmanager"

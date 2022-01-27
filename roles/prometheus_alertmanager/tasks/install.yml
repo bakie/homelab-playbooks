@@ -1,0 +1,25 @@
+---
+
+- name: unarchive alertmanager
+  become: yes
+  become_user: "{{ prometheus_alertmanager_user }}"
+  unarchive:
+    src: "{{ prometheus_alertmanager_download_url }}"
+    dest: "/tmp"
+    remote_src: yes
+
+- name: copy alertmanager and amtool binaries
+  become: yes
+  become_user: "{{ prometheus_alertmanager_user }}"
+  copy:
+    src: "/tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-amd64/{{ item }}"
+    dest: "{{ prometheus_alertmanager_home }}/{{ item }}"
+    remote_src: yes
+    mode: 0755
+    owner: "{{ prometheus_alertmanager_user }}"
+    group: "{{ prometheus_alertmanager_group }}"
+  loop:
+    - alertmanager
+    - amtool
+  notify:
+    - restart alertmanager
