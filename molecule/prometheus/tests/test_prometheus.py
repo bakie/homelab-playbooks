@@ -49,7 +49,7 @@ def test_socket(host):
 
 def test_version(host, ansible_defaults):
     version = ansible_defaults['prometheus_version']
-    out = host.run(PROMETHEUS_HOME + "/prometheus --version").stderr
+    out = host.run(PROMETHEUS_HOME + "/prometheus --version").stdout
     assert "prometheus, version " + version in out
 
 
