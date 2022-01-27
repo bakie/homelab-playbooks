@@ -14,3 +14,4 @@ prometheus_alerting_rules:
         expr: "probe_success{job=\"blackbox\"} == 0"
         severity: "critical"
         summary: "Application is down"
+prometheus_alertmanagers: ["localhost:9093"]

@@ -12,7 +12,6 @@ alerting:
       - targets: {{ prometheus_alertmanagers }}
 {% endif %}
 
-
 rule_files:
   - {{ prometheus_config_path }}/rules/*.yml
 
