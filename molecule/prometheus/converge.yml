@@ -8,7 +8,7 @@
         job: "blackbox_green"
       - url: "blackbox_blue.com"
         job: "blackbox_blue"
-    alerting_rules:
+    prometheus_alerting_rules:
       - group_name: group1
         rules:
           - name: "single_rule"

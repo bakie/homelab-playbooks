@@ -1,6 +1,6 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 groups:
-{% for group in alerting_rules %}
+{% for group in prometheus_alerting_rules %}
 - name: {{ group.group_name }}
   rules:
     {% for rule in group.rules %}
