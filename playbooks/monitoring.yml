@@ -3,7 +3,6 @@
 - import_playbook: base.yml
 
 - hosts: monitoring
-
   roles:
     - { role: prometheus, tags: [ "prometheus" ] }
     - { role: grafana, tags: [ "grafana" ] }

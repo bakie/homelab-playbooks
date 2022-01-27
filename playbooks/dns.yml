@@ -3,6 +3,5 @@
 - import_playbook: base.yml
 
 - hosts: pihole
-
   roles:
     - { role: pihole, tags: [ "pihole" ] }

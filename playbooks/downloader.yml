@@ -3,7 +3,6 @@
 - import_playbook: base.yml
 
 - hosts: downloader
-
   roles:
     - { role: openvpn, tags: [ 'openvpn' ] }
     - { role: sabnzbd, tags: [ "sabnzbd" ] }
