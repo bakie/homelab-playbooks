@@ -1,0 +1,4 @@
+---
+
+# apache_vhosts role
+required_apache_vhosts: [ "medusa" ]

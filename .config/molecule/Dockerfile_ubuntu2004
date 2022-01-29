@@ -1,3 +1,6 @@
 FROM ubuntu:20.04
 
+# This allows the installation of resolvconf in a docker container. If /etc/resolv.conf is a link we get the following error when installing resolvconf
+# ln: failed to create symbolic link '/etc/resolv.conf': Device or resource busy
+RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 RUN if [ $(command -v apt) ]; then apt update && apt upgrade -y && apt install -y sudo bash ca-certificates systemd systemd-sysv python3 net-tools gnupg iproute2 cron vim && apt clean; fi

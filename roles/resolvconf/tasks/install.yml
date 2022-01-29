@@ -1,0 +1,8 @@
+---
+
+- name: install resolvconf
+  become: yes
+  apt:
+    name: "{{ resolvconf_install_packages }}"
+    state: present
+    install_recommends: no

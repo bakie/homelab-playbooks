@@ -1,0 +1,8 @@
+---
+
+- name: installed required packages
+  become: yes
+  apt:
+    name: "{{ resolvconf_required_packages }}"
+    state: present
+    install_recommends: no
