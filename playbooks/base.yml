@@ -5,3 +5,4 @@
     - { role: apt, tags: [ "apt" ] }
     - { role: base_setup, tags: [ "base_setup" ] }
     - { role: node_exporter, tags: [ "node_exporter" ] }
+    - { role: resolvconf, tags: [ "resolvconf" ] }

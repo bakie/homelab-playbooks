@@ -1,5 +1,9 @@
 ---
 
+# apache_vhosts role
+required_apache_vhosts: [ "prometheus", "grafana" ]
+
+# prometheus role
 prometheus_blackbox_targets:
   - url: "transmission.{{ top_lvl_domain }}"
     job: "blackbox"

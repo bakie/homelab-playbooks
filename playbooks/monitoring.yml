@@ -4,6 +4,8 @@
 
 - hosts: monitoring
   roles:
+    - { role: apache, tags: [ "apache" ] }
+    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
     - { role: prometheus, tags: [ "prometheus" ] }
     - { role: prometheus_alertmanager, tags: [ "prometheus", "prometheus_alertmanager" ] }
     - { role: grafana, tags: [ "grafana" ] }

@@ -4,6 +4,8 @@
 
 - hosts: downloader
   roles:
+    - { role: apache, tags: [ "apache" ] }
+    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
     - { role: openvpn, tags: [ 'openvpn' ] }
     - { role: sabnzbd, tags: [ "sabnzbd" ] }
     - { role: nfs_server, tags: [ 'nfs_server' ] }
