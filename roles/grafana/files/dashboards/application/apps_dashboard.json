@@ -8,28 +8,33 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "description": "",
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": 7587,
   "graphTooltip": 0,
-  "iteration": 1605204808248,
+  "iteration": 1643462655031,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -58,7 +63,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "8.3.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -77,9 +82,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Global Probe Duration",
       "tooltip": {
         "shared": true,
@@ -88,38 +91,28 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -129,47 +122,39 @@
       "id": 15,
       "panels": [],
       "repeat": "instance",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "title": "$instance status",
       "type": "row"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 0,
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "0": {
+                  "text": "N/A"
+                },
+                "1": {
+                  "text": "YES"
+                }
+              },
+              "type": "value"
             },
             {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "0"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -198,7 +183,6 @@
         "y": 9
       },
       "id": 20,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -215,16 +199,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
+      "pluginVersion": "8.3.4",
       "repeatDirection": "h",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "targets": [
         {
           "expr": "probe_http_status_code{instance=~\"$instance\"}",
@@ -243,12 +219,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -277,17 +250,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "8.3.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -303,9 +269,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "HTTP Duration",
       "tooltip": {
         "shared": true,
@@ -314,33 +278,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -348,12 +303,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -382,18 +334,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "8.3.4",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
-      "repeat": null,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -409,9 +353,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Probe Duration",
       "tooltip": {
         "shared": true,
@@ -420,33 +362,24 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
       "yaxes": [
         {
           "format": "s",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
@@ -454,12 +387,9 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
       },
       "fill": 1,
       "fillGradient": 0,
@@ -487,17 +417,10 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.2.2",
+      "pluginVersion": "8.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
@@ -511,9 +434,7 @@
         }
       ],
       "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
       "title": "Status",
       "tooltip": {
         "shared": true,
@@ -522,9 +443,7 @@
       },
       "type": "graph",
       "xaxis": {
-        "buckets": null,
         "mode": "time",
-        "name": null,
         "show": true,
         "values": []
       },
@@ -532,43 +451,38 @@
         {
           "$$hashKey": "object:3450",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         },
         {
           "$$hashKey": "object:3451",
           "format": "short",
-          "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
           "show": true
         }
       ],
       "yaxis": {
-        "align": false,
-        "alignLevel": null
+        "align": false
       }
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -597,7 +511,6 @@
         "y": 11
       },
       "id": 27,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -614,14 +527,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "expr": "probe_http_version{instance=~\"$instance\"}",
@@ -636,35 +542,34 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "0": {
+                  "text": "NO"
+                },
+                "1": {
+                  "text": "YES"
+                }
+              },
+              "type": "value"
             },
             {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -693,7 +598,6 @@
         "y": 13
       },
       "id": 18,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -710,16 +614,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
+      "pluginVersion": "8.3.4",
       "repeatDirection": "v",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "targets": [
         {
           "expr": "probe_http_ssl{instance=~\"$instance\"}",
@@ -734,36 +630,35 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "decimals": 2,
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "0": {
+                  "text": "NO"
+                },
+                "1": {
+                  "text": "YES"
+                }
+              },
+              "type": "value"
             },
             {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "YES"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -796,7 +691,6 @@
         "y": 15
       },
       "id": 19,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -813,16 +707,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
+      "pluginVersion": "8.3.4",
       "repeatDirection": "h",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
       "targets": [
         {
           "expr": "probe_ssl_earliest_cert_expiry{instance=~\"$instance\"} - time()",
@@ -833,26 +719,27 @@
           "refId": "A"
         }
       ],
-      "timeFrom": null,
       "title": "SSL Expiry",
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -885,7 +772,6 @@
         "y": 15
       },
       "id": 23,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -902,15 +788,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
+      "pluginVersion": "8.3.4",
       "targets": [
         {
           "expr": "avg(probe_duration_seconds{instance=~\"$instance\"})",
@@ -925,21 +803,23 @@
       "type": "stat"
     },
     {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "z_0UfxtGz"
+      },
       "fieldConfig": {
         "defaults": {
-          "custom": {},
           "mappings": [
             {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
+              "options": {
+                "match": "null",
+                "result": {
+                  "text": "N/A"
+                }
+              },
+              "type": "special"
             }
           ],
-          "nullValueMode": "connected",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -972,7 +852,6 @@
         "y": 15
       },
       "id": 24,
-      "interval": null,
       "links": [],
       "maxDataPoints": 100,
       "options": {
@@ -989,1854 +868,8 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
+      "pluginVersion": "8.3.4",
       "repeatDirection": "h",
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "medusa.homelab.net",
-          "value": "medusa.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "avg(probe_dns_lookup_time_seconds{instance=~\"$instance\"})",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Average DNS Lookup",
-      "type": "stat"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 17
-      },
-      "id": 161,
-      "panels": [],
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 15,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "title": "$instance status",
-      "type": "row"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 201
-              },
-              {
-                "color": "#d44a3a",
-                "value": 399
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 18
-      },
-      "id": 162,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 20,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_status_code{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "HTTP Status Code",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 4,
-        "y": 18
-      },
-      "hiddenSeries": false,
-      "id": 163,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 25,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_http_duration_seconds{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{ phase }}",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "HTTP Duration",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 12,
-        "y": 18
-      },
-      "hiddenSeries": false,
-      "id": 164,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 17,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_duration_seconds{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "seconds",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Probe Duration",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 20,
-        "y": 18
-      },
-      "hiddenSeries": false,
-      "id": 165,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 160,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_success{instance=~\"$instance\"}",
-          "interval": "$interval",
-          "legendFormat": "status",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Status",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:3450",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:3451",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              },
-              {
-                "color": "dark-green",
-                "value": 2
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 20
-      },
-      "id": 166,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 27,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_version{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "HTTP Version",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "#299c46",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 22
-      },
-      "id": 167,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_ssl{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "SSL",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "#299c46",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 24
-      },
-      "id": 168,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 19,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_ssl_earliest_cert_expiry{instance=~\"$instance\"} - time()",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "title": "SSL Expiry",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 0
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 10,
-        "x": 4,
-        "y": 24
-      },
-      "id": 169,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 23,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "avg(probe_duration_seconds{instance=~\"$instance\"})",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Average Probe Duration",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 0
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 10,
-        "x": 14,
-        "y": 24
-      },
-      "id": 170,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 24,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "sabnzbd.homelab.net",
-          "value": "sabnzbd.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "avg(probe_dns_lookup_time_seconds{instance=~\"$instance\"})",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Average DNS Lookup",
-      "type": "stat"
-    },
-    {
-      "collapsed": false,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 26
-      },
-      "id": 171,
-      "panels": [],
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 15,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "title": "$instance status",
-      "type": "row"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 0,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "#299c46",
-                "value": null
-              },
-              {
-                "color": "rgba(237, 129, 40, 0.89)",
-                "value": 201
-              },
-              {
-                "color": "#d44a3a",
-                "value": 399
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 27
-      },
-      "id": 172,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 20,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_status_code{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "HTTP Status Code",
-      "type": "stat"
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 4,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 173,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 25,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_http_duration_seconds{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "{{ phase }}",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "HTTP Duration",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 8,
-        "x": 12,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 174,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "repeat": null,
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 17,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_duration_seconds{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "seconds",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Probe Duration",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "s",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 6,
-        "w": 4,
-        "x": 20,
-        "y": 27
-      },
-      "hiddenSeries": false,
-      "id": 175,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.2.2",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 160,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "probe_success{instance=~\"$instance\"}",
-          "interval": "$interval",
-          "legendFormat": "status",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Status",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:3450",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:3451",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 1
-              },
-              {
-                "color": "dark-green",
-                "value": 2
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 29
-      },
-      "id": 176,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 27,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_version{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "HTTP Version",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "#299c46",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "none"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 31
-      },
-      "id": 177,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "v",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 18,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_http_ssl{instance=~\"$instance\"}",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "SSL",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "decimals": 2,
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "null"
-            },
-            {
-              "id": 1,
-              "op": "=",
-              "text": "YES",
-              "type": 1,
-              "value": "1"
-            },
-            {
-              "id": 2,
-              "op": "=",
-              "text": "NO",
-              "type": 1,
-              "value": "0"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "dark-red",
-                "value": null
-              },
-              {
-                "color": "dark-red",
-                "value": 0
-              },
-              {
-                "color": "#299c46",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "dtdurations"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 4,
-        "x": 0,
-        "y": 33
-      },
-      "id": 178,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 19,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "probe_ssl_earliest_cert_expiry{instance=~\"$instance\"} - time()",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "title": "SSL Expiry",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 0
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 10,
-        "x": 4,
-        "y": 33
-      },
-      "id": 179,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 23,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
-      "targets": [
-        {
-          "expr": "avg(probe_duration_seconds{instance=~\"$instance\"})",
-          "format": "time_series",
-          "interval": "$interval",
-          "intervalFactor": 1,
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Average Probe Duration",
-      "type": "stat"
-    },
-    {
-      "cacheTimeout": null,
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [
-            {
-              "id": 0,
-              "op": "=",
-              "text": "N/A",
-              "type": 1,
-              "value": "null"
-            }
-          ],
-          "nullValueMode": "connected",
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "rgb(255, 255, 255)",
-                "value": null
-              },
-              {
-                "color": "dark-green",
-                "value": 0
-              },
-              {
-                "color": "#EAB839",
-                "value": 0.5
-              },
-              {
-                "color": "dark-red",
-                "value": 1
-              }
-            ]
-          },
-          "unit": "s"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 2,
-        "w": 10,
-        "x": 14,
-        "y": 33
-      },
-      "id": 180,
-      "interval": null,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.2.2",
-      "repeat": null,
-      "repeatDirection": "h",
-      "repeatIteration": 1605204808248,
-      "repeatPanelId": 24,
-      "repeatedByRow": true,
-      "scopedVars": {
-        "instance": {
-          "selected": false,
-          "text": "transmission.homelab.net",
-          "value": "transmission.homelab.net"
-        }
-      },
       "targets": [
         {
           "expr": "avg(probe_dns_lookup_time_seconds{instance=~\"$instance\"})",
@@ -2852,7 +885,7 @@
     }
   ],
   "refresh": "30m",
-  "schemaVersion": 26,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2943,27 +976,30 @@
         "type": "interval"
       },
       {
-        "allValue": null,
         "current": {
           "selected": false,
           "text": "All",
           "value": "$__all"
         },
-        "datasource": "Prometheus",
+        "datasource": {
+          "type": "prometheus",
+          "uid": "z_0UfxtGz"
+        },
         "definition": "",
         "hide": 0,
         "includeAll": true,
-        "label": null,
         "multi": true,
         "name": "instance",
         "options": [],
-        "query": "label_values(probe_success, instance)",
+        "query": {
+          "query": "label_values(probe_success, instance)",
+          "refId": "Prometheus-instance-Variable-Query"
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -3002,5 +1038,6 @@
   "timezone": "",
   "title": "Apps",
   "uid": "xtkCtBkiz",
-  "version": 6
+  "version": 9,
+  "weekStart": ""
 }
