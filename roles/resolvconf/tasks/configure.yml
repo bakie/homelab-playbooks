@@ -3,7 +3,7 @@
 - name: add the dns resolver ip to resolv.conf.d
   become: yes
   lineinfile:
-    path: "/etc/resolvconf/resolv.conf.d/tail"
+    path: "/etc/resolvconf/resolv.conf.d/head"
     regexp: "^nameserver {{ resolvconf_dns_resolver_ip }}"
     line: "nameserver {{ resolvconf_dns_resolver_ip }}"
     state: present
