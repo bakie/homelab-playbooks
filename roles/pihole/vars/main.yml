@@ -1,3 +1,4 @@
 ---
 
 pihole_config_path: "/etc/pihole"
+pihole_required_packages: [ "sqlite3" ]

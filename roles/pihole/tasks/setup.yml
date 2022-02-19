@@ -1,5 +1,12 @@
 ---
 
+- name: install required packages
+  become: yes
+  apt:
+    name: "{{ pihole_required_packages }}"
+    state: present
+    install_recommends: no
+
 - name: add pihole group
   become: yes
   group:
