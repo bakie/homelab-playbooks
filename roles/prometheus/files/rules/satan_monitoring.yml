@@ -1,0 +1,17 @@
+groups:
+  - name: SatanServer
+    rules:
+      - alert: ApacheDown
+        expr: node_systemd_unit_state{name="apache2.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "Apache is down on instance {{ $labels.instance }}"
+          description: "Apache is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+      - alert: NfsKernlerServerDown
+        expr: node_systemd_unit_state{name="nfs-kernel-server.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "Apache is down on instance {{ $labels.instance }}"
+          description: "Apache is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"

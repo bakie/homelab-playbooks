@@ -5,3 +5,5 @@ prometheus_download_url: "https://github.com/prometheus/prometheus/releases/down
 prometheus_listen_port: 9090
 prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
 prometheus_config_path: "/etc/prometheus"
+prometheus_rules_config_path: "{{ prometheus_config_path }}/rules"
+

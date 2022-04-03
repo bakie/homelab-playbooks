@@ -1,7 +1,7 @@
 ---
 
 # apache_vhosts role
-required_apache_vhosts: [ "prometheus", "grafana" ]
+required_apache_vhosts: [ "prometheus", "prometheus_alertmanager", "grafana" ]
 
 # prometheus role
 prometheus_blackbox_targets:
@@ -11,11 +11,4 @@ prometheus_blackbox_targets:
     job: "blackbox"
   - url: "medusa.{{ top_lvl_domain }}"
     job: "blackbox"
-prometheus_alerting_rules:
-  - group_name: applications
-    rules:
-      - name: "application"
-        expr: "probe_success{job=\"blackbox\"} == 0"
-        severity: "critical"
-        summary: "Application is down"
-prometheus_alertmanagers: ["localhost:9093"]
+prometheus_alertmanagers: [ "localhost:9093" ]

@@ -8,23 +8,6 @@
         job: "blackbox_green"
       - url: "blackbox_blue.com"
         job: "blackbox_blue"
-    prometheus_alerting_rules:
-      - group_name: group1
-        rules:
-          - name: "single_rule"
-            expr: "up == 0"
-            severity: "critical"
-            summary: "server is down"
-      - group_name: group2
-        rules:
-          - name: "rule one"
-            expr: "up == 0"
-            severity: "critical"
-            summary: "rule one is down"
-          - name: "rule two"
-            expr: "up == 0"
-            severity: "critical"
-            summary: "rule two is down"
     prometheus_alertmanagers: ["localhost:9093"]
 
   roles:

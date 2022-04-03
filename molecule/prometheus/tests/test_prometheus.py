@@ -66,20 +66,13 @@ def test_blackbox_targets(host, target_url, target_label):
     assert host.file(PROMETHEUS_CONFIG_PATH + "/file_sd/blackbox_targets.json").contains(target_label)
 
 
-@pytest.mark.parametrize(("group_name", "alert_rule", "alert_expr"), [
-    ("group1", "single_rule", "up == 0"),
-    ("group2", "rule one", "up == 0"),
-    ("group2", "rule two", "up == 0")
-])
-def test_alerting_rules(host, group_name, alert_rule, alert_expr):
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(group_name)
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(alert_rule)
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/rules/alerting_rules.yml").contains(alert_expr)
-
-
 @pytest.mark.parametrize("setting", [
     "alerting",
     "- targets: \\['localhost:9093'\\]"
 ])
 def test_prometheus_config_file(host, setting):
     assert host.file(PROMETHEUS_CONFIG_PATH + "/prometheus.yml").contains(setting)
+
+
+def test_rules(host):
+    assert host.file(PROMETHEUS_CONFIG_PATH+"/rules/prometheus_monitoring.yml").exists

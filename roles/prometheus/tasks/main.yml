@@ -4,5 +4,5 @@
 - include_tasks: install.yml
   when: install_prometheus
 - include_tasks: configure.yml
-- include_tasks: alerting_rules.yml
+- include_tasks: rules.yml
 - include_tasks: service.yml
