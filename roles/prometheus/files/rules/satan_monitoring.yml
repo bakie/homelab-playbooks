@@ -9,9 +9,9 @@ groups:
           summary: "Apache is down on instance {{ $labels.instance }}"
           description: "Apache is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
       - alert: NfsKernlerServerDown
-        expr: node_systemd_unit_state{name="nfs-kernel-server.service", state="active"} != 1
+        expr: node_nfsd_server_threads == 0
         labels:
           severity: "critical"
         annotations:
-          summary: "Apache is down on instance {{ $labels.instance }}"
-          description: "Apache is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          summary: "Total number of NFSd kernel threads is 0 on instance {{ $labels.instance }}"
+          description: "NFSd kernel threads is 0 \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"

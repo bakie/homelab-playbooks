@@ -5,8 +5,9 @@ Install and configure the prometheus node exporter on the remote hosts.
 none
 
 ## Role variables
-| Variable            | Default              | Comments |
-|---------------------|----------------------|----------|
-| node_exporter_user  | "node_exporter"      |          |
-| node_exporter_group | "node_exporter"      |          |
-| node_exporter_home  | "/opt/node_exporter" |          |
+| Variable                               | Default              | Comments                             |
+|----------------------------------------|----------------------|--------------------------------------|
+| node_exporter_user                     | "node_exporter"      |                                      |
+| node_exporter_group                    | "node_exporter"      |                                      |
+| node_exporter_home                     | "/opt/node_exporter" |                                      |
+| node_exporter_extra_enabled_collectors | []                   | A list of extra collectors to enable |
