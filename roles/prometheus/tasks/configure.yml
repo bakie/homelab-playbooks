@@ -30,7 +30,7 @@
     getent hosts {{ item }}.local
   args:
     executable: "/bin/bash"
-  loop: "{{ groups['all'] | difference(ansible_play_hosts) }}" # Monitoring hosts can resolve themselves
+  loop: "{{ groups['all'] }}"
   register: hosts_ips
   changed_when: no
 
