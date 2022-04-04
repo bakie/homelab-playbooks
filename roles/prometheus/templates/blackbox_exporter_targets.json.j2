@@ -1,6 +1,6 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 [
-{% for target in prometheus_blackbox_targets %}
+{% for target in prometheus_blackbox_exporter_targets %}
   {
     "targets": [
       "{{ target.url }}"

@@ -1,19 +1,22 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
+{{ ansible_managed | comment }}
+# http://prometheus.io/docs/operating/configuration/
 
 global:
-  scrape_interval: 15s
-  scrape_timeout: 10s
-  evaluation_interval: 15s
+  # How frequently to scrape targets
+  scrape_interval: 10s
+  scrape_timeout: 5s
+  # How frequently to evaluate rules
+  evaluation_interval: 10s
 
-{% if prometheus_alertmanagers is defined %}
+rule_files:
+  - {{ prometheus_rules_config_path }}/*.yml
+
 alerting:
   alertmanagers:
     - static_configs:
-      - targets: {{ prometheus_alertmanagers }}
-{% endif %}
-
-rule_files:
-  - {{ prometheus_config_path }}/rules/*.yml
+      - targets:
+        - {{ prometheus_alertmanager_address }}
 
 scrape_configs:
   - job_name: "metrics"
@@ -40,4 +43,4 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 127.0.0.1:9101
+        replacement: {{ prometheus_blackbox_exporter_address }}

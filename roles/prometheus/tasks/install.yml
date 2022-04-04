@@ -1,6 +1,11 @@
 ---
 
-- name: unarchive prometheus
+- name: get the deb architecture
+  command: dpkg --print-architecture
+  register: deb_architecture
+  changed_when: false
+
+- name: Download prometheus
   become: yes
   become_user: "{{ prometheus_user }}"
   unarchive:
@@ -8,18 +13,17 @@
     dest: "/tmp"
     remote_src: yes
 
-- name: copy prometheus and promtool binaries
+- name: rename prometheus directory
   become: yes
-  become_user: "{{ prometheus_user }}"
-  copy:
-    src: "/tmp/prometheus-{{ prometheus_version }}.linux-amd64/{{ item }}"
-    dest: "{{ prometheus_home }}/{{ item }}"
-    remote_src: yes
+  command: "mv /tmp/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_install_path }}"
+  args:
+    creates: "{{ prometheus_install_path }}"
+
+- name: set permissions on prometheus_install_path
+  become: yes
+  file:
+    path: "{{ prometheus_install_path }}"
+    recurse: yes
     mode: 0755
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
-  loop:
-    - prometheus
-    - promtool
-  notify:
-    - restart prometheus

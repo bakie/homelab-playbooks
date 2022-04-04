@@ -8,11 +8,14 @@ Environment="GOMAXPROCS={{ ansible_processor_vcpus|default(ansible_processor_cou
 User={{ prometheus_user }}
 Group={{ prometheus_group }}
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStart={{ prometheus_home }}/prometheus \
+ExecStart={{ prometheus_install_path }}/prometheus \
   --config.file={{ prometheus_config_path }}/prometheus.yml \
-  --storage.tsdb.path={{ prometheus_home }} \
-  --storage.tsdb.retention.time={{ prometheus_storage_retention }} \
+  --storage.tsdb.path={{ prometheus_data_path }} \
+  --storage.tsdb.retention={{ prometheus_storage_retention }} \
+  --web.console.libraries={{ prometheus_install_path }}/console_libraries \
+  --web.console.templates={{ prometheus_install_path }}/consoles \
   --web.listen-address={{ prometheus_listen_address }} \
+  --web.enable-admin-api \
   --web.external-url=/
 
 CapabilityBoundingSet=CAP_SET_UID
@@ -26,7 +29,7 @@ ProtectHome=true
 RemoveIPC=true
 RestrictSUIDSGID=true
 
-ReadWritePaths={{ prometheus_home }}
+ReadWritePaths={{ prometheus_data_path }}
 
 PrivateUsers=true
 ProtectControlGroups=true

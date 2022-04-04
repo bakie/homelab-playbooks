@@ -1,8 +1,16 @@
 import pytest
 import yaml
 
-PROMETHEUS_HOME = "/opt/prometheus"
-PROMETHEUS_CONFIG_PATH = "/etc/prometheus"
+
+PROMETHEUS_USER = "prometheus"
+PROMETHEUS_GROUP = "prometheus"
+PROMETHEUS_PATH = "/opt/prometheus/prometheus"
+PROMETHEUS_BASE_PATH = "/opt/prometheus"
+PROMETHEUS_CONFIG_PATH = "/etc/prometheus/prometheus"
+PROMETHEUS_RULES_CONFIG_PATH = "/etc/prometheus/prometheus/rules"
+PROMETHEUS_FILE_SD_CONFIG_PATH = "/etc/prometheus/prometheus/file_sd"
+PROMETHEUS_BASE_CONFIG_PATH = "/etc/prometheus"
+PROMETHEUS_DATA_PATH = "/opt/prometheus/prometheus_data"
 
 
 @pytest.fixture()
@@ -11,68 +19,77 @@ def ansible_defaults():
         return yaml.full_load(stream)
 
 
-@pytest.mark.parametrize("dir", [
-    PROMETHEUS_CONFIG_PATH + "/rules",
-    PROMETHEUS_CONFIG_PATH + "/file_sd",
-    PROMETHEUS_CONFIG_PATH + "/conf.d"
+def test_user_is_in_prometheus_group(host):
+    assert PROMETHEUS_GROUP in host.user(PROMETHEUS_USER).groups
+
+
+@pytest.mark.parametrize("path, owner", [
+    (PROMETHEUS_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_BASE_PATH, "root"),
+    (PROMETHEUS_CONFIG_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_BASE_CONFIG_PATH, "root"),
+    (PROMETHEUS_DATA_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_RULES_CONFIG_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_FILE_SD_CONFIG_PATH, PROMETHEUS_USER)
 ])
-def test_directories(host, dir):
-    d = host.file(dir)
-    assert d.is_directory
-    assert d.exists
+def test_directory_owner(host, path, owner):
+    assert host.file(path).user == owner
 
 
-@pytest.mark.parametrize("file", [
-    PROMETHEUS_CONFIG_PATH + "/prometheus.yml",
-    PROMETHEUS_HOME + "/prometheus",
-    PROMETHEUS_HOME + "/promtool",
-    "/lib/systemd/system/prometheus.service",
+@pytest.mark.parametrize("path, group", [
+    (PROMETHEUS_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_BASE_PATH, "root"),
+    (PROMETHEUS_CONFIG_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_BASE_CONFIG_PATH, "root"),
+    (PROMETHEUS_DATA_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_RULES_CONFIG_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_FILE_SD_CONFIG_PATH, PROMETHEUS_GROUP)
 ])
-def test_files(host, file):
-    f = host.file(file)
-    assert f.exists
-    assert f.is_file
+def test_directory_group(host, path, group):
+    assert host.file(path).group == group
 
 
-def test_user(host):
-    assert host.group("prometheus").exists
-    assert host.user("prometheus").exists
-
-
-def test_prometheus_is_running(host):
-    assert host.service("prometheus").is_running
-
-
-def test_prometheus_is_enabled(host):
-    assert host.service("prometheus").is_enabled
-
-
-def test_socket(host):
-    assert host.socket("tcp://0.0.0.0:9090").is_listening
-
-
-def test_version(host, ansible_defaults):
-    version = ansible_defaults['prometheus_version']
-    out = host.run(PROMETHEUS_HOME + "/prometheus --version").stdout
-    assert "prometheus, version " + version in out
-
-
-@pytest.mark.parametrize(("target_url", "target_label"), [
-    ("blackbox_green.com", "blackbox_green"),
-    ("blackbox_blue.com", "blackbox_blue"),
+@pytest.mark.parametrize("path", [
+    PROMETHEUS_PATH,
+    PROMETHEUS_BASE_PATH,
+    PROMETHEUS_CONFIG_PATH,
+    PROMETHEUS_BASE_CONFIG_PATH,
+    PROMETHEUS_DATA_PATH,
+    PROMETHEUS_RULES_CONFIG_PATH,
+    PROMETHEUS_FILE_SD_CONFIG_PATH
 ])
-def test_blackbox_targets(host, target_url, target_label):
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/file_sd/blackbox_targets.json").contains(target_url)
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/file_sd/blackbox_targets.json").contains(target_label)
+def test_directory_permissions(host, path):
+    assert host.file(path).mode == 0o755
 
 
-@pytest.mark.parametrize("setting", [
-    "alerting",
-    "- targets: \\['localhost:9093'\\]"
+@pytest.mark.parametrize("config", [
+    "rule_files:",
+    "alerting"
 ])
-def test_prometheus_config_file(host, setting):
-    assert host.file(PROMETHEUS_CONFIG_PATH + "/prometheus.yml").contains(setting)
+def test_prometheus_config(host, config):
+    assert host.file(PROMETHEUS_CONFIG_PATH+"/prometheus.yml").contains(config)
 
 
 def test_rules(host):
-    assert host.file(PROMETHEUS_CONFIG_PATH+"/rules/prometheus_monitoring.yml").exists
+    assert host.file(PROMETHEUS_RULES_CONFIG_PATH+"/prometheus_monitoring.yml").exists
+
+
+def test_blackbox_file(host):
+    assert host.file(PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json").exists
+
+
+def test_prometheus_correct_version_is_installed(host, ansible_defaults):
+    version = ansible_defaults['prometheus_version']
+    assert (host.run(PROMETHEUS_PATH+"/prometheus --version 2>&1 | head -1 | awk '{print $3}' | xargs echo -n").stdout == version)
+
+
+def test_prometheus_service_is_running(host):
+    assert host.service('prometheus').is_running
+
+
+def test_prometheus_service_is_enabled(host):
+    assert host.service('prometheus').is_enabled
+
+
+def test_listening_on_port(host):
+    assert host.socket("tcp://127.0.0.1:9090").is_listening

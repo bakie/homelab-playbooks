@@ -1,8 +1,3 @@
 ---
 
-prometheus_group: "prometheus"
-prometheus_user: "prometheus"
-prometheus_home: "/opt/prometheus"
-prometheus_storage_retention: "30d"
-prometheus_blackbox_targets: []
-prometheus_alerting_rules: []
+prometheus_blackbox_exporter_targets: []

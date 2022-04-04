@@ -3,12 +3,11 @@
 - name: Converge
   hosts: all
   vars:
-    prometheus_blackbox_targets:
+    prometheus_blackbox_exporter_targets:
       - url: "blackbox_green.com"
         job: "blackbox_green"
       - url: "blackbox_blue.com"
         job: "blackbox_blue"
-    prometheus_alertmanagers: ["localhost:9093"]
 
   roles:
     - role: prometheus

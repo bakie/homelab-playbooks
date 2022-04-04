@@ -1,9 +1,21 @@
 ---
 
+prometheus_group: "prometheus"
+prometheus_user: "prometheus"
+# Base path where all the dirs for prometheus are created
+prometheus_base_path: "/opt/prometheus"
+prometheus_install_path: "{{ prometheus_base_path }}/prometheus"
+prometheus_data_path: "{{ prometheus_base_path }}/prometheus_data"
+# Base path where all the config dirs for prometheus are created
+prometheus_base_config_path: "/etc/prometheus"
+prometheus_config_path: "{{ prometheus_base_config_path }}/prometheus"
+prometheus_rules_config_path: "{{ prometheus_config_path }}/rules"
+prometheus_file_sd_config_path: "{{ prometheus_config_path }}/file_sd"
+prometheus_storage_retention: "30d"
 prometheus_version: 2.32.1
-prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
 prometheus_listen_port: 9090
 prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
-prometheus_config_path: "/etc/prometheus"
-prometheus_rules_config_path: "{{ prometheus_config_path }}/rules"
-
+prometheus_alertmanager_address: "127.0.0.1:9093"
+prometheus_blackbox_exporter_address: "127.0.0.1:9101"
+prometheus_blackbox_exporter_targets: []
