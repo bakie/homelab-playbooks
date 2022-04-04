@@ -1,0 +1,12 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    prometheus_node_exporter_extra_enabled_collectors:
+      - "ntp"
+      - "zoneinfo"
+    group_names: [ "searcher" ]
+
+  roles:
+    - role: prometheus_node_exporter

@@ -1,0 +1,56 @@
+[Unit]
+Description=Prometheus Node Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ prometheus_node_exporter_user }}
+Group={{ prometheus_node_exporter_group }}
+ExecStart={{ prometheus_node_exporter_install_path }}/node_exporter \
+{% for collector in prometheus_node_exporter_collectors -%}
+  {% if not collector is mapping %}
+    --collector.{{ collector }} \
+  {% else -%}
+    {% set name, options = (collector.items()|list)[0] -%}
+    --collector.{{ name }} \
+    {% for k,v in options|dictsort %}
+    --collector.{{ name }}.{{ k }}={{ v | quote }} \
+    {% endfor -%}
+  {% endif -%}
+{% endfor -%}
+{% for collector in prometheus_node_exporter_extra_enabled_collectors -%}
+  {% if not collector is mapping %}
+    --collector.{{ collector }} \
+  {% else -%}
+    {% set name, options = (collector.items()|list)[0] -%}
+    --collector.{{ name }} \
+    {% for k,v in options|dictsort %}
+    --collector.{{ name }}.{{ k }}={{ v | quote }} \
+    {% endfor -%}
+  {% endif -%}
+{% endfor -%}
+{% for collector in prometheus_node_exporter_disabled_collectors %}
+    --no-collector.{{ collector }} \
+{% endfor %}
+    --web.config={{ prometheus_node_exporter_config_path }}/config.yml \
+    --web.listen-address={{ prometheus_node_exporter_web_listen_address }}
+
+SyslogIdentifier=prometheus_node_exporter
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+{% for m in ansible_mounts if m.mount == '/home' %}
+ProtectHome=read-only
+{% else %}
+ProtectHome=yes
+{% endfor %}
+NoNewPrivileges=yes
+
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

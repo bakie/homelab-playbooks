@@ -1,17 +1,17 @@
 ---
 
-name: "bakie.homelab.node_exporter"
+name: "bakie.homelab.prometheus_node_exporter"
 on:
   push:
     paths:
-      - 'roles/node_exporter/**'
-      - 'molecule/node_exporter/**'
-      - '.github/workflows/node_exporter.yml'
+      - 'roles/prometheus_node_exporter/**'
+      - 'molecule/prometheus_node_exporter/**'
+      - '.github/workflows/prometheus_node_exporter.yml'
   pull_request:
     paths:
-      - 'roles/node_exporter/**'
-      - 'molecule/node_exporter/**'
-      - '.github/workflows/node_exporter.yml'
+      - 'roles/prometheus_node_exporter/**'
+      - 'molecule/prometheus_node_exporter/**'
+      - '.github/workflows/prometheus_node_exporter.yml'
   schedule:
     - cron: '50 2 * * 6'
   workflow_dispatch:
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run role tests
         run: |
-          python -m poetry run molecule test -s node_exporter
+          python -m poetry run molecule test -s prometheus_node_exporter

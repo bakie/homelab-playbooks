@@ -1,0 +1,60 @@
+---
+
+# node_exporter_config_path: "/etc/node_exporter"
+# node_exporter_version: 1.0.1
+# node_exporter_download_url: "https://github.com/prometheus/node_exporter/releases/download/v{{ node_exporter_version }}/node_exporter-{{ node_exporter_version }}.linux-amd64.tar.gz"
+# node_exporter_web_listen_port: "9100"
+# node_exporter_web_listen_address: "0.0.0.0:{{ node_exporter_web_listen_port }}"
+# node_exporter_enabled_collectors:
+#   - arp
+#   - bonding
+#   - cpu
+#   - diskstats
+#   - filefd
+#   - filesystem
+#   - loadavg
+#   - mdadm
+#   - meminfo
+#   - netdev
+#   - netstat
+#   - stat
+#   - systemd
+#   - tcpstat
+#   - time
+#   - uname
+#   - vmstat
+# node_exporter_disabled_collectors: []
+
+prometheus_node_exporter_user: "prometheus_node_exporter"
+prometheus_node_exporter_group: "prometheus_node_exporter"
+# Base path where all the dirs for prometheus node exporter are created
+prometheus_node_exporter_base_path: "/opt/prometheus"
+prometheus_node_exporter_install_path: "{{ prometheus_node_exporter_base_path }}/node_exporter"
+prometheus_node_exporter_version: 1.3.1
+# Base path where all the config dirs for prometheus node exporter are created
+prometheus_node_exporter_base_config_path: "/etc/prometheus"
+prometheus_node_exporter_config_path: "{{ prometheus_node_exporter_base_config_path }}/node_exporter"
+prometheus_node_exporter_web_listen_address: "0.0.0.0:9100"
+prometheus_node_exporter_download_url: "https://github.com/prometheus/node_exporter/releases/download/v{{ prometheus_node_exporter_version }}/node_exporter-{{ prometheus_node_exporter_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
+prometheus_node_exporter_collectors:
+  - systemd
+  - tcpstat
+  - textfile.directory={{ prometheus_node_exporter_textfile_scripts_output_path }}
+prometheus_node_exporter_disabled_collectors: []
+prometheus_node_exporter_textfile_scripts_path: "{{ prometheus_node_exporter_config_path }}/textfile_scripts"
+prometheus_node_exporter_textfile_scripts_output_path: "{{ prometheus_node_exporter_config_path }}/textfile_scripts_output"
+prometheus_node_exporter_textfile_scripts:
+  - name: apt_check
+    script_name: apt_check.sh
+    cronjob:
+      name: "apt_check"
+      minute: "0"
+      job: "{{ prometheus_node_exporter_textfile_scripts_path }}/apt_check.sh /home > {{ prometheus_node_exporter_textfile_scripts_output_path }}/apt_check.prom"
+    install_on_all_servers: true
+  - name: fstab_mounts_check
+    script_name: fstab_mounts_check.sh
+    cronjob:
+      name: "fstab_mounts_check"
+      minute: "0"
+      job: "{{ prometheus_node_exporter_textfile_scripts_path }}/fstab_mounts_check.sh > {{ prometheus_node_exporter_textfile_scripts_output_path }}/fstab_mounts_check.prom"
+    install_on_server_groups: [ "searcher" ]

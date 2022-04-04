@@ -5,5 +5,5 @@ nfs_exports:
   - "{{ sabnzbd_user_home }} lucifer.local(rw,sync,no_root_squash,no_subtree_check)"
 
 # prometheus_node_exporter
-node_exporter_extra_enabled_collectors:
+prometheus_node_exporter_extra_enabled_collectors:
   - nfsd

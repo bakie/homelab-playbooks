@@ -1,0 +1,13 @@
+---
+
+- import_tasks: setup.yml
+- import_tasks: version_check.yml
+- import_tasks: install.yml
+  when: install_prometheus_node_exporter
+- import_tasks: configure.yml
+- include_tasks: textfile_cronjob.yml
+  loop: "{{ prometheus_node_exporter_textfile_scripts }}"
+  loop_control:
+    loop_var: textfile_script
+  when: group_names|intersect(textfile_script.install_on_server_groups|d([]))|length or textfile_script.install_on_all_servers|d(false)
+- import_tasks: service.yml
