@@ -61,8 +61,7 @@ def test_amtool_config_file_path(host):
 
 def test_version(host, ansible_defaults):
     version = ansible_defaults['prometheus_alertmanager_version']
-    out = host.run(PROMETHEUS_ALERTMANAGER_PATH + "/alertmanager --version").stdout
-    assert "alertmanager, version " + version in out
+    assert (host.run(PROMETHEUS_ALERTMANAGER_PATH+"/alertmanager --version 2>&1 | head -1 | awk '{print $3}' | xargs echo -n").stdout == version)
 
 
 def test_prometheus_alertmanager_service_is_running(host):
