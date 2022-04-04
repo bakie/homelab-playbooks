@@ -4,4 +4,4 @@
   hosts: all
 
   roles:
-    - role: blackbox_exporter
+    - role: prometheus_blackbox_exporter

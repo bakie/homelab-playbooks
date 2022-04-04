@@ -6,7 +6,7 @@
   roles:
     - { role: apache, tags: [ "apache" ] }
     - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
-    - { role: prometheus, tags: [ "prometheus" ] }
+    - { role: prometheus, tags: [ "prometheus", "prometheus_instance" ] }
     - { role: prometheus_alertmanager, tags: [ "prometheus", "prometheus_alertmanager" ] }
     - { role: grafana, tags: [ "grafana" ] }
-    - { role: blackbox_exporter, tags: [ "blackbox_exporter" ] }
+    - { role: prometheus_blackbox_exporter, tags: [ "prometheus", "prometheus_blackbox_exporter" ] }

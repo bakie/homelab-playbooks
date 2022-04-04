@@ -1,0 +1,7 @@
+---
+
+- name: restart prometheus_blackbox_exporter
+  become: yes
+  service:
+    name: prometheus_blackbox_exporter
+    state: restarted

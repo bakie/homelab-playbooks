@@ -1,0 +1,30 @@
+[Unit]
+Description=Prometheus blackbox Exporter
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ prometheus_blackbox_exporter_user }}
+Group={{ prometheus_blackbox_exporter_group }}
+ExecStart={{ prometheus_blackbox_exporter_install_path }}/blackbox_exporter \
+    --config.file={{ prometheus_blackbox_exporter_config_path }}/config.yml \
+    --web.listen-address={{ prometheus_blackbox_exporter_web_listen_address }}
+SyslogIdentifier=prometheus_blackbox_exporter
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+{% for m in ansible_mounts if m.mount == '/home' %}
+ProtectHome=read-only
+{% else %}
+ProtectHome=yes
+{% endfor %}
+NoNewPrivileges=yes
+
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target

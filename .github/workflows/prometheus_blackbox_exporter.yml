@@ -1,17 +1,17 @@
 ---
 
-name: "bakie.homelab.blackbox_exporter"
+name: "bakie.homelab.prometheus_blackbox_exporter"
 on:
   push:
     paths:
-      - 'roles/blackbox_exporter/**'
-      - 'molecule/blackbox_exporter/**'
-      - '.github/workflows/blackbox_exporter.yml'
+      - 'roles/prometheus_blackbox_exporter/**'
+      - 'molecule/prometheus_blackbox_exporter/**'
+      - '.github/workflows/prometheus_blackbox_exporter.yml'
   pull_request:
     paths:
-      - 'roles/blackbox_exporter/**'
-      - 'molecule/blackbox_exporter/**'
-      - '.github/workflows/blackbox_exporter.yml'
+      - 'roles/prometheus_blackbox_exporter/**'
+      - 'molecule/prometheus_blackbox_exporter/**'
+      - '.github/workflows/prometheus_blackbox_exporter.yml'
   schedule:
     - cron: '10 2 * * 6'
   workflow_dispatch:
@@ -37,4 +37,4 @@ jobs:
 
       - name: Run role tests
         run: |
-          python -m poetry run molecule test -s blackbox_exporter
+          python -m poetry run molecule test -s prometheus_blackbox_exporter

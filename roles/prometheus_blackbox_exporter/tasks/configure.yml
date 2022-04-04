@@ -1,0 +1,27 @@
+---
+
+- name: create prometheus_blackbox_exporter configuration directories
+  become: yes
+  file:
+    path: "{{ prometheus_blackbox_exporter_config_path }}"
+    state: directory
+    owner: "{{ prometheus_blackbox_exporter_user }}"
+    group: "{{ prometheus_blackbox_exporter_group }}"
+    mode: 0755
+
+- name: template the prometheus_blackbox_exporter config file
+  become: yes
+  template:
+    src: config.yml.j2
+    dest: "{{ prometheus_blackbox_exporter_config_path }}/config.yml"
+    owner: "{{ prometheus_blackbox_exporter_user }}"
+    group: "{{ prometheus_blackbox_exporter_group }}"
+    mode: 0644
+  notify: restart prometheus_blackbox_exporter
+
+- name: ensure blackbox exporter binary has cap_net_raw capability
+  become: yes
+  capabilities:
+    path: '{{ prometheus_blackbox_exporter_install_path }}/blackbox_exporter'
+    capability: cap_net_raw+ep
+    state: present

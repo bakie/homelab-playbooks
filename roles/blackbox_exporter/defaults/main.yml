@@ -1,8 +1,0 @@
----
-
-blackbox_exporter_user: "blackbox_exporter"
-blackbox_exporter_group: "blackbox_exporter"
-blackbox_exporter_home: "/opt/blackbox_exporter"
-blackbox_exporter_version: 0.17.0
-blackbox_exporter_web_listen_port: "9101"
-blackbox_exporter_web_listen_address: "0.0.0.0:{{ blackbox_exporter_web_listen_port }}"
