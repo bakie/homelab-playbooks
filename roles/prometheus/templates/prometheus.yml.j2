@@ -19,6 +19,10 @@ alerting:
         - {{ prometheus_alertmanager_address }}
 
 scrape_configs:
+  - job_name: "prometheus"
+    metrics_path: "/metrics"
+    static_configs:
+      - targets: ['localhost:{{ prometheus_listen_port }}']
   - job_name: "metrics"
     metrics_path: "/metrics"
     static_configs:

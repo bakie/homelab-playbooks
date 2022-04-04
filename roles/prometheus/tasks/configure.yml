@@ -26,8 +26,7 @@
 
 - name: get avahi local hosts and ips
   shell: |
-    set -o pipefail
-    getent hosts {{ item }}.local
+    set -o pipefail getent hosts {{ item }}.local
   args:
     executable: "/bin/bash"
   loop: "{{ groups['all'] }}"
@@ -43,3 +42,4 @@
     insertafter: "127.0.0.1 localhost"
     state: present
   loop: "{{ hosts_ips.results }}"
+  when: item.stdout
