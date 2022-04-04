@@ -1,0 +1,39 @@
+groups:
+  - name: LoadAverage
+    rules:
+      - alert: LoadAverage1minute
+        expr: max(node_load1) by (env, instance, job) / count by(env, instance, job) (node_cpu_seconds_total{mode="idle"}) >= 0.95
+        for: 5m
+        labels:
+          severity: "warning"
+        annotations:
+          summary: "Load average (1m) is high for 5 minutes (instance {{ $labels.instance }})"
+          description: "Load 1m is high \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: LoadAverage5minutes
+        expr: max(node_load5) by (env, instance, job) / count by(env, instance, job) (node_cpu_seconds_total{mode="idle"}) >= 0.95
+        for: 5m
+        labels:
+          severity: "warning"
+        annotations:
+          summary: "Load average (5m) is high for 5 minutes (instance {{ $labels.instance }})"
+          description: "Load 5m is high \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: LoadAverage15minutes
+        expr: max(node_load15) by (env, instance, job) / count by(env, instance, job) (node_cpu_seconds_total{mode="idle"}) >= 0.95
+        for: 5m
+        labels:
+          severity: "warning"
+        annotations:
+          summary: "Load average (15m) is high for 5 minutes (instance {{ $labels.instance }})"
+          description: "Load 15m is high \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+  - name: Mounts
+    rules:
+      - alert: FstabMountsCheck
+        expr: node_directory_fstab_mount != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "A fstab entry is not a mountpoint (instance {{ $labels.instance }})"
+          description: "A directory defined in fstab is not a mountpoint \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"

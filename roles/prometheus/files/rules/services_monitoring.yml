@@ -1,0 +1,42 @@
+groups:
+  - name: Services
+    rules:
+      - alert: ApacheDown
+        expr: node_systemd_unit_state{name="apache2.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "Apache is down (instance {{ $labels.instance }})"
+          description: "Apache is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: MedusaDown
+        expr: node_systemd_unit_state{name="medusa.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "medusa is down (instance {{ $labels.instance }})"
+          description: "medusa is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: openvpn@airvpnDown
+        expr: node_systemd_unit_state{name="openvpn@airvpn.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "openvpn@airvpn is down (instance {{ $labels.instance }})"
+          description: "openvpn@airvpn is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: SabnzbdDown
+        expr: node_systemd_unit_state{name="sabnzbdplus.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "sabnzbdplus is down (instance {{ $labels.instance }})"
+          description: "sabnzbdplus is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+
+      - alert: TransmissionDown
+        expr: node_systemd_unit_state{name="transmission-daemon.service", state="active"} != 1
+        labels:
+          severity: "critical"
+        annotations:
+          summary: "transmission is down (instance {{ $labels.instance }})"
+          description: "transmission is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
