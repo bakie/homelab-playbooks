@@ -1,47 +1,28 @@
 ---
 
-- name: add alertmanager group
+- name: create prometheus_alertmanager group
   become: yes
   group:
     name: "{{ prometheus_alertmanager_group }}"
     system: yes
     state: present
 
-- name: create alertmanager user
+- name: create prometheus_alertmanager user
   become: yes
   user:
     name: "{{ prometheus_alertmanager_user }}"
-    home: "{{ prometheus_alertmanager_home }}"
-    create_home: no
+    shell: "/usr/sbin/nologin"
     system: yes
     group: "{{ prometheus_alertmanager_group }}"
-    state: present
+    create_home: no
+    home: "{{ prometheus_alertmanager_install_path }}"
 
-- name: create alertmanager home
+- name: create prometheus base paths
   become: yes
   file:
-    path: "{{ prometheus_alertmanager_home }}"
+    path: "{{ item }}"
     state: directory
-    owner: "{{ prometheus_alertmanager_user }}"
-    group: "{{ prometheus_alertmanager_group }}"
     mode: 0755
-
-- name: stat alertmanager binary
-  stat:
-    path: "{{ prometheus_alertmanager_home }}/alertmanager"
-  register: alertmanager_binary
-
-- name: stat current alertmanager version
-  shell: |
-    set -o pipefail
-    ./alertmanager --version 2>&1 | head -1 | awk '{print $3}'
-  args:
-    chdir: "{{ prometheus_alertmanager_home }}"
-    executable: "/bin/bash"
-  when: alertmanager_binary.stat.exists
-  register: alertmanager_current_version
-  changed_when: false
-
-- name: set fact to install alertmanager
-  set_fact:
-    install_alertmanager: "{{ not alertmanager_binary.stat.exists or alertmanager_current_version.stdout != prometheus_alertmanager_version }}"
+  loop:
+    - "{{ prometheus_alertmanager_base_path }}"
+    - "{{ prometheus_alertmanager_base_config_path }}"

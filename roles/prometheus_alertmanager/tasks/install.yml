@@ -1,25 +1,35 @@
 ---
 
-- name: unarchive alertmanager
+- name: get the deb architecture
+  command: dpkg --print-architecture
+  register: deb_architecture
+  changed_when: false
+
+- name: create the prometheus_alertmanager_install_path base dir
   become: yes
-  become_user: "{{ prometheus_alertmanager_user }}"
+  file:
+    path: "{{ prometheus_alertmanager_install_path | regex_replace('/$', '') | dirname }}"
+    state: directory
+    mode: 0755
+
+- name: download and unarchive prometheus_alertmanager
+  become: yes
   unarchive:
     src: "{{ prometheus_alertmanager_download_url }}"
-    dest: "/tmp"
+    dest: /tmp
     remote_src: yes
 
-- name: copy alertmanager and amtool binaries
+- name: rename prometheus_alertmanager directory
   become: yes
-  become_user: "{{ prometheus_alertmanager_user }}"
-  copy:
-    src: "/tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-amd64/{{ item }}"
-    dest: "{{ prometheus_alertmanager_home }}/{{ item }}"
-    remote_src: yes
+  command: "mv /tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_alertmanager_install_path }}"
+  args:
+    creates: "{{ prometheus_alertmanager_install_path }}"
+
+- name: set permissions on prometheus_alertmanager_install_path
+  become: yes
+  file:
+    path: "{{ prometheus_alertmanager_install_path }}"
+    recurse: yes
     mode: 0755
     owner: "{{ prometheus_alertmanager_user }}"
     group: "{{ prometheus_alertmanager_group }}"
-  loop:
-    - alertmanager
-    - amtool
-  notify:
-    - restart alertmanager

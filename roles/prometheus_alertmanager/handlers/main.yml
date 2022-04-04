@@ -1,13 +1,7 @@
 ---
 
-- name: restart alertmanager
+- name: restart prometheus_alertmanager
   become: yes
   service:
-    name: alertmanager
+    name: prometheus_alertmanager
     state: restarted
-
-- name: reload alertmanager
-  become: yes
-  service:
-    name: alertmanager
-    state: reloaded

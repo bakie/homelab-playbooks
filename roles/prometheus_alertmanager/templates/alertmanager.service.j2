@@ -6,11 +6,27 @@ After=network-online.target
 Type=simple
 User={{ prometheus_alertmanager_user }}
 Group={{ prometheus_alertmanager_group }}
-ExecReload=/bin/kill -HUP $MAINPID
-ExecStart={{ prometheus_alertmanager_home }}/alertmanager \
-  --config.file {{ prometheus_alertmanager_config_file_path }} \
-  --storage.path {{ prometheus_alertmanager_home }}
+ExecStart={{ prometheus_alertmanager_install_path }}/alertmanager \
+    --config.file={{ prometheus_alertmanager_config_path }}/alertmanager.yml \
+    --storage.path={{ prometheus_alertmanager_data_path }} \
+    --web.listen-address={{ prometheus_alertmanager_web_listen_address }} \
+    --cluster.listen-address=
+SyslogIdentifier=prometheus_alertmanager
 Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+{% for m in ansible_mounts if m.mount == '/home' %}
+ProtectHome=read-only
+{% else %}
+ProtectHome=yes
+{% endfor %}
+NoNewPrivileges=yes
+
+ProtectSystem=strict
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
 
 [Install]
 WantedBy=multi-user.target

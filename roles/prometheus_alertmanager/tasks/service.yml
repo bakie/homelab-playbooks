@@ -4,16 +4,16 @@
   become: yes
   template:
     src: alertmanager.service.j2
-    dest: /lib/systemd/system/alertmanager.service
+    dest: /etc/systemd/system/prometheus_alertmanager.service
     owner: root
     group: root
     mode: 0644
-  notify: restart alertmanager
+  notify: restart prometheus_alertmanager
 
 - name: enable and start alertmanager
   become: yes
   service:
     daemon_reload: yes
-    name: alertmanager
+    name: prometheus_alertmanager
     state: started
     enabled: yes

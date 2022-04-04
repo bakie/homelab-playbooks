@@ -1,0 +1,21 @@
+---
+
+- name: stat prometheus_alertmanager binary
+  stat:
+    path: "{{ prometheus_alertmanager_install_path }}/alertmanager"
+  register: prometheus_alertmanager_binary
+
+- name: get current prometheus_alertmanager version
+  shell: |
+    set -o pipefail
+    ./alertmanager --version 2>&1 | head -1 | awk '{print $3}'
+  args:
+    chdir: "{{ prometheus_alertmanager_install_path }}"
+    executable: /bin/bash
+  when: prometheus_alertmanager_binary.stat.exists
+  changed_when: false
+  register: prometheus_alertmanager_current_version
+
+- name: set fact to install prometheus_alertmanager
+  set_fact:
+    install_prometheus_alertmanager: "{{ not prometheus_alertmanager_binary.stat.exists or prometheus_alertmanager_current_version.stdout != prometheus_alertmanager_version }}"

@@ -1,7 +1,8 @@
 ---
 
 - include_tasks: setup.yml
+- include_tasks: version_check.yml
 - include_tasks: install.yml
-  when: install_alertmanager
+  when: install_prometheus_alertmanager
 - include_tasks: configure.yml
 - include_tasks: service.yml
