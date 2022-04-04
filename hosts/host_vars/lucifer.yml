@@ -18,3 +18,6 @@ nfs_imports:
     remote_dir: "/opt/sabnzbd"
     nfs_server: "satan.local"
     state: present
+# prometheus_node_exporter
+node_exporter_extra_enabled_collectors:
+  - nfs
