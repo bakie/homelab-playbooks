@@ -80,6 +80,21 @@ if host.system_info.distribution == "ubuntu" and host.system_info.release < "18.
     assert $something_on_ubuntu_18.04
 ```
 
+### Expose ports for local testing
+Sometimes you need to expose the port to your localhost for testing (i.e. jenkins controller). Add the published_ports to the platforms config.
+```
+  - name: ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
+    image: ubuntu:20.04
+    privileged: true
+    pre_build_image: false
+    command: "/lib/systemd/systemd"
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    published_ports:
+      - 9090:8080
+```
+This exposes the port 8080 to your localhost port 9090, and then you can access it via localhost:9090
+
 ### Tests using github actions
 To make sure we test everything when it is pushed we use github actions. Each role has its own workflow. The reason is that we only run the specific workflow and test only the role that has changed files.
 In github actions you can specify the paths of the files that trigger the workflow. And as such we don't need to test all roles if only one role has been changed. That is because role X should not depend on role Y and vice versa and should not break.
