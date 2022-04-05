@@ -7,7 +7,7 @@
     dest: "{{ medusa_install_path }}"
     version: "{{ medusa_version }}"
     depth: 1
-  notify: set owner/group on medusa gitrepo
+  notify: set owner/group on medusa install path
 
 - name: template the service file
   become: yes

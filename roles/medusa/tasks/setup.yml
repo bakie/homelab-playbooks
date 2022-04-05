@@ -17,16 +17,16 @@
   user:
     name: "{{ medusa_user }}"
     comment: "medusa"
-    home: "{{ medusa_user_home }}"
+    home: "{{ medusa_install_path }}"
     create_home: no # We create the homedir separately so it remains empty and the git clone doesn't complain
     system: yes
     group: "{{ medusa_group }}"
     state: present
 
-- name: ensure {{ medusa_user_home }} dir exists
+- name: ensure {{ medusa_install_path }} dir exists
   become: yes
   file:
-    path: "{{ medusa_user_home }}"
+    path: "{{ medusa_install_path }}"
     owner: "{{ medusa_user }}"
     group: "{{ medusa_group }}"
     state: directory

@@ -1,6 +1,6 @@
 ---
 
-- name: set owner/group on medusa gitrepo
+- name: set owner/group on medusa install path
   become: yes
   file:
     path: "{{ medusa_install_path }}"

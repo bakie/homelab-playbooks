@@ -1,5 +1,6 @@
 ---
 
+grafana_group: "grafana"
 grafana_required_packages: [ "apt-transport-https", "adduser", "libfontconfig" ]
 grafana_apt_key_url: "https://packages.grafana.com/gpg.key"
 grafana_apt_repo_url: "deb https://packages.grafana.com/oss/deb stable main"

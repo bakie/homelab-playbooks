@@ -2,7 +2,7 @@
 Install and configure apt settings such as unattended upgrades.
 
 ## Requirements
-none
+None
 
 ## Role variables
-none
+None
