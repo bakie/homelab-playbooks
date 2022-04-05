@@ -10,7 +10,8 @@
   become: yes
   user:
     name: "{{ transmission_user }}"
-    home: "{{ transmission_user_home }}"
+    shell: "/usr/sbin/nologin"
+    home: "{{ transmission_install_path }}"
     system: yes
     group: "{{ transmission_group }}"
     state: present
@@ -18,12 +19,8 @@
 - name: create necessary dirs
   become: yes
   file:
-    path: "{{ transmission_user_home }}/{{ item }}"
+    path: "{{ item }}"
     state: directory
     owner: "{{ transmission_user }}"
     group: "{{ transmission_group }}"
-  loop:
-    - completed
-    - incomplete
-    - torrents
-    - watchdir
+  loop: "{{ transmission_required_paths }}"

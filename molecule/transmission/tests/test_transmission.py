@@ -1,23 +1,23 @@
 import pytest
 
-
+TRANSMISSION_INSTALL_PATH = "/opt/transmission"
 TRANSMISSION_SETTINGS_PATH = "/opt/transmission/.config/transmission-daemon/settings.json"
 
 
 def test_transmission_group_exists(host):
-    assert host.group("debian-transmission").exists
+    assert host.group("transmission").exists
 
 
 def test_transmission_user_exists(host):
-    assert host.user("debian-transmission").exists
+    assert host.user("transmission").exists
 
 
 @pytest.mark.parametrize("directory", [
-    "/opt/transmission",
-    "/opt/transmission/completed",
-    "/opt/transmission/incomplete",
-    "/opt/transmission/torrents",
-    "/opt/transmission/watchdir"
+    TRANSMISSION_INSTALL_PATH,
+    TRANSMISSION_INSTALL_PATH+"/completed",
+    TRANSMISSION_INSTALL_PATH+"/incomplete",
+    TRANSMISSION_INSTALL_PATH+"/torrents",
+    TRANSMISSION_INSTALL_PATH+"/watchdir"
 ])
 def test_dir_exists(host, directory):
     assert host.file(directory).is_directory
@@ -44,3 +44,7 @@ def test_transmission_is_running(host):
 
 def test_transmission_is_enabled(host):
     assert host.service("transmission-daemon").is_enabled
+
+
+def test_transmission_is_listening(host):
+    assert host.socket("tcp://127.0.0.1:9091").is_listening

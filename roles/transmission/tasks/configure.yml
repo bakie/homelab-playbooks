@@ -8,6 +8,5 @@
     regexp: "^    {{ item.option }}: (?! {{ item.value }})"
     line: "    {{ item.option }}: {{ item.value }},"
     state: present
-  loop:
-    "{{ transmission_settings }}"
+  loop: "{{ transmission_settings }}"
   notify: reload transmission

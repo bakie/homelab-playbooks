@@ -11,7 +11,7 @@
   become: yes
   lineinfile:
     dest: "/lib/systemd/system/transmission-daemon.service"
-    regexp: "^User={{ transmission_user }}"
+    regexp: "^User="
     line: "User={{ transmission_user }}"
     state: present
 
