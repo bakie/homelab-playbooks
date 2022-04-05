@@ -25,6 +25,7 @@
     validate: /usr/sbin/visudo -csf %s
     content: |
       {{ pihole_user }} ALL=(ALL) NOPASSWD:/usr/local/bin/pihole
+    mode: 0440
 
 - name: add a cronjob to update the blocklists at night
   become: yes

@@ -1,4 +1,6 @@
 ---
 
+pihole_group: "pihole"
+pihole_user: "pihole"
 pihole_config_path: "/etc/pihole"
 pihole_required_packages: [ "sqlite3" ]

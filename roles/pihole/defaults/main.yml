@@ -1,6 +1,4 @@
 ---
 
-pihole_group: "pihole"
-pihole_user: "pihole"
 pihole_custom_dns_entries: []
 pihole_automatic_update: yes
