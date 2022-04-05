@@ -26,7 +26,8 @@
   become: yes
   user:
     name: "{{ sabnzbd_user }}"
-    home: "{{ sabnzbd_user_home }}"
+    shell: "/usr/sbin/nologin"
+    home: "{{ sabnzbd_install_path }}"
     system: yes
     group: "{{ sabnzbd_group }}"
     state: present

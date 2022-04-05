@@ -22,12 +22,13 @@
 # When installing for the first time the sabnzbd.ini.bak takes some time to get the correct contents.
 # If we then change the host_whitelist in the task below it gets overwritten once the .bak file is correct.
 # When restarting it the sabnzbd.ini.bak gets its content set correctly.
-- meta: flush_handlers
+- name: flush the handlers
+  meta: flush_handlers
 
 - name: add the sabnzbd_url to host_whitelist
   become: yes
   lineinfile:
-    path: "{{ sabnzbd_user_home }}/.sabnzbd/sabnzbd.ini"
+    path: "{{ sabnzbd_install_path }}/.sabnzbd/sabnzbd.ini"
     regexp: "^host_whitelist.*"
     line: "host_whitelist = {{ inventory_hostname }}, {{ sabnzbd_url }}"
   notify: restart sabnzbd

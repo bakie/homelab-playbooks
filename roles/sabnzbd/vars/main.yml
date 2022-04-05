@@ -1,14 +1,17 @@
 ---
 
+sabnzbd_group: "sabnzbd"
+sabnzbd_user: "sabnzbd"
+sabnzbd_install_path: "/opt/sabnzbd"
 sabnzbd_required_packages: [ "software-properties-common", "unrar-free" ]
 sabnzbd_required_paths:
-  - "{{ sabnzbd_user_home }}/.sabnzbd"
-  - "{{ sabnzbd_user_home }}/incomplete"
-  - "{{ sabnzbd_user_home }}/complete"
-  - "{{ sabnzbd_user_home }}/complete/tv"
-  - "{{ sabnzbd_user_home }}/complete/movies"
-  - "{{ sabnzbd_user_home }}/complete/music"
-  - "{{ sabnzbd_user_home }}/nzb"
+  - "{{ sabnzbd_install_path }}/.sabnzbd"
+  - "{{ sabnzbd_install_path }}/incomplete"
+  - "{{ sabnzbd_install_path }}/complete"
+  - "{{ sabnzbd_install_path }}/complete/tv"
+  - "{{ sabnzbd_install_path }}/complete/movies"
+  - "{{ sabnzbd_install_path }}/complete/music"
+  - "{{ sabnzbd_install_path }}/nzb"
 sabnzbd_install_packages: [ "sabnzbdplus", "par2-tbb" ]
 sabnzbd_host: 0.0.0.0
 sabnzbd_listen_port: 8080
