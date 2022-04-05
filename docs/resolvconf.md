@@ -2,7 +2,7 @@
 Install and configure resolvconf to the remote hosts. resolvconf will make sure the nameserver is added to the /etc/resolv.conf file
 
 ## Requirements
-none
+None
 
 ## Role variables
 | Variable                   | Default  | Comments                           |

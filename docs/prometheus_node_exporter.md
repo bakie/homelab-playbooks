@@ -2,7 +2,7 @@
 Install and configure the prometheus node exporter on the remote hosts.
 
 ## Requirements
-none
+None
 
 ## Role variables
 | Variable                                          | Default              | Comments                             |

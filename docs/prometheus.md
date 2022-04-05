@@ -2,7 +2,7 @@
 Install and configure prometheus on the remote hosts.
 
 ## Requirements
-none
+None
 
 ## Role variables
 | Variable                             | Default           | Comments                                                                                                                                                                                                            |
