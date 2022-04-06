@@ -30,3 +30,4 @@
     owner: "{{ medusa_user }}"
     group: "{{ medusa_group }}"
     state: directory
+    mode: 0755

@@ -36,6 +36,7 @@
     line: "{{ item.line }}"
     state: present
     create: yes
+    mode: 0644
   loop: "{{ apache_hostname_config }}"
   notify: reload apache
 
