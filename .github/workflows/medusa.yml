@@ -7,11 +7,15 @@ on:
       - 'roles/medusa/**'
       - 'molecule/medusa/**'
       - '.github/workflows/medusa.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/medusa/**'
       - 'molecule/medusa/**'
       - '.github/workflows/medusa.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '25 2 * * 6'
   workflow_dispatch:

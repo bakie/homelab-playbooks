@@ -7,11 +7,15 @@ on:
       - 'roles/prometheus_node_exporter/**'
       - 'molecule/prometheus_node_exporter/**'
       - '.github/workflows/prometheus_node_exporter.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/prometheus_node_exporter/**'
       - 'molecule/prometheus_node_exporter/**'
       - '.github/workflows/prometheus_node_exporter.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '50 2 * * 6'
   workflow_dispatch:

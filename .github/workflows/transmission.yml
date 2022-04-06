@@ -7,11 +7,15 @@ on:
       - 'roles/transmission/**'
       - 'molecule/transmission/**'
       - '.github/workflows/transmission.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/transmission/**'
       - 'molecule/transmission/**'
       - '.github/workflows/transmission.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '50 3 * * 6'
   workflow_dispatch:

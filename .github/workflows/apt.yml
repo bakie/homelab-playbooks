@@ -7,11 +7,15 @@ on:
       - 'roles/apt/**'
       - 'molecule/apt/**'
       - '.github/workflows/apt.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/apt/**'
       - 'molecule/apt/**'
       - '.github/workflows/apt.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '10 1 * * 6'
   workflow_dispatch:

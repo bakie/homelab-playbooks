@@ -7,11 +7,15 @@ on:
       - 'roles/pihole/**'
       - 'molecule/pihole/**'
       - '.github/workflows/pihole.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/pihole/**'
       - 'molecule/pihole/**'
       - '.github/workflows/pihole.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '10 3 * * 6'
   workflow_dispatch:

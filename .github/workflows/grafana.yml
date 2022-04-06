@@ -7,11 +7,15 @@ on:
       - 'roles/grafana/**'
       - 'molecule/grafana/**'
       - '.github/workflows/grafana.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/grafana/**'
       - 'molecule/grafana/**'
       - '.github/workflows/grafana.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '20 2 * * 6'
   workflow_dispatch:

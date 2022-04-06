@@ -7,11 +7,15 @@ on:
       - 'roles/openvpn/**'
       - 'molecule/openvpn/**'
       - '.github/workflows/openvpn.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/openvpn/**'
       - 'molecule/openvpn/**'
       - '.github/workflows/openvpn.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '0 3 * * 6'
   workflow_dispatch:
