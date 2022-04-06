@@ -8,6 +8,11 @@
         remote_dir: "/home/user/dir"
         nfs_server: 10.1.1.1
         state: present
+      - local_dir: "/media/dir2"
+        remote_dir: "/home/user2/dir"
+        nfs_server: 10.1.1.1
+        mode: "0640"
+        state: present
 
   roles:
     - role: nfs_client

@@ -1,9 +1,24 @@
+import pytest
+
+
 def test_nfs_common_is_installed(host):
     assert host.package("nfs-common").is_installed
 
 
-def test_local_dir_exists(host):
-    assert host.file("/media/dir").is_directory
+@pytest.mark.parametrize("dir", [
+    "/media/dir",
+    "/media/dir2"
+])
+def test_local_dir_exists(host, dir):
+    assert host.file(dir).is_directory
+
+
+@pytest.mark.parametrize(("dir", "mode"), [
+    ("/media/dir", 0o755),
+    ("/media/dir2", 0o640)
+])
+def test_local_dir_mode(host, dir, mode):
+    assert host.file(dir).mode == mode
 
 
 def test_nfs_exports(host):
