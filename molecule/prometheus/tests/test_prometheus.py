@@ -62,9 +62,14 @@ def test_directory_permissions(host, path):
     assert host.file(path).mode == 0o755
 
 
+def test_blackbox_exporter_targets_json_file_sd(host):
+    assert host.file(PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json").exists
+
+
 @pytest.mark.parametrize("config", [
     "rule_files:",
-    "alerting"
+    "alerting",
+    PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json"
 ])
 def test_prometheus_config(host, config):
     assert host.file(PROMETHEUS_CONFIG_PATH+"/prometheus.yml").contains(config)
