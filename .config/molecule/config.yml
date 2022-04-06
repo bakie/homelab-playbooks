@@ -30,6 +30,7 @@ provisioner:
   env:
     PY_COLORS: '1'
     ANSIBLE_FORCE_COLOR: '1'
+    ANSIBLE_ROLES_PATH: '../../roles'
 verifier:
   name: testinfra
   options:

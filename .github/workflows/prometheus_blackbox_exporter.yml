@@ -7,11 +7,15 @@ on:
       - 'roles/prometheus_blackbox_exporter/**'
       - 'molecule/prometheus_blackbox_exporter/**'
       - '.github/workflows/prometheus_blackbox_exporter.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/prometheus_blackbox_exporter/**'
       - 'molecule/prometheus_blackbox_exporter/**'
       - '.github/workflows/prometheus_blackbox_exporter.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '10 2 * * 6'
   workflow_dispatch:

@@ -7,11 +7,15 @@ on:
       - 'roles/nfs_server/**'
       - 'molecule/nfs_server/**'
       - '.github/workflows/nfs_server.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/nfs_server/**'
       - 'molecule/nfs_server/**'
       - '.github/workflows/nfs_server.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '40 2 * * 6'
   workflow_dispatch:

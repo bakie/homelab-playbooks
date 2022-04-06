@@ -7,11 +7,15 @@ on:
       - 'roles/apache_vhosts/**'
       - 'molecule/apache_vhosts/**'
       - '.github/workflows/apache_vhosts.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/apache_vhosts/**'
       - 'molecule/apache_vhosts/**'
       - '.github/workflows/apache_vhosts.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '5 1 * * 6'
   workflow_dispatch:

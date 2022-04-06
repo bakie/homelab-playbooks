@@ -7,11 +7,15 @@ on:
       - 'roles/sabnzbd/**'
       - 'molecule/sabnzbd/**'
       - '.github/workflows/sabnzbd.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/sabnzbd/**'
       - 'molecule/sabnzbd/**'
       - '.github/workflows/sabnzbd.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '30 3 * * 6'
   workflow_dispatch:

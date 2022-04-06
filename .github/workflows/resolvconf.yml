@@ -7,11 +7,15 @@ on:
       - 'roles/resolvconf/**'
       - 'molecule/resolvconf/**'
       - '.github/workflows/resolvconf.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   pull_request:
     paths:
       - 'roles/resolvconf/**'
       - 'molecule/resolvconf/**'
       - '.github/workflows/resolvconf.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
   schedule:
     - cron: '18 1 * * 6'
   workflow_dispatch:
