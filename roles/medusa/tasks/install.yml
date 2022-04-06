@@ -8,17 +8,3 @@
     version: "{{ medusa_version }}"
     depth: 1
   notify: set owner/group on medusa install path
-
-- name: template the service file
-  become: yes
-  template:
-    src: "medusa.service.j2"
-    dest: "/etc/systemd/system/medusa.service"
-  notify: restart medusa
-
-- name: start and enable medusa
-  become: yes
-  service:
-    name: medusa
-    state: started
-    enabled: yes

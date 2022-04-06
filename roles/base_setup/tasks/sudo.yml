@@ -13,3 +13,4 @@
       Defaults    env_keep += "HOME"
 
     validate: /usr/sbin/visudo -csf %s
+    mode: 0440

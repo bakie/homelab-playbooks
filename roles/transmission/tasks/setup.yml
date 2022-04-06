@@ -23,4 +23,5 @@
     state: directory
     owner: "{{ transmission_user }}"
     group: "{{ transmission_group }}"
+    mode: 0755
   loop: "{{ transmission_required_paths }}"
