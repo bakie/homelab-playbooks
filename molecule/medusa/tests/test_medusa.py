@@ -1,3 +1,11 @@
+def test_medusa_path_user(host):
+    assert host.file("/opt/medusa").user == "medusa"
+
+
+def test_medusa_path_group(host):
+    assert host.file("/opt/medusa").group == "medusa"
+
+
 def test_medusa_is_running(host):
     assert host.service("medusa").is_running
 
