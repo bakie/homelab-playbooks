@@ -1,0 +1,15 @@
+[Unit]
+Description=Kodi Media Center
+After=systemd-user-sessions.service sound.target
+
+[Service]
+User = {{ kodi_user }}
+Group = {{ kodi_primary_group }}
+Type = simple
+PAMName = login
+ExecStart = /usr/bin/xinit /usr/bin/dbus-launch --exit-with-session /usr/bin/kodi-standalone -- :0 -nolisten tcp vt7
+Restart = on-abort
+RestartSec = 5
+
+[Install]
+WantedBy = multi-user.target

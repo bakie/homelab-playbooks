@@ -1,0 +1,8 @@
+---
+
+- name: install kodi
+  become: yes
+  apt:
+    name: "kodi={{ kodi_version }}"
+    state: present
+    install_recommends: no

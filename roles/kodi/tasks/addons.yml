@@ -1,0 +1,31 @@
+---
+
+- name: copy addon scripts
+  become: yes
+  copy:
+    src: "{{ item }}"
+    dest: "{{ kodi_addons_scripts_path }}"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_primary_group }}"
+    mode: "0750"
+  loop:
+    - "addons/enable_kodi_addon.sh"
+    - "addons/get_kodi_addon.sh"
+
+- name: template addons repositories
+  become: yes
+  template:
+    src: "addons/addons_repositories.sh.j2"
+    dest: "{{ kodi_addons_scripts_path }}/repositories.sh"
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_primary_group }}"
+    mode: 0750
+
+- name: install kodi addons
+  become: yes
+  become_user: "{{ kodi_user }}"
+  command:
+    cmd: '{{ kodi_addons_scripts_path }}/get_kodi_addon.sh {{ item }}'
+  args:
+    creates: "{{ kodi_addons_path }}/{{ item }}"
+  loop: "{{ kodi_addons }}"
