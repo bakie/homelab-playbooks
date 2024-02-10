@@ -5,4 +5,5 @@
   service:
     name: nfs-kernel-server
     state: restarted
+    daemon_reload: true
     enabled: yes

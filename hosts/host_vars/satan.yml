@@ -1,5 +1,7 @@
 ---
 
+sabnzbd_user_home: "/opt/sabnzbd"
+
 # nfs_server
 nfs_exports:
   - "{{ sabnzbd_user_home }} lucifer.local(rw,sync,no_root_squash,no_subtree_check)"
