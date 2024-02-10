@@ -1,0 +1,15 @@
+---
+
+- name: add After and Wants to service file to wait until network is online
+  become: yes
+  lineinfile:
+    path: "/lib/systemd/system/nfs-kernel-server.service"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    insertafter: "^After=nfs-config.service$"
+    state: present
+  loop:
+    - { regexp: "After=network-online.target", line: "After=network-online.target" }
+    - { regexp: "Wants=network-online.target", line: "Wants=network-online.target" }
+  notify:
+    - restart nfs

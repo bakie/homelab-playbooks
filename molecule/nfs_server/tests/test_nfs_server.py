@@ -20,3 +20,11 @@ def test_nfs_kernel_server_is_running(host):
 ])
 def test_nfs_exports(host, export):
     assert host.file("/etc/exports").contains(export)
+
+
+@pytest.mark.parametrize("line", [
+    "After=network-online.target",
+    "Wants=network-online.target"
+])
+def test_nfs_service_file(host, line):
+    assert host.file("/lib/systemd/system/nfs-kernel-server.service").contains(line)
