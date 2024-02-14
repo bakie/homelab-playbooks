@@ -1,0 +1,19 @@
+---
+
+kodi_required_packages: [ "xorg", "xserver-xorg-legacy", "dbus-x11", "alsa-utils", "curl", "libxml2-utils", "sqlite3" ]
+kodi_user: "kodi"
+kodi_home_path: "/home/kodi"
+kodi_primary_group: "kodi"
+kodi_groups: [ "audio", "video" ]
+kodi_required_paths:
+  - "{{ kodi_addons_path }}"
+  - "{{ kodi_addons_scripts_path }}"
+kodi_ppa_repository: "ppa:team-xbmc/ppa"
+kodi_version: "6:19.4*"
+kodi_addons_path: "{{ kodi_home_path }}/.kodi/addons"
+kodi_addons_scripts_path: "{{ kodi_home_path }}/.kodi/addons_scripts"
+kodi_addons_repositories:
+  - official_cached=https://ftp.fau.de/xbmc/addons/${codename}/addons.xml.gz
+kodi_addons:
+  - plugin.video.youtube
+  - script.trakt

@@ -1,0 +1,28 @@
+---
+
+- name: add kodi group
+  become: yes
+  group:
+    name: "{{ kodi_primary_group }}"
+    state: present
+
+- name: create kodi user
+  become: yes
+  user:
+    name: "{{ kodi_user }}"
+    home: "{{ kodi_home_path }}"
+    system: yes
+    group: "{{ kodi_primary_group }}"
+    append: yes
+    groups: "{{ kodi_groups }}"
+    state: present
+
+- name: create necessary dirs
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ kodi_user }}"
+    group: "{{ kodi_primary_group }}"
+    mode: 0755
+  loop: "{{ kodi_required_paths }}"

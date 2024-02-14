@@ -1,0 +1,12 @@
+---
+
+- name: install required packages
+  become: yes
+  apt:
+    name: "{{ kodi_required_packages }}"
+    state: present
+
+- name: add kodi ppa repository
+  become: yes
+  apt_repository:
+    repo: "{{ kodi_ppa_repository }}"

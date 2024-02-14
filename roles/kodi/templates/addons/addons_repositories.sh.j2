@@ -1,0 +1,5 @@
+repositories=(
+{% for kodi_addons_repository in kodi_addons_repositories %}
+              {{ kodi_addons_repository }}
+{% endfor %}
+             )

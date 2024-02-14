@@ -1,0 +1,1 @@
+{{ lookup('file', '../../.config/molecule/Dockerfile_' ~ item.image | regex_replace('[:\.]'), split_lines=False) }}

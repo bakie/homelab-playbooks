@@ -1,0 +1,19 @@
+---
+
+- name: configure the Xwrapper.config
+  become: yes
+  lineinfile:
+    path: "/etc/X11/Xwrapper.config"
+    regex: "{{ item.regex }}"
+    line: "{{ item.line }}"
+    state: present
+  loop:
+    - { regex: "^allowed_users", line: "allowed_users=anybody" }
+    - { regex: "^needs_root_rights", line: "needs_root_rights=yes" }
+
+- name: template the kodi.pkla file
+  become: yes
+  template:
+    src: "kodi.pkla.j2"
+    dest: "/etc/polkit-1/localauthority/50-local.d/{{ kodi_user }}.pkla"
+    mode: 0644

@@ -1,0 +1,17 @@
+---
+
+- name: template the service file
+  become: yes
+  template:
+    src: "kodi.service.j2"
+    dest: "/etc/systemd/system/kodi.service"
+    mode: 0644
+
+# Do not start kodi. If we do it then it will also start on the test environment in docker
+# and then you have a running kodi and can't exit it anymore.
+- name: enable kodi
+  become: yes
+  service:
+    name: kodi
+    enabled: yes
+    daemon_reload: yes
