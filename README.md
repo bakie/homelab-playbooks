@@ -81,7 +81,7 @@ if host.system_info.distribution == "ubuntu" and host.system_info.release < "18.
 ```
 
 ### Expose ports for local testing
-Sometimes you need to expose the port to your localhost for testing (i.e. jenkins controller). Add the published_ports to the platforms config.
+Sometimes you need to expose the port to your localhost for testing. Add the published_ports to the platforms config.
 ```
   - name: ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
     image: ubuntu:20.04
