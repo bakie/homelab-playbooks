@@ -48,3 +48,8 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: {{ prometheus_blackbox_exporter_address }}
+  - job_name: openwrt
+    metrics_path: "/metrics"
+    static_configs:
+      - targets:
+        - {{ prometheus_openwrt_host }}:9100
