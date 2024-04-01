@@ -4,7 +4,7 @@ grafana_group: "grafana"
 grafana_required_packages: [ "apt-transport-https", "adduser", "libfontconfig" ]
 grafana_apt_key_url: "https://packages.grafana.com/gpg.key"
 grafana_apt_repo_url: "deb https://packages.grafana.com/oss/deb stable main"
-grafana_version: "8.3.4"
+grafana_version: "10.4.1"
 grafana_plugins:
   - grafana-piechart-panel
 grafana_config_root_url: "http://{{ grafana_url }}"
@@ -33,3 +33,5 @@ grafana_dashboards:
     dest: "{{ grafana_dashboards_config_path }}/server"
   - src: "dashboards/server/network_dashboard.json"
     dest: "{{ grafana_dashboards_config_path }}/server"
+  - src: "dashboards/appliances/openwrt_dashboard.json"
+    dest: "{{ grafana_dashboards_config_path }}/appliances"

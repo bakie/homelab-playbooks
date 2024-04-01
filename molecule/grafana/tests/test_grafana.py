@@ -40,7 +40,8 @@ def test_dashboards_provisioning(host):
 @pytest.mark.parametrize("dashboard", [
     "server/common_dashboard.json",
     "server/network_dashboard.json",
-    "application/apps_dashboard.json"
+    "application/apps_dashboard.json",
+    "appliances/openwrt_dashboard.json"
 ])
 def test_dashboards(host, dashboard):
     assert host.file("/etc/grafana/dashboards/" + dashboard).exists
