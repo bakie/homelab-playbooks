@@ -5,7 +5,7 @@ prometheus_blackbox_exporter_group: "prometheus_blackbox_exporter"
 # Base path where all the dirs for prometheus blackbox exporter are created
 prometheus_blackbox_exporter_base_path: "/opt/prometheus"
 prometheus_blackbox_exporter_install_path: "{{ prometheus_blackbox_exporter_base_path }}/blackbox_exporter"
-prometheus_blackbox_exporter_version: 0.19.0
+prometheus_blackbox_exporter_version: 0.24.0
 # Base path where all the config dirs for prometheus blackbox exporter are created
 prometheus_blackbox_exporter_base_config_path: "/etc/prometheus"
 prometheus_blackbox_exporter_config_path: "{{ prometheus_blackbox_exporter_base_config_path }}/blackbox_exporter"
