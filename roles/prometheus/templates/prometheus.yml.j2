@@ -36,6 +36,7 @@ scrape_configs:
         target_label: instance
   - job_name: "blackbox"
     metrics_path: "/probe"
+    scrape_interval: 60s
     params:
       module: [http_2xx]
     file_sd_configs:
