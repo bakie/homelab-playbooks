@@ -30,7 +30,7 @@ prometheus_node_exporter_group: "prometheus_node_exporter"
 # Base path where all the dirs for prometheus node exporter are created
 prometheus_node_exporter_base_path: "/opt/prometheus"
 prometheus_node_exporter_install_path: "{{ prometheus_node_exporter_base_path }}/node_exporter"
-prometheus_node_exporter_version: 1.3.1
+prometheus_node_exporter_version: 1.7.0
 # Base path where all the config dirs for prometheus node exporter are created
 prometheus_node_exporter_base_config_path: "/etc/prometheus"
 prometheus_node_exporter_config_path: "{{ prometheus_node_exporter_base_config_path }}/node_exporter"

@@ -19,11 +19,18 @@
     dest: /tmp
     remote_src: yes
 
+- name: Remove currently installed prometheus_node_exporter version
+  become: yes
+  file:
+    path: "{{ prometheus_node_exporter_install_path }}"
+    state: absent
+
 - name: rename prometheus_node_exporter directory
   become: yes
   command: "mv /tmp/node_exporter-{{ prometheus_node_exporter_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_node_exporter_install_path }}"
   args:
     creates: "{{ prometheus_node_exporter_install_path }}"
+  notify: restart prometheus_node_exporter
 
 - name: set permissions on prometheus_node_exporter_install_path
   become: yes
@@ -33,3 +40,4 @@
     mode: 0755
     owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"
+  notify: restart prometheus_node_exporter
