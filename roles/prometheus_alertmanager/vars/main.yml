@@ -12,7 +12,7 @@ prometheus_alertmanager_config_path: "{{ prometheus_alertmanager_base_config_pat
 # This need to be either /etc/amtool of $HOME/.config/amtool/config.yml
 prometheus_alertmanager_amtool_config_path: "/etc/amtool"
 prometheus_alertmanager_amtool_config_file_path: "{{ prometheus_alertmanager_amtool_config_path }}/config.yml"
-prometheus_alertmanager_version: 0.23.0
+prometheus_alertmanager_version: 0.27.0
 prometheus_alertmanager_download_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
 prometheus_alertmanager_listen_port: 9093
 prometheus_alertmanager_web_listen_address: "0.0.0.0:{{ prometheus_alertmanager_listen_port }}"

@@ -19,11 +19,18 @@
     dest: /tmp
     remote_src: yes
 
+- name: Remove currently installed prometheus alertmanager version
+  become: yes
+  file:
+    path: "{{ prometheus_alertmanager_install_path }}"
+    state: absent
+
 - name: rename prometheus_alertmanager directory
   become: yes
   command: "mv /tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_alertmanager_install_path }}"
   args:
     creates: "{{ prometheus_alertmanager_install_path }}"
+  notify: restart prometheus_alertmanager
 
 - name: set permissions on prometheus_alertmanager_install_path
   become: yes
@@ -33,3 +40,4 @@
     mode: 0755
     owner: "{{ prometheus_alertmanager_user }}"
     group: "{{ prometheus_alertmanager_group }}"
+  notify: restart prometheus_alertmanager
