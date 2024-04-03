@@ -13,11 +13,18 @@
     dest: "/tmp"
     remote_src: yes
 
+- name: Remove currently installed prometheus version
+  become: yes
+  file:
+    path: "{{ prometheus_install_path }}"
+    state: absent
+
 - name: rename prometheus directory
   become: yes
   command: "mv /tmp/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_install_path }}"
   args:
     creates: "{{ prometheus_install_path }}"
+  notify: restart prometheus
 
 - name: set permissions on prometheus_install_path
   become: yes
@@ -27,3 +34,4 @@
     mode: 0755
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
+  notify: restart prometheus
