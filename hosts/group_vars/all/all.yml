@@ -1,6 +1,6 @@
 ---
 
-top_lvl_domain: "homelab.net"
+top_lvl_domain: "home"
 grafana_url: "grafana.{{ top_lvl_domain }}"
 medusa_url: "medusa.{{ top_lvl_domain }}"
 prometheus_url: "prometheus.{{ top_lvl_domain }}"

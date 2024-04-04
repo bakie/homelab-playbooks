@@ -22,7 +22,7 @@ def test_config(host, config):
 
 def test_config_root_url(host):
     file = host.file(GRAFANA_CONFIG_PATH + "/grafana.ini")
-    assert file.contains("^root_url = http://grafana.homelab.net",)
+    assert file.contains("^root_url = http://grafana.home",)
 
 
 def test_listening_on_port(host):

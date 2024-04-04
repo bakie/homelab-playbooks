@@ -3,7 +3,7 @@
 - name: Converge
   hosts: all
   vars:
-    top_lvl_domain: "homelab.net"
+    top_lvl_domain: "home"
 
   roles:
     - role: medusa
