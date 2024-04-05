@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Remove current configured adlists
+rm -rf {{ pihole_config_path }}/list*
+
+# Clear the current adlists from the database
+sqlite3 {{ pihole_config_path }}/gravity.db "DELETE FROM adlist;"
+
+# Get firebog adlists and insert them
+wget -qO - https://v.firebog.net/hosts/lists.php?type=nocross | xargs -I {} sqlite3 {{ pihole_config_path }}/gravity.db "INSERT OR IGNORE INTO adlist (Address) VALUES ('{}');"
+wget -qO - https://v.firebog.net/hosts/lists.php?type=adult | xargs -I {} sqlite3 {{ pihole_config_path }}/gravity.db "INSERT OR IGNORE INTO adlist (Address) VALUES ('{}');"
+
+# Run the gravity updater
+sudo pihole -g

@@ -4,5 +4,5 @@
 - include_tasks: version_check.yml
 - include_tasks: install.yml
   when: install_pihole
-- include_tasks: configure_blocklists.yml
+- include_tasks: configure_adlists.yml
 - include_tasks: custom_dns.yml

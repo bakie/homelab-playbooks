@@ -41,19 +41,16 @@ def test_custom_dns_entries(host, dns_entry):
     assert host.file(PIHOLE_CONFIG_PATH + "/custom.list").contains(dns_entry)
 
 
-def test_firebog_lists(host):
-    assert host.file(PIHOLE_CONFIG_PATH + "/list.1.raw.githubusercontent.com.domains").exists
-
-
 def test_adlist_count(host):
     assert int(host.run("sqlite3 " + PIHOLE_CONFIG_PATH + "/gravity.db 'select count(*) from adlist;'").stdout) > 10
 
 
+def test_gravity_count(host):
+    assert int(host.run("sqlite3 " + PIHOLE_CONFIG_PATH + "/gravity.db 'select count(*) from gravity;'").stdout) > 1000000
+
+
 def test_cronjob(host):
-    assert host.file("/var/spool/cron/crontabs/pihole").contains(
-        "wget -qO - https://v.firebog.net/hosts/lists.php?type=nocross | "
-        "xargs -I {} sqlite3 /etc/pihole/gravity.db 'INSERT OR IGNORE INTO adlist (Address) VALUES ('{}');' "
-        "&& sudo pihole -g")
+    assert host.file("/var/spool/cron/crontabs/pihole").contains("bash /etc/pihole/update_adlists")
 
 
 def test_sudoers(host):
