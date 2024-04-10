@@ -18,5 +18,4 @@ prometheus_listen_port: 9090
 prometheus_listen_address: "0.0.0.0:{{ prometheus_listen_port }}"
 prometheus_alertmanager_address: "127.0.0.1:9093"
 prometheus_blackbox_exporter_address: "127.0.0.1:9103"
-prometheus_blackbox_exporter_targets: []
 prometheus_blackbox_exporter_targets_json_file_sd_path: "{{ prometheus_file_sd_config_path }}/blackbox_exporter_targets.json"

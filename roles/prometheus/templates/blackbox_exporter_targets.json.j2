@@ -6,6 +6,7 @@
       "{{ target.url }}"
     ],
     "labels": {
+      "instance": "{{ target.instance }}",
       "job": "{{ target.job }}"
     }
   }{% if not loop.last %},{% endif %}

@@ -6,5 +6,5 @@
   when: install_prometheus
 - include_tasks: configure.yml
 - include_tasks: rules.yml
-- include_tasks: blackbox_exporter_targets.yml
+- include_tasks: exporter_targets.yml
 - include_tasks: service.yml

@@ -62,8 +62,20 @@ def test_directory_permissions(host, path):
     assert host.file(path).mode == 0o755
 
 
-def test_blackbox_exporter_targets_json_file_sd(host):
+def test_blackbox_exporter_targets_json_file_sd_exists(host):
     assert host.file(PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json").exists
+
+
+@pytest.mark.parametrize("setting", [
+    "blackbox_green.com",
+    "green",
+    "blackbox_green",
+    "blackbox_blue.com",
+    "blue",
+    "blackbox_blue"
+])
+def test_blackbox_exporter_targets_json_file_sd(host, setting):
+    assert host.file(PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json").contains(setting)
 
 
 @pytest.mark.parametrize("config", [
@@ -77,10 +89,6 @@ def test_prometheus_config(host, config):
 
 def test_rules(host):
     assert host.file(PROMETHEUS_RULES_CONFIG_PATH+"/prometheus_monitoring.yml").exists
-
-
-def test_blackbox_file(host):
-    assert host.file(PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json").exists
 
 
 def test_prometheus_correct_version_is_installed(host, ansible_defaults):
@@ -98,3 +106,7 @@ def test_prometheus_service_is_enabled(host):
 
 def test_listening_on_port(host):
     assert host.socket("tcp://127.0.0.1:9090").is_listening
+
+
+def test_hosts_file(host):
+    assert host.file("/etc/hosts").contains("ubuntu-focal-prometheus")

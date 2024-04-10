@@ -5,8 +5,10 @@
   vars:
     prometheus_blackbox_exporter_targets:
       - url: "blackbox_green.com"
+        instance: "green"
         job: "blackbox_green"
       - url: "blackbox_blue.com"
+        instance: "blue"
         job: "blackbox_blue"
 
   roles:
