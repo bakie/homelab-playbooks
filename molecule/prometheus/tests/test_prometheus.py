@@ -81,7 +81,12 @@ def test_blackbox_exporter_targets_json_file_sd(host, setting):
 @pytest.mark.parametrize("config", [
     "rule_files:",
     "alerting",
-    PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json"
+    PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json",
+    "10.1.1.1:9100",
+    "source_labels: \\[__custom_source_label__\\]",
+    "regex: custom\\\\\\\\.regex\\\\\\\\.test(.*)",
+    "replacement: custom_replacement",
+    "target_label: custom_target_label"
 ])
 def test_prometheus_config(host, config):
     assert host.file(PROMETHEUS_CONFIG_PATH+"/prometheus.yml").contains(config)
@@ -109,4 +114,4 @@ def test_listening_on_port(host):
 
 
 def test_hosts_file(host):
-    assert host.file("/etc/hosts").contains("ubuntu-focal-prometheus")
+    assert host.file("/etc/hosts").contains('ubuntu-focal-prometheus')

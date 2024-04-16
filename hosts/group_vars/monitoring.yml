@@ -4,6 +4,15 @@
 required_apache_vhosts: [ "prometheus", "prometheus_alertmanager", "grafana" ]
 
 # prometheus role
+prometheus_static_config_hosts:
+  - 10.1.1.1
+  - kodi.local
+  - azmodan.local
+prometheus_relabel_configs:
+  - source_labels: "[__address__]"
+    regex: 10\\.1\\.1\\.1(.*)
+    replacement: openwrt
+    target_label: instance
 prometheus_blackbox_exporter_targets:
   - url: "transmission.{{ top_lvl_domain }}"
     instance: "transmission"

@@ -26,15 +26,19 @@ scrape_configs:
         {% for host in groups['all'] %}
         - {{ host }}.local:9100
         {% endfor %}
-        - {{ prometheus_openwrt_host }}:9100
+        {% for host in prometheus_static_config_hosts %}
+        - {{ host }}:9100
+        {% endfor %}
     relabel_configs:
       - source_labels: [__address__]
-        regex: "(.*)\\.(.*)"
+        regex: (.*)\\.(.*)
         target_label: instance
-      - source_labels: [__address__]
-        regex: "{{ prometheus_openwrt_host | replace('.', '\\\.') }}(.*)"
-        replacement: "openwrt"
-        target_label: instance
+      {% for relabel_config in prometheus_relabel_configs %}
+      - source_labels: {{ relabel_config.source_labels }}
+        regex: {{ relabel_config.regex }}
+        replacement: {{ relabel_config.replacement }}
+        target_label: {{ relabel_config.target_label }}
+      {% endfor %}
   - job_name: "blackbox"
     metrics_path: "/probe"
     scrape_interval: 60s

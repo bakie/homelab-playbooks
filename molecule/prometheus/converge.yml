@@ -3,6 +3,14 @@
 - name: Converge
   hosts: all
   vars:
+    prometheus_static_config_hosts:
+      - 10.1.1.1
+      - azmodan.local
+    prometheus_relabel_configs:
+      - source_labels: "[__custom_source_label__]"
+        regex: custom\\.regex\\.test(.*)
+        replacement: custom_replacement
+        target_label: custom_target_label
     prometheus_blackbox_exporter_targets:
       - url: "blackbox_green.com"
         instance: "green"

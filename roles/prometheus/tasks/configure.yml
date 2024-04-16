@@ -26,12 +26,18 @@
 
 - name: get avahi local hosts and ips
   shell: |
-    set -o pipefail getent hosts {{ item }}.local
+    if [[ {{ item }} == *.local ]]
+    then
+      set -o pipefail getent hosts {{ item }}
+    else
+      set -o pipefail getent hosts {{ item }}.local
+    fi
   args:
     executable: "/bin/bash"
-  loop: "{{ groups['all'] }}"
+  loop: "{{ groups['all'] }} + {{ prometheus_static_config_hosts }}"
   register: hosts_ips
   changed_when: no
+  when: not item | regex_search('\d+\.\d+\.\d+\.\d+')
 
 - name: add the hosts and ips to /etc/hosts
   become: yes
@@ -42,4 +48,4 @@
     insertafter: "127.0.0.1 localhost"
     state: present
   loop: "{{ hosts_ips.results }}"
-  when: item.stdout
+  when: item.stdout is defined and item.stdout
