@@ -31,11 +31,11 @@ scrape_configs:
         {% endfor %}
     relabel_configs:
       - source_labels: [__address__]
-        regex: (.*)\\.(.*)
+        regex: "(.*)\\.(.*)"
         target_label: instance
       {% for relabel_config in prometheus_relabel_configs %}
       - source_labels: {{ relabel_config.source_labels }}
-        regex: {{ relabel_config.regex }}
+        regex: "{{ relabel_config.regex }}"
         replacement: {{ relabel_config.replacement }}
         target_label: {{ relabel_config.target_label }}
       {% endfor %}
