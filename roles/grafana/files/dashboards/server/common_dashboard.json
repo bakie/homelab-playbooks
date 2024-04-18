@@ -108,7 +108,7 @@
           "editorMode": "code",
           "expr": "node_memory_MemAvailable_bytes{instance=~\"$instance\"}",
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "Free {{instance}}",
           "range": true,
           "refId": "A"
@@ -122,7 +122,7 @@
           "expr": "node_memory_MemTotal_bytes{instance=~\"$instance\"} - node_memory_MemAvailable_bytes{instance=~\"${instance}\"}",
           "hide": false,
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "Used {{instance}}",
           "range": true,
           "refId": "B"
@@ -218,7 +218,7 @@
           "editorMode": "code",
           "expr": "node_load1{instance=~\"$instance\"}",
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "Load 1m {{instance}}",
           "range": true,
           "refId": "A"
@@ -232,7 +232,7 @@
           "expr": "node_load5{instance=~\"$instance\"}",
           "hide": false,
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "Load 5m {{instance}}",
           "range": true,
           "refId": "B"
@@ -246,7 +246,7 @@
           "expr": "node_load15{instance=~\"$instance\"}",
           "hide": false,
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "Load 15m {{instance}}",
           "range": true,
           "refId": "C"
@@ -343,7 +343,7 @@
           "editorMode": "code",
           "expr": "node_filesystem_size_bytes{instance=~\"$instance\"} - node_filesystem_avail_bytes{instance=~\"$instance\"}",
           "instant": false,
-          "interval": "$interval",
+          "interval": "",
           "legendFormat": "{{ mountpoint }} ({{ instance }})",
           "range": true,
           "refId": "A"
@@ -358,96 +358,6 @@
   "tags": [],
   "templating": {
     "list": [
-      {
-        "auto": true,
-        "auto_count": "10",
-        "auto_min": "10s",
-        "current": {
-          "selected": true,
-          "text": "30s",
-          "value": "30s"
-        },
-        "hide": 0,
-        "label": "Interval",
-        "name": "interval",
-        "options": [
-          {
-            "selected": false,
-            "text": "auto",
-            "value": "$__auto_interval_interval"
-          },
-          {
-            "selected": false,
-            "text": "5s",
-            "value": "5s"
-          },
-          {
-            "selected": false,
-            "text": "10s",
-            "value": "10s"
-          },
-          {
-            "selected": true,
-            "text": "30s",
-            "value": "30s"
-          },
-          {
-            "selected": false,
-            "text": "1m",
-            "value": "1m"
-          },
-          {
-            "selected": false,
-            "text": "10m",
-            "value": "10m"
-          },
-          {
-            "selected": false,
-            "text": "30m",
-            "value": "30m"
-          },
-          {
-            "selected": false,
-            "text": "1h",
-            "value": "1h"
-          },
-          {
-            "selected": false,
-            "text": "6h",
-            "value": "6h"
-          },
-          {
-            "selected": false,
-            "text": "12h",
-            "value": "12h"
-          },
-          {
-            "selected": false,
-            "text": "1d",
-            "value": "1d"
-          },
-          {
-            "selected": false,
-            "text": "7d",
-            "value": "7d"
-          },
-          {
-            "selected": false,
-            "text": "14d",
-            "value": "14d"
-          },
-          {
-            "selected": false,
-            "text": "30d",
-            "value": "30d"
-          }
-        ],
-        "query": "5s,10s,30s,1m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
-        "queryValue": "",
-        "refresh": 2,
-        "skipUrlSync": false,
-        "type": "interval"
-      },
       {
         "allValue": ".*",
         "current": {
@@ -514,6 +424,6 @@
   "timezone": "",
   "title": "Common",
   "uid": "5MwrHqOMz",
-  "version": 5,
+  "version": 6,
   "weekStart": ""
 }
