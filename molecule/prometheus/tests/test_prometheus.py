@@ -84,7 +84,7 @@ def test_blackbox_exporter_targets_json_file_sd(host, setting):
     PROMETHEUS_FILE_SD_CONFIG_PATH+"/blackbox_exporter_targets.json",
     "10.1.1.1:9100",
     "source_labels: \\[__custom_source_label__\\]",
-    "regex: custom\\\\\\\\.regex\\\\\\\\.test(.*)",
+    "regex: \"custom\\\\\\\\.regex\\\\\\\\.test(.*)\"",
     "replacement: custom_replacement",
     "target_label: custom_target_label"
 ])
