@@ -1,5 +1,5 @@
 ---
 
-prometheus_static_config_hosts: []
-prometheus_relabel_configs: []
+prometheus_metrics_job_targets: []
+prometheus_metrics_job_relabel_configs: []
 prometheus_blackbox_exporter_targets: []

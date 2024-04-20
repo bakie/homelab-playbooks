@@ -3,10 +3,10 @@
 - name: Converge
   hosts: all
   vars:
-    prometheus_static_config_hosts:
+    prometheus_metrics_job_targets:
       - 10.1.1.1
       - azmodan.local
-    prometheus_relabel_configs:
+    prometheus_metrics_job_relabel_configs:
       - source_labels: "[__custom_source_label__]"
         regex: custom\\.regex\\.test(.*)
         replacement: custom_replacement

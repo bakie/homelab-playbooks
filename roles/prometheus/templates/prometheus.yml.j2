@@ -26,14 +26,14 @@ scrape_configs:
         {% for host in groups['all'] %}
         - {{ host }}.local:9100
         {% endfor %}
-        {% for host in prometheus_static_config_hosts %}
+        {% for host in prometheus_metrics_job_targets %}
         - {{ host }}:9100
         {% endfor %}
     relabel_configs:
       - source_labels: [__address__]
         regex: "(.*)\\.(.*)"
         target_label: instance
-      {% for relabel_config in prometheus_relabel_configs %}
+      {% for relabel_config in prometheus_metrics_job_relabel_configs %}
       - source_labels: {{ relabel_config.source_labels }}
         regex: "{{ relabel_config.regex }}"
         replacement: {{ relabel_config.replacement }}

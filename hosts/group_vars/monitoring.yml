@@ -4,11 +4,11 @@
 required_apache_vhosts: [ "prometheus", "prometheus_alertmanager", "grafana" ]
 
 # prometheus role
-prometheus_static_config_hosts:
+prometheus_metrics_job_targets:
   - 10.1.1.1
   - kodi.local
   - azmodan.local
-prometheus_relabel_configs:
+prometheus_metrics_job_relabel_configs:
   - source_labels: "[__address__]"
     regex: 10\\.1\\.1\\.1(.*)
     replacement: openwrt
