@@ -54,3 +54,13 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: {{ prometheus_blackbox_exporter_address }}
+  - job_name: "homeassistant"
+    metrics_path: "/api/prometheus"
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+        - homeassistant.local:8123
+    relabel_configs:
+      - source_labels: [__address__]
+        regex: "(.*)\\.(.*)"
+        target_label: instance

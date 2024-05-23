@@ -1,0 +1,13 @@
+---
+
+groups:
+  - name: HomeAssistantSensorsTransform
+    rules:
+      - record: ha_sensor_power_consumed_day_month_year
+        expr: ha_sensor_energy_kwh{domain="sensor",entity=~"sensor.energy_consumed_tariff.+"} + ignoring(year,month,day) group_right count_values without() ("year", year(timestamp(count_values without() ("month", month(timestamp(count_values without() ("day", day_of_month(timestamp(ha_sensor_energy_kwh{domain="sensor",entity=~"sensor.energy_consumed_tariff.+"}))))))))) * 0
+      - record: ha_sensor_gas_consumed_day_month_year
+        expr: ha_sensor_gas_mu0xb3{domain="sensor",entity=~"sensor.gas_consumed"} + ignoring(year,month,day) group_right count_values without() ("year", year(timestamp(count_values without() ("month", month(timestamp(count_values without() ("day", day_of_month(timestamp(ha_sensor_gas_mu0xb3{domain="sensor",entity=~"sensor.gas_consumed"}))))))))) * 0
+      - record: ha_sensor_water_consumed_day_month_year
+        expr: ha_sensor_water_mu0xb3{domain="sensor",entity=~"sensor.water_consumed"} + ignoring(year,month,day) group_right count_values without() ("year", year(timestamp(count_values without() ("month", month(timestamp(count_values without() ("day", day_of_month(timestamp(ha_sensor_water_mu0xb3{domain="sensor",entity=~"sensor.water_consumed"}))))))))) * 0
+      - record: ha_sensor_power_kw_month_max_quarterly_day_month_year
+        expr: ha_sensor_power_kw{domain="sensor",entity="sensor.month_maximum_quarterly_demand"} + ignoring(year,month,day) group_right count_values without() ("year", year(timestamp(count_values without() ("month", month(timestamp(count_values without() ("day", day_of_month(timestamp(ha_sensor_power_kw{domain="sensor",entity="sensor.month_maximum_quarterly_demand"}))))))))) * 0
