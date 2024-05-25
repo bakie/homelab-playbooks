@@ -10,3 +10,4 @@
     - { role: prometheus_alertmanager, tags: [ "prometheus", "prometheus_alertmanager" ] }
     - { role: grafana, tags: [ "grafana" ] }
     - { role: prometheus_blackbox_exporter, tags: [ "prometheus", "prometheus_blackbox_exporter" ] }
+    - { role: ssl_cert, tags: [ "ssl_cert" ] }

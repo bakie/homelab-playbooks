@@ -1,0 +1,16 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    ssl_cert:
+      dir: "/etc/ssl-dir"
+      key:
+        filename: "ssl.key"
+        content: "content ssl key"
+      crt:
+        filename: "ssl.crt"
+        content: "content ssl crt"
+
+  roles:
+    - role: ssl_cert

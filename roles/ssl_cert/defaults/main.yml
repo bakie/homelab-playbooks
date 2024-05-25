@@ -1,0 +1,60 @@
+---
+
+ssl_cert:
+  dir: "/etc/ssl/selfsigned"
+  key:
+    filename: "selfsigned.key"
+    content: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC1AD5kF4aN8jVu
+      oYpLh3Ar42/ZxjPLqE6W3CkVwfLTkOCWe/g/Hvuf6q7l/0oRSgkmB1j/xgwZpBuc
+      qvA8RbEWWs5gF4DsWkWVF+ByrxdaEjvGWQ2o5wTlqMWfrIxPAws666cKxpNsZgSe
+      LeRJTk4LmK8+AlPxSg3flf87Ba2tvqVZS9CZaidQyLnLuarcAb/pk+xT55usx7Eu
+      XGbRzBvfs1sk2py/ECGcPvpaQ3IX2rEA7TquUoILkqiBvH16ZeLEvxEzMcngJpkV
+      WJ/3oxFkGPmuZjLVXRmUb8YZFI7aCdRPk4OPZAguIF7PB6UHH6+VShoUmaPr+uRN
+      Chv1gVjPAgMBAAECggEAJnSazOFCsT3YpFyl6U4pQunbhcVak9Z6fArin8DJOrH5
+      RX+pSp/mjh9qcWs/7VRxhSbifdUyFPCM/UhEKkoUSc+ZMUlNFupHBlpAUZ1ptLVT
+      Bd09zbjnjXPCKR6b4N2gsTAIGX3/LHSwXnsZmYmNg2E5Ok98TjORpwNTatLWB6ey
+      NIqOactWC9UbcebNBVQKmiMjJJ2WexF4q6l4WlQIeTEBsaPmt5qnuBT4Ph/XeBW2
+      Z8BAySwzJAqq6QoteSgYFfAQQnY/doxoeKkM1yosRTR8S1dnBvqLv4N2nUDkYZtA
+      Sg1LxX2dTDN2D8a680h6cGYEOTjt6GfoJmG1mgvXQQKBgQDby6YPttjSAsNR0Mbx
+      /Znd5/+gUyA+PauXFRI5bfolRk58a9GPpoF/KMtmfL3cuRuyJHw4ykG3eOn/fIst
+      IcVOoVbNtamrBCx6oUgcqTysKxVa7f4/SWxIURsKJiwMmeCQ2Afo/XmrGLPtO4ox
+      UTl2Ewl/vilZJmZktXORjc7BxwKBgQDS0LQv2oT7KE9BdmJOKCYjMqxlKLLdBHmB
+      VL72PLBNk7Q+Duc3GPkizh2/fhAIr3k7W/zytwoqsB2vWawoDrBLOILYcLB1sqYU
+      EHXmXQ2RI4alAX8S1PBmS4I3tP6wPfYww2lfiboRmJvWMhsTewCrCqof1J2cKIjL
+      hN/J8y4wuQKBgDKnvJ3ihhXgjSNN+ovK5qs9zKwmfEfb7q/jK1ARCJWOnogOUT3K
+      Ig4sWLRGC3vTLY7g2cA83Ohr9YHsMic0oUR96oN+WpwPWjDo+rWgS1tikoliUDZF
+      ta71AkZUhdJhpF+9ahVIVcIY7169WhwDnDqaKJZIPT9OmkqbhwcEp6IBAoGBAMJX
+      o8R5rh3bCzVN7VIfsQjBriuTWVBmz5xqg6B8UgsyHvcWxhAE9acgXEwr6pwXJ6uR
+      IZ6fHsA7myILiKlk4SB2+CiPuhzGlFPq2MWFAvzJw1ZaCstRgkzLT0ALmr7eYBaU
+      DpAEZ4PRK9hKWKucuQD00+CEIMfUlkcIN0X06KABAoGAYrYZ1W0w3xlDlkl+ZuAq
+      W+ikCwn8pAl5E8i4wmXHjJOSfm5NDulHYUbeBrBEqIJ3Zmqh4FG2fd7BfXAiuH4e
+      uQDvJZblhFuXaZXJQzVteZvlJJ9V1Iey9eujuBu6l7cm1PBIQOGIpBBjYm+BKDS3
+      9tymd4hkjhbUjd0x7rQW2z4=
+      -----END PRIVATE KEY-----
+  crt:
+    filename: "selfsigned.crt"
+    content: |
+      -----BEGIN CERTIFICATE-----
+      MIIDmTCCAoGgAwIBAgIUHz3OQ/cAnm17utPQebpN28C3pocwDQYJKoZIhvcNAQEL
+      BQAwXDELMAkGA1UEBhMCU1AxDTALBgNVBAgMBE1vb24xEDAOBgNVBAoMB2hvbWVs
+      YWIxEDAOBgNVBAsMB2hvbWVsYWIxGjAYBgNVBAMMEWhvbWVsYWIucGxheWJvb2tz
+      MB4XDTI0MDUyNTEyMzcyOFoXDTM0MDUyMzEyMzcyOFowXDELMAkGA1UEBhMCU1Ax
+      DTALBgNVBAgMBE1vb24xEDAOBgNVBAoMB2hvbWVsYWIxEDAOBgNVBAsMB2hvbWVs
+      YWIxGjAYBgNVBAMMEWhvbWVsYWIucGxheWJvb2tzMIIBIjANBgkqhkiG9w0BAQEF
+      AAOCAQ8AMIIBCgKCAQEAtQA+ZBeGjfI1bqGKS4dwK+Nv2cYzy6hOltwpFcHy05Dg
+      lnv4Px77n+qu5f9KEUoJJgdY/8YMGaQbnKrwPEWxFlrOYBeA7FpFlRfgcq8XWhI7
+      xlkNqOcE5ajFn6yMTwMLOuunCsaTbGYEni3kSU5OC5ivPgJT8UoN35X/OwWtrb6l
+      WUvQmWonUMi5y7mq3AG/6ZPsU+ebrMexLlxm0cwb37NbJNqcvxAhnD76WkNyF9qx
+      AO06rlKCC5Kogbx9emXixL8RMzHJ4CaZFVif96MRZBj5rmYy1V0ZlG/GGRSO2gnU
+      T5ODj2QILiBezwelBx+vlUoaFJmj6/rkTQob9YFYzwIDAQABo1MwUTAdBgNVHQ4E
+      FgQUfHAaNHRC9I4v0kF/1ZIOa2VwBwowHwYDVR0jBBgwFoAUfHAaNHRC9I4v0kF/
+      1ZIOa2VwBwowDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAieQ/
+      Iusa0A78BgbqtoTVcnQpquQP3I+V1sAfsVuHlhq3d6A4FNEjSakTpaj/KqKYzpf4
+      dbdCJPPKolmVyD8TDrI9m3QTPuM+cBiSylKzSPgxa01FWNCsGo3zowJ2yVbSTgwH
+      mJvy39RRvjk/DV6431rNgqe0U1L41qm0HfqCsZY+0bm4l8A15I5QrecPhYr+i2CN
+      lkRCNe6FSujSie6u5RDnjOT07jMI45gcZmfQvc6WnKbmL12M3nW3MVuZOxJ3EsWJ
+      40pb6Y3A3ryVWvio5RyqOAqRZVaXsjDUEMGjya/fpYRD+SZGLFSw3bXT3iKILnAg
+      mXXJ7z0xOz5WOX2xhQ==
+      -----END CERTIFICATE-----

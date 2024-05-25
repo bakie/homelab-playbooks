@@ -1,4 +1,5 @@
 ---
 
 # apache_vhosts role
-required_apache_vhosts: [ "medusa" ]
+apache_vhosts_config:
+  - { name: "medusa", server_name: "{{ medusa_url }}", listen_port: "{{ medusa_listen_port }}", enable_ssl: true }

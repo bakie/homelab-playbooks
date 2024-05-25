@@ -1,7 +1,5 @@
 ---
 
-- include_tasks: assert.yml
-
 - name: Create necessary directories
   become: yes
   file:
@@ -15,7 +13,6 @@
     - "/etc/apache2/sites-enabled"
 
 - include_tasks: configure_vhost.yml
-  loop: "{{ available_apache_vhosts }}"
+  loop: "{{ apache_vhosts_config }}"
   loop_control:
-    loop_var: apache_vhost_var
-  when: apache_vhost_var in required_apache_vhosts
+    loop_var: vhost

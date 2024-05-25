@@ -10,3 +10,4 @@
     - { role: sabnzbd, tags: [ "sabnzbd" ] }
     - { role: nfs_server, tags: [ 'nfs_server' ] }
     - { role: transmission, tags: [ 'transmission' ] }
+    - { role: ssl_cert, tags: [ "ssl_cert" ] }

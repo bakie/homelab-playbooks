@@ -1,0 +1,28 @@
+---
+
+- name: create ssl dir
+  become: yes
+  file:
+    path: "{{ ssl_cert.dir }}"
+    state: directory
+    owner: root
+    group: "{{ ssl_group }}"
+    mode: 0650
+
+- name: create the key file
+  become: yes
+  copy:
+    content: "{{ ssl_cert.key.content }}"
+    dest: "{{ ssl_cert.dir }}/{{ ssl_cert.key.filename }}"
+    owner: root
+    group: "{{ ssl_group }}"
+    mode: 0640
+
+- name: create the crt file
+  become: yes
+  copy:
+    content: "{{ ssl_cert.crt.content }}"
+    dest: "{{ ssl_cert.dir }}/{{ ssl_cert.crt.filename }}"
+    owner: root
+    group: "{{ ssl_group }}"
+    mode: 0640

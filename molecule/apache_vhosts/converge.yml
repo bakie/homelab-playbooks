@@ -3,10 +3,17 @@
 - name: converge
   hosts: all
   vars:
-    required_apache_vhosts: [ "molecule_test" ]
-    molecule_test_url: "some.random.url"
-    molecule_test_listen_port: 9003
+    apache_vhosts_config:
+      - { name: molecule_http, server_name: "molecule_http.random.url", listen_port: "9003" }
+      - { name: molecule_https, server_name: "molecule_https.random.url", listen_port: "9003", enable_ssl: true }
     skip_apache_vhosts_reload_handler: true
+    # To test the ssl configuration
+    ssl_cert:
+      dir: "/etc/ssl/molecule"
+      key:
+        filename: "molecule.key"
+      crt:
+        filename: "molecule.crt"
 
   roles:
     - { role: apache_vhosts }

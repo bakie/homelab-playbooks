@@ -1,3 +1,4 @@
 ---
 
-required_apache_vhosts: []
+apache_vhosts_config: []
+ssl_certs: []
