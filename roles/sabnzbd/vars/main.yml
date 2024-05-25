@@ -3,7 +3,7 @@
 sabnzbd_group: "sabnzbd"
 sabnzbd_user: "sabnzbd"
 sabnzbd_install_path: "/opt/sabnzbd"
-sabnzbd_required_packages: [ "software-properties-common", "unrar-free" ]
+sabnzbd_required_packages: [ "software-properties-common", "unrar-free", "python3-cheroot" ]
 sabnzbd_required_paths:
   - "{{ sabnzbd_install_path }}/.sabnzbd"
   - "{{ sabnzbd_install_path }}/incomplete"
