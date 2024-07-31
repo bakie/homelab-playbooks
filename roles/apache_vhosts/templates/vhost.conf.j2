@@ -2,6 +2,7 @@
     ServerName {{ vhost.server_name }}
 
     ProxyPreserveHost On
+    ProxyAddHeaders Off
     ProxyPass / http://0.0.0.0:{{ vhost.listen_port }}/
     ProxyPassReverse / http://0.0.0.0:{{ vhost.listen_port }}/
 
@@ -17,7 +18,7 @@
     {% endif %}
 
     LogFormat "%v:%p %h %l %u %t \"%r\" %>s \"%{Referer}i\" \"%{User-Agent}i\" SSL-TERMINATED:%{X-SSL-TERMINATED}i %{ms}T" log_combined
-    CustomLog ${APACHE_LOG_DIR}/{{ vhost.name }}.access.log log
+    CustomLog ${APACHE_LOG_DIR}/{{ vhost.name }}.access.log log_combined
     ErrorLog ${APACHE_LOG_DIR}/{{ vhost.name }}.error.log
 
 </VirtualHost>
@@ -42,7 +43,7 @@
     RequestHeader set X-Forwarded-Proto "https"
 
     LogFormat "%v:%p %h %l %u %t \"%r\" %>s \"%{Referer}i\" \"%{User-Agent}i\" SSL-TERMINATED:%{X-SSL-TERMINATED}i %{ms}T" log_combined
-    CustomLog ${APACHE_LOG_DIR}/grafana.access.log log
-    ErrorLog ${APACHE_LOG_DIR}/grafana.error.log
+    CustomLog ${APACHE_LOG_DIR}/{{ vhost.name }}.access.log log_combined
+    ErrorLog ${APACHE_LOG_DIR}/{{ vhost.name }}.error.log
 </VirtualHost>
 {% endif %}

@@ -9,3 +9,6 @@ lucifer ansible_host=lucifer.local
 
 [dns]
 pihole ansible_host=pihole.local
+
+[information]
+merovingian ansible_host=merovingian.local
