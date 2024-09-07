@@ -1,0 +1,15 @@
+---
+
+- name: Add miniflux repository
+  become: yes
+  apt_repository:
+    repo: "deb [trusted=yes] https://repo.miniflux.app/apt/ * *"
+    filename: "miniflux"
+    state: present
+
+- name: install required packages
+  become: yes
+  apt:
+    name: "{{ miniflux_required_packages }}"
+    state: present
+    install_recommends: no

@@ -6,6 +6,7 @@ prometheus_url: "prometheus.{{ top_lvl_domain }}"
 prometheus_alertmanager_web_external_url: "prometheus-alertmanager.{{ top_lvl_domain }}"
 sabnzbd_url: "sabnzbd.{{ top_lvl_domain }}"
 transmission_url: "transmission.{{ top_lvl_domain }}"
+miniflux_url: "miniflux.{{ top_lvl_domain }}"
 
 # resolvconf role
 resolvconf_dns_resolver_ip: 10.1.1.99

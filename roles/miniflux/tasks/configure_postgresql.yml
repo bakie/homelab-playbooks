@@ -1,0 +1,42 @@
+---
+
+- name: Start and enable postgresql
+  become: yes
+  service:
+    name: postgresql
+    state: started
+    enabled: yes
+
+- name: Create the {{ miniflux_db_name }} database
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    name: "{{ miniflux_db_name }}"
+
+- name: create the {{ miniflux_db_user }} db user
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    name: "{{ miniflux_db_user }}"
+    password: "{{ miniflux_db_password }}"
+
+- name: Grant all privs to {{ miniflux_db_user }} on {{ miniflux_db_name }}
+  become: yes
+  become_user: postgres
+  postgresql_privs:
+    database: "{{ miniflux_db_name }}"
+    state: present
+    privs: ALL
+    roles: "{{ miniflux_db_user }}"
+    type: database
+
+- name: Grant privs to {{ miniflux_db_user }} on schema public
+  become: yes
+  become_user: postgres
+  postgresql_privs:
+    database: "{{ miniflux_db_name }}"
+    state: present
+    privs: ALL
+    roles: "{{ miniflux_db_user }}"
+    type: schema
+    objs: public

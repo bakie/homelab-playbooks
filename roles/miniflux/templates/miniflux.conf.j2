@@ -1,0 +1,6 @@
+# See https://miniflux.app/docs/configuration.html
+
+RUN_MIGRATIONS=1
+DATABASE_URL=user={{ miniflux_db_user }} password={{ miniflux_db_password }} dbname={{ miniflux_db_name }} sslmode=disable
+BASE_URL=https://{{ miniflux_url }}
+PORT={{ miniflux_listen_port }}

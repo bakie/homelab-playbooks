@@ -1,0 +1,9 @@
+---
+
+- name: template the miniflux config file
+  become: yes
+  template:
+    src: "miniflux.conf.j2"
+    dest: "/etc/miniflux.conf"
+    mode: 0644
+  notify: restart miniflux

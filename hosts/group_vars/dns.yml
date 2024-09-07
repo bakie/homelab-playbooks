@@ -13,3 +13,5 @@ pihole_custom_dns_entries:
     url: "{{ transmission_url }}"
   - ip: 10.1.1.102
     url: "{{ medusa_url }}"
+  - ip: 10.1.1.111
+    url: "{{ miniflux_url }}"

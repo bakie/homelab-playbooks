@@ -1,0 +1,5 @@
+---
+
+# apache_vhosts role
+apache_vhosts_config:
+  - { name: "miniflux", server_name: "{{ miniflux_url }}", listen_port: "{{ miniflux_listen_port }}", enable_ssl: true }

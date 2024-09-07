@@ -1,6 +1,6 @@
 ---
 
-apache_required_packages: [ "python-passlib" ]
+apache_required_packages: [ "python3-passlib" ]
 apache_modules:
   - autoindex
   - deflate

@@ -1,0 +1,8 @@
+---
+
+- name: restart miniflux
+  become: yes
+  service:
+    name: miniflux
+    state: restarted
+    enabled: yes

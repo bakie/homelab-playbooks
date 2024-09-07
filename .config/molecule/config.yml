@@ -12,8 +12,8 @@ lint: |
   ansible-lint -c .config/ansible-lint roles/${MOLECULE_SCENARIO_NAME}
   flake8 --config .config/flake8
 platforms:
-  - name: ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
-    image: ubuntu:20.04
+  - name: debian-bookworm-${MOLECULE_SCENARIO_NAME:-instance}
+    image: debian:bookworm
     privileged: true
     pre_build_image: false
     command: "/lib/systemd/systemd"
@@ -37,7 +37,7 @@ verifier:
     # We specify the connection and hosts here so the pytest runs faster.
     # Without these options pytest takes about 10 - 20 times longer to run
     connection: docker
-    hosts: root@ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
+    hosts: root@debian-bookworm-${MOLECULE_SCENARIO_NAME:-instance}
 scenario:
   create_sequence:
     - create
