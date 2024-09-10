@@ -1,5 +1,11 @@
 ---
 
+- name: install required packages
+  become: yes
+  apt:
+    name: "procps"
+    state: present
+
 - name: add transmission group
   become: yes
   group:
