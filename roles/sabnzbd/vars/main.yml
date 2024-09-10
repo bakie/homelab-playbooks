@@ -15,5 +15,3 @@ sabnzbd_required_paths:
 sabnzbd_install_packages: [ "sabnzbdplus" ]
 sabnzbd_host: 0.0.0.0
 sabnzbd_listen_port: 8080
-sabnzbd_ppa_repository: "ppa:jcfp/ppa"
-sabnzbd_addons_ppa_repository: "ppa:jcfp/sab-addons"

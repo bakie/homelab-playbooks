@@ -18,30 +18,6 @@
     state: present
     update_cache: yes
 
-#- name: add the contrib repository
-#  become: yes
-#  replace:
-#    path: "/etc/apt/sources.list.d/debian.sources"
-#    regexp: '^(Components(?!.* contrib).*)'
-#    replace: '\1 contrib'
-#
-#- name: add the non-free-firmware repository
-#  become: yes
-#  replace:
-#    path: "/etc/apt/sources.list.d/debian.sources"
-#    regexp: '^(Components(?!.* non-free-firmware).*)'
-#    replace: '\1 non-free-firmware'
-
-#- name: add sabnzbd ppa repository
-#  become: yes
-#  apt_repository:
-#    repo: "{{ sabnzbd_ppa_repository }}"
-#
-#- name: add sabnzbd-addons ppa repository
-#  become: yes
-#  apt_repository:
-#    repo: "{{ sabnzbd_addons_ppa_repository }}"
-
 - name: add sabnzbd group
   become: yes
   group:
