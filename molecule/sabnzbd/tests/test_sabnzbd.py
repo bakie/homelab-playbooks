@@ -41,4 +41,7 @@ def test_listening_on_port(host):
 
 
 def test_host_whitelist(host):
-    assert host.file("/opt/sabnzbd/.sabnzbd/sabnzbd.ini").contains("host_whitelist = ubuntu-focal-sabnzbd, sabnzbd.local.dev")
+    if host.system_info.distribution == "debian" and host.system_info.release == "12":
+        assert host.file("/opt/sabnzbd/.sabnzbd/sabnzbd.ini").contains("host_whitelist = debian-bookworm-sabnzbd, sabnzbd.local.dev")
+    else:
+        pytest.fail(f"Unsupported distribution and/or release: {host.system_info.distribution}-{host.system_info.release}")

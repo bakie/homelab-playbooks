@@ -3,6 +3,7 @@
 - name: install sabnzbd and dependencies
   become: yes
   apt:
-    name: "{{ sabnzbd_install_packages }}"
+    name: "sabnzbdplus"
     state: present
     install_recommends: no
+    update_cache: yes
