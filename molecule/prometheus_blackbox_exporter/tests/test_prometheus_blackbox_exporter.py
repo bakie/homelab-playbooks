@@ -67,7 +67,7 @@ def test_listening_on_port(host):
 
 
 def test_capabilities(host):
-    assert "blackbox_exporter = cap_net_raw+ep" in host.run("getcap " + PROMETHEUS_BLACKBOX_EXPORTER_PATH + "/blackbox_exporter").stdout
+    assert "blackbox_exporter cap_net_raw=ep" in host.run("getcap " + PROMETHEUS_BLACKBOX_EXPORTER_PATH + "/blackbox_exporter").stdout
 
 
 def test_version(host, ansible_defaults):
