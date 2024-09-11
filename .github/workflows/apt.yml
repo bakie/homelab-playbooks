@@ -3,6 +3,8 @@
 name: "bakie.homelab.apt"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/apt/**'
       - 'molecule/apt/**'

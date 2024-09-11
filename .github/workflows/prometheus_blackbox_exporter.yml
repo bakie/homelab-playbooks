@@ -3,6 +3,8 @@
 name: "bakie.homelab.prometheus_blackbox_exporter"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/prometheus_blackbox_exporter/**'
       - 'molecule/prometheus_blackbox_exporter/**'

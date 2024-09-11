@@ -3,6 +3,8 @@
 name: "bakie.homelab.nfs_server"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/nfs_server/**'
       - 'molecule/nfs_server/**'

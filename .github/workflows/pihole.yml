@@ -3,6 +3,8 @@
 name: "bakie.homelab.pihole"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/pihole/**'
       - 'molecule/pihole/**'

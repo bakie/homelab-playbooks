@@ -3,6 +3,8 @@
 name: "bakie.homelab.grafana"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/grafana/**'
       - 'molecule/grafana/**'

@@ -3,6 +3,8 @@
 name: "bakie.homelab.apache_vhosts"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/apache_vhosts/**'
       - 'molecule/apache_vhosts/**'

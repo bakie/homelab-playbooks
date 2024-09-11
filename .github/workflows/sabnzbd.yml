@@ -3,6 +3,8 @@
 name: "bakie.homelab.sabnzbd"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/sabnzbd/**'
       - 'molecule/sabnzbd/**'

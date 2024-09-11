@@ -3,6 +3,8 @@
 name: "bakie.homelab.prometheus_node_exporter"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/prometheus_node_exporter/**'
       - 'molecule/prometheus_node_exporter/**'

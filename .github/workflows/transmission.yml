@@ -3,6 +3,8 @@
 name: "bakie.homelab.transmission"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/transmission/**'
       - 'molecule/transmission/**'

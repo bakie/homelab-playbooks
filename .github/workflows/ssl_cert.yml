@@ -3,6 +3,8 @@
 name: "bakie.homelab.ssl_cert"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/ssl_cert/**'
       - 'molecule/ssl_cert/**'

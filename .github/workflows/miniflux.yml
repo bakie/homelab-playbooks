@@ -3,6 +3,8 @@
 name: "bakie.homelab.miniflux"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/miniflux/**'
       - 'molecule/miniflux/**'

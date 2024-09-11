@@ -3,6 +3,8 @@
 name: "bakie.homelab.prometheus_alertmanager"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/prometheus_alertmanager/**'
       - 'molecule/prometheus_alertmanager/**'

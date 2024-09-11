@@ -3,6 +3,8 @@
 name: "bakie.homelab.apache"
 on:
   push:
+    branches:
+     - main
     paths:
       - 'roles/apache/**'
       - 'molecule/apache/**'

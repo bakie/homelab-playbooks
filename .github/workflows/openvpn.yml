@@ -3,6 +3,8 @@
 name: "bakie.homelab.openvpn"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/openvpn/**'
       - 'molecule/openvpn/**'

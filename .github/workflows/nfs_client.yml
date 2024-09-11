@@ -3,6 +3,8 @@
 name: "bakie.homelab.nfs_client"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/nfs_client/**'
       - 'molecule/nfs_client/**'

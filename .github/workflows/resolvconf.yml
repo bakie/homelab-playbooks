@@ -3,6 +3,8 @@
 name: "bakie.homelab.resolvconf"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/resolvconf/**'
       - 'molecule/resolvconf/**'

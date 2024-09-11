@@ -3,6 +3,8 @@
 name: "bakie.homelab.prometheus"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/prometheus/**'
       - 'molecule/prometheus/**'

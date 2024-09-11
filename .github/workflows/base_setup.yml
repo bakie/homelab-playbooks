@@ -3,6 +3,8 @@
 name: "bakie.homelab.base_setup"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/base_setup/**'
       - 'molecule/base_setup/**'

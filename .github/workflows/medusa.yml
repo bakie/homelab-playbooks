@@ -3,6 +3,8 @@
 name: "bakie.homelab.medusa"
 on:
   push:
+    branches:
+      - main
     paths:
       - 'roles/medusa/**'
       - 'molecule/medusa/**'
