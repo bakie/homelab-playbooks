@@ -114,4 +114,7 @@ def test_listening_on_port(host):
 
 
 def test_hosts_file(host):
-    assert host.file("/etc/hosts").contains('ubuntu-focal-prometheus')
+    if host.system_info.distribution == "debian" and host.system_info.release == "12":
+        assert host.file("/etc/hosts").contains("debian-bookworm-prometheus")
+    else:
+        pytest.fail(f"Unsupported distribution and/or release: {host.system_info.distribution}-{host.system_info.release}")

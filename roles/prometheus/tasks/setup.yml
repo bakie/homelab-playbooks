@@ -1,5 +1,11 @@
 ---
 
+- name: install required packages
+  become: yes
+  apt:
+    name: "procps"
+    state: present
+
 - name: create prometheus group
   become: yes
   group:
