@@ -12,3 +12,4 @@ pihole ansible_host=pihole.local
 
 [information]
 merovingian ansible_host=merovingian.local
+link ansible_host=link.local
