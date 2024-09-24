@@ -1,0 +1,17 @@
+---
+
+# apache_vhosts role
+apache_vhosts_config:
+  - { name: "sabnzbd", server_name: "{{ sabnzbd_url }}", listen_port: "{{ sabnzbd_listen_port }}", enable_ssl: true }
+  - { name: "transmission", server_name: "{{ transmission_url }}", listen_port: "{{ transmission_listen_port }}", enable_ssl: true }
+
+# sabnzbd
+sabnzbd_user_home: "/opt/sabnzbd"
+
+# nfs_server
+nfs_exports:
+  - "{{ sabnzbd_user_home }} morpheus.local(rw,sync,no_root_squash,no_subtree_check)"
+
+# prometheus_node_exporter
+prometheus_node_exporter_extra_enabled_collectors:
+  - nfsd
