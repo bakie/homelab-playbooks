@@ -2,6 +2,6 @@
 
 - include_tasks: install.yml
 - include_tasks: nfs_import.yml
-  loop: "{{ nfs_client_imports }}"
+  loop: "{{ nfs_imports }}"
   loop_control:
     loop_var: "nfs_import"
