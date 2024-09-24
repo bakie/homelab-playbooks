@@ -1,0 +1,10 @@
+---
+
+- import_playbook: base.yml
+
+- hosts: link
+  roles:
+    - { role: apache, tags: [ "apache" ] }
+    - { role: ssl_cert, tags: [ "ssl_cert" ] }
+    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
+    - { role: miniflux, tags: [ "miniflux" ] }
