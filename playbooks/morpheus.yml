@@ -1,0 +1,12 @@
+---
+
+- import_playbook: base.yml
+
+- hosts: searcher
+  roles:
+    - { role: ssl_cert, tags: [ "ssl_cert" ] }
+    - { role: apache, tags: [ "apache" ] }
+    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
+    - { role: openvpn, tags: [ "openvpn" ] }
+    - { role: nfs_client, tags: [ "nfs_client" ] }
+    - { role: medusa, tags: [ "medusa" ] }

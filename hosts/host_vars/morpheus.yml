@@ -1,0 +1,31 @@
+---
+
+# apache_vhosts role
+apache_vhosts_config:
+  - { name: "medusa", server_name: "{{ medusa_url }}", listen_port: "{{ medusa_listen_port }}", enable_ssl: true }
+
+# nfs_client
+nfs_imports:
+  - local_dir: "/mnt/nas/tvshows"
+    remote_dir: "/share/MD0_DATA/Multimedia/tvshows/"
+    nfs_server: "azmodan.local"
+    mode: "0777"
+    state: present
+  - local_dir: "/mnt/nas/music"
+    remote_dir: "/share/MD0_DATA/Multimedia/music/"
+    nfs_server: "azmodan.local"
+    mode: "0777"
+    state: absent
+  - local_dir: "/mnt/nas/movies"
+    remote_dir: "/share/MD0_DATA/Multimedia/movies/"
+    nfs_server: "azmodan.local"
+    mode: "0777"
+    state: present
+  - local_dir: "/mnt/sabnzbd"
+    remote_dir: "/opt/sabnzbd"
+    nfs_server: "neo.local"
+    mode: "0755"
+    state: present
+# prometheus_node_exporter
+prometheus_node_exporter_extra_enabled_collectors:
+  - nfs

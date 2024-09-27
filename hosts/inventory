@@ -7,6 +7,7 @@ neo ansible_host=neo.local
 
 [searcher]
 lucifer ansible_host=lucifer.local
+morpheus ansible_host=morpheus.local
 
 [dns]
 pihole ansible_host=pihole.local
