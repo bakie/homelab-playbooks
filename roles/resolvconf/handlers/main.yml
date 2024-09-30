@@ -1,0 +1,5 @@
+---
+
+- name: resolvconf_update
+  become: yes
+  command: 'resolvconf -u'
