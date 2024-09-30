@@ -14,6 +14,7 @@
     regexp: "^User="
     line: "User={{ transmission_user }}"
     state: present
+  notify: restart transmission
 
 - name: start transmission
   become: yes
@@ -22,3 +23,8 @@
     state: started
     enabled: yes
     daemon-reload: yes
+
+# When installing for the first time the settings.json files is not yet present
+# When restarting transmission the settings.json file gets created
+- name: flush the handlers
+  meta: flush_handlers

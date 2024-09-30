@@ -5,3 +5,9 @@
   service:
     name: transmission-daemon
     state: reloaded
+
+- name: restart transmission
+  become: yes
+  service:
+    name: transmission-daemon
+    state: restarted
