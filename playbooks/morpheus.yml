@@ -2,7 +2,7 @@
 
 - import_playbook: base.yml
 
-- hosts: searcher
+- hosts: morpheus
   roles:
     - { role: ssl_cert, tags: [ "ssl_cert" ] }
     - { role: apache, tags: [ "apache" ] }
