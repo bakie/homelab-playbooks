@@ -2,5 +2,5 @@
 
 # apache_vhosts role
 apache_vhosts_config:
-  - { name: "sabnzbd", server_name: "{{ sabnzbd_url }}", listen_port: "{{ sabnzbd_listen_port }}", enable_ssl: true }
-  - { name: "transmission", server_name: "{{ transmission_url }}", listen_port: "{{ transmission_listen_port }}", enable_ssl: true }
+  - { name: "sabnzbd", server_name: "{{ sabnzbd_url }}", listen_port: "{{ sabnzbd_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+  - { name: "transmission", server_name: "{{ transmission_url }}", listen_port: "{{ transmission_listen_port }}", enable_ssl: true, template: "proxy_pass" }

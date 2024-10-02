@@ -3,7 +3,7 @@
 - name: configure apache vhost {{ vhost.name }}
   become: yes
   template:
-    src: "vhost.conf.j2"
+    src: "vhost_{{ vhost.template }}.conf.j2"
     dest: "/etc/apache2/sites-available/{{ vhost.name }}.conf"
     mode: 0644
   notify: reload apache

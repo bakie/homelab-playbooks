@@ -11,6 +11,7 @@ morpheus ansible_host=morpheus.local
 
 [dns]
 pihole ansible_host=pihole.local
+trinity ansible_host=trinity.local
 
 [information]
 merovingian ansible_host=merovingian.local

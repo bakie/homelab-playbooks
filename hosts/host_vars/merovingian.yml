@@ -2,4 +2,35 @@
 
 # apache_vhosts role
 apache_vhosts_config:
-  - { name: "miniflux", server_name: "{{ miniflux_url }}", listen_port: "{{ miniflux_listen_port }}", enable_ssl: true }
+  - { name: "grafana", server_name: "{{ grafana_url }}", listen_port: "{{ grafana_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+  - { name: "prometheus", server_name: "{{ prometheus_url }}", listen_port: "{{ prometheus_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+#  - { name: "prometheus_alertmanager", server_name: "{{ prometheus_alertmanager_web_external_url }}", listen_port: "{{ prometheus_alertmanager_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+
+# prometheus role
+prometheus_metrics_job_targets:
+  - 10.1.1.1
+  - kodi.local
+  - azmodan.local
+prometheus_metrics_job_relabel_configs:
+  - source_labels: "[__address__]"
+    regex: 10\\.1\\.1\\.1(.*)
+    replacement: openwrt
+    target_label: instance
+prometheus_blackbox_exporter_targets:
+  - url: "transmission.{{ top_lvl_domain }}"
+    instance: "transmission"
+    job: "blackbox"
+  - url: "sabnzbd.{{ top_lvl_domain }}"
+    instance: "sabnzbd"
+    job: "blackbox"
+  - url: "medusa.{{ top_lvl_domain }}"
+    instance: "medusa"
+    job: "blackbox"
+
+# nfs_client
+nfs_imports:
+  - local_dir: "/mnt/nas/prometheus_data"
+    remote_dir: "/share/MD0_DATA/data/prometheus/"
+    nfs_server: "azmodan.local"
+    mode: 0777
+    state: present
