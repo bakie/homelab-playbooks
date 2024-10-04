@@ -4,7 +4,7 @@
   become: yes
   lineinfile:
     path: "/etc/resolvconf/resolv.conf.d/head"
-    regexp: "^nameserver {{ resolvconf_dns_resolver_ip }}"
+    regexp: "^nameserver (.*)"
     line: "nameserver {{ resolvconf_dns_resolver_ip }}"
     state: present
   notify: resolvconf_update
