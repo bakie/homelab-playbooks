@@ -3,4 +3,4 @@
 pihole_group: "pihole"
 pihole_user: "pihole"
 pihole_config_path: "/etc/pihole"
-pihole_required_packages: [ "wget", "sqlite3" ]
+pihole_required_packages: [ "wget", "sqlite3", "libapache2-mod-php8.2", "php-sqlite3" ]

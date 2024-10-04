@@ -1,5 +1,10 @@
 ---
 
+# apache_vhosts role
+apache_vhosts_config:
+  - { name: "pihole", server_name: "{{ pihole_url }}", enable_ssl: true, template: "document_root", document_root: "/var/www/html/admin/" }
+
+# pihole
 pihole_custom_dns_entries:
   - ip: 10.1.1.200
     url: "{{ grafana_url }}"
@@ -15,3 +20,5 @@ pihole_custom_dns_entries:
     url: "{{ sabnzbd_url }}"
   - ip: 10.1.1.203
     url: "{{ transmission_url }}"
+  - ip: 10.1.1.204
+    url: "{{ pihole_url }}"

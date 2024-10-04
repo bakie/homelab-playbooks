@@ -7,6 +7,7 @@ prometheus_alertmanager_web_external_url: "prometheus-alertmanager.{{ top_lvl_do
 sabnzbd_url: "sabnzbd.{{ top_lvl_domain }}"
 transmission_url: "transmission.{{ top_lvl_domain }}"
 miniflux_url: "miniflux.{{ top_lvl_domain }}"
+pihole_url: "pihole.{{ top_lvl_domain }}"
 
 # resolvconf role
 resolvconf_dns_resolver_ip: 10.1.1.99

@@ -26,8 +26,7 @@ def test_pihole_is_running(host):
 
 @pytest.mark.parametrize(("protocol", "port"), [
     ("tcp", "53"),
-    ("udp", "53"),
-    ("tcp", "80"),
+    ("udp", "53")
 ])
 def test_listening_on_port(host, protocol, port):
     assert host.socket(protocol + "://0.0.0.0:" + port).is_listening
