@@ -1,0 +1,33 @@
+---
+
+- name: get the deb architecture
+  command: dpkg --print-architecture
+  register: deb_architecture
+  changed_when: false
+
+- name: create the gotify_install_path dir
+  become: yes
+  file:
+    path: "{{ gotify_install_path }}"
+    owner: "{{ gotify_user }}"
+    group: "{{ gotify_group }}"
+    state: directory
+    mode: 0755
+
+- name: download and unarchive gotify
+  become: yes
+  unarchive:
+    src: "{{ gotify_download_url }}"
+    dest: "{{ gotify_install_path }}"
+    owner: "{{ gotify_user }}"
+    group: "{{ gotify_group }}"
+    remote_src: yes
+
+- name: template the version file
+  become: yes
+  template:
+    src: version.j2
+    dest: "{{ gotify_version_file_path }}"
+    owner: "{{ gotify_user }}"
+    group: "{{ gotify_group }}"
+    mode: 0644

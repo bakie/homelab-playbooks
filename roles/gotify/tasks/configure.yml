@@ -1,0 +1,20 @@
+---
+
+- name: create gotify configuration directory
+  become: yes
+  file:
+    path: "{{ gotify_config_path }}"
+    state: directory
+    owner: "{{ gotify_user }}"
+    group: "{{ gotify_group }}"
+    mode: 0755
+
+- name: configure gotify
+  become: yes
+  template:
+    src: "gotify.yml.j2"
+    dest: "{{ gotify_config_file_path }}"
+    owner: "{{ gotify_user }}"
+    group: "{{ gotify_group }}"
+    mode: 0640
+  notify: restart gotify

@@ -1,0 +1,21 @@
+[Unit]
+Description=Gotify server
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ gotify_user }}
+Group={{ gotify_group }}
+WorkingDirectory={{ gotify_install_path }}
+ExecStart={{ gotify_install_path }}/gotify-linux-amd64
+SyslogIdentifier={{ gotify_user }}
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+StandardOutput=append:{{ gotify_install_path }}/gotify.log
+StandardError=inherit
+StandardInput=null
+
+[Install]
+WantedBy=multi-user.target

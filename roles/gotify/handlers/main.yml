@@ -1,0 +1,7 @@
+---
+
+- name: restart gotify
+  become: yes
+  service:
+    name: gotify
+    state: restarted

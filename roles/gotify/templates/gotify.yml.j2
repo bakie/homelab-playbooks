@@ -1,0 +1,23 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+server:
+  keepaliveperiodseconds: 0 # 0 = use Go default (15s);
+  listenaddr: "127.0.0.1"
+  port: {{ gotify_server_port }}
+
+  ssl:
+    enabled: false
+    redirecttohttps: false
+    letsencrypt:
+      enabled: false
+
+database:
+  dialect: sqlite3
+  connection: data/gotify.db
+
+defaultuser:
+  name: {{ gotify_admin_user }}
+  pass: {{ gotify_admin_password }}
+passstrength: 10
+uploadedimagesdir: data/images
+pluginsdir: data/plugins
+registration: false
