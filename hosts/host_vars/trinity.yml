@@ -3,6 +3,7 @@
 # apache_vhosts role
 apache_vhosts_config:
   - { name: "pihole", server_name: "{{ pihole_url }}", enable_ssl: true, template: "document_root", document_root: "/var/www/html/admin/" }
+  - { name: "gotify", server_name: "{{ gotify_url }}", listen_port: "{{ gotify_listen_port }}", enable_ssl: true, template: "proxy_pass" }
 
 # pihole
 pihole_custom_dns_entries:
@@ -22,3 +23,5 @@ pihole_custom_dns_entries:
     url: "{{ transmission_url }}"
   - ip: 10.1.1.204
     url: "{{ pihole_url }}"
+  - ip: 10.1.1.204
+    url: "{{ gotify_url }}"

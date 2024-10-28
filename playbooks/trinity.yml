@@ -8,3 +8,4 @@
     - { role: apache, tags: [ "apache" ] }
     - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
     - { role: pihole, tags: [ "pihole" ] }
+    - { role: gotify, tags: [ "gotify" ] }
