@@ -31,4 +31,3 @@ def test_directory_permissions(host):
 ])
 def test_config(host, config_setting):
     assert host.file(GOTIFY_CONFIG_FILE_PATH).contains(config_setting)
- 
