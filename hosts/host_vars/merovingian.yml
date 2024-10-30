@@ -4,7 +4,7 @@
 apache_vhosts_config:
   - { name: "grafana", server_name: "{{ grafana_url }}", listen_port: "{{ grafana_listen_port }}", enable_ssl: true, template: "proxy_pass" }
   - { name: "prometheus", server_name: "{{ prometheus_url }}", listen_port: "{{ prometheus_listen_port }}", enable_ssl: true, template: "proxy_pass" }
-#  - { name: "prometheus_alertmanager", server_name: "{{ prometheus_alertmanager_web_external_url }}", listen_port: "{{ prometheus_alertmanager_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+  - { name: "prometheus_alertmanager", server_name: "{{ prometheus_alertmanager_web_external_url }}", listen_port: "{{ prometheus_alertmanager_listen_port }}", enable_ssl: true, template: "proxy_pass" }
 
 # prometheus role
 prometheus_metrics_job_targets:
@@ -26,6 +26,9 @@ prometheus_blackbox_exporter_targets:
   - url: "medusa.{{ top_lvl_domain }}"
     instance: "medusa"
     job: "blackbox"
+
+# prometheus_alertmanager
+prometheus_alertmanager_gotify_bridge_endpoint: "http://10.1.1.204:80/message"
 
 # nfs_client
 nfs_imports:

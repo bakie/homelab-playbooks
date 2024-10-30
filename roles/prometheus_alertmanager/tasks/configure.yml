@@ -12,6 +12,7 @@
     - "{{ prometheus_alertmanager_config_path }}"
     - "{{ prometheus_alertmanager_data_path }}"
     - "{{ prometheus_alertmanager_amtool_config_path }}"
+    - "{{ prometheus_alertmanager_gotify_bridge_path }}"
 
 - name: configure amtool
   become: yes

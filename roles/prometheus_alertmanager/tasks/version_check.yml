@@ -19,3 +19,23 @@
 - name: set fact to install prometheus_alertmanager
   set_fact:
     install_prometheus_alertmanager: "{{ not prometheus_alertmanager_binary.stat.exists or prometheus_alertmanager_current_version.stdout != prometheus_alertmanager_version }}"
+
+- name: stat prometheus_alertmanager_gotify_bridge binary
+  stat:
+    path: "{{ prometheus_alertmanager_gotify_bridge_install_path }}/alertmanager_gotify_bridge"
+  register: prometheus_alertmanager_gotify_bridge_binary
+
+- name: get current prometheus_alertmanager_gotify_bridge version
+  shell: |
+    set -o pipefail
+    ./alertmanager_gotify_bridge --version 2>&1
+  args:
+    chdir: "{{ prometheus_alertmanager_gotify_bridge_install_path }}"
+    executable: /bin/bash
+  when: prometheus_alertmanager_gotify_bridge_binary.stat.exists
+  changed_when: false
+  register: prometheus_alertmanager_gotify_bridge_current_version
+
+- name: set fact to install prometheus_alertmanager_gotify_bridge
+  set_fact:
+    install_prometheus_alertmanager_gotify_bridge: "{{ not prometheus_alertmanager_gotify_bridge_binary.stat.exists or prometheus_alertmanager_gotify_bridge_current_version.stdout != prometheus_alertmanager_gotify_bridge_version }}"

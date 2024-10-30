@@ -5,3 +5,9 @@
   service:
     name: prometheus_alertmanager
     state: restarted
+
+- name: restart prometheus_alertmanager_gotify_bridge
+  become: yes
+  service:
+    name: prometheus_alertmanager_gotify_bridge
+    state: restarted

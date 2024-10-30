@@ -17,7 +17,7 @@
     create_home: no
     home: "{{ prometheus_alertmanager_install_path }}"
 
-- name: create prometheus base paths
+- name: create prometheus_alertmanager base paths
   become: yes
   file:
     path: "{{ item }}"

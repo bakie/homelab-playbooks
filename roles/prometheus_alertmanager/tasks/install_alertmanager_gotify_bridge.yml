@@ -1,0 +1,23 @@
+---
+
+- name: get the deb architecture
+  command: dpkg --print-architecture
+  register: deb_architecture
+  changed_when: false
+
+- name: create the prometheus_alertmanager_gotify_install_path dir
+  become: yes
+  file:
+    path: "{{ prometheus_alertmanager_gotify_bridge_install_path }}"
+    state: directory
+    mode: 0755
+
+- name: download prometheus_alertmanager_gotify_bridge
+  become: yes
+  get_url:
+    url: "{{ prometheus_alertmanager_gotify_bridge_download_url }}"
+    dest: "{{ prometheus_alertmanager_gotify_bridge_install_path }}/alertmanager_gotify_bridge"
+    mode: 0755
+    owner: "{{ prometheus_alertmanager_user }}"
+    group: "{{ prometheus_alertmanager_group }}"
+  notify: restart prometheus_alertmanager_gotify_bridge

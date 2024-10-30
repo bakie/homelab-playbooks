@@ -1,3 +1,3 @@
 ---
 
-prometheus_alertmanager_slack_api_url: "http://prometheus_alertmanager_slack_api_url"
+prometheus_alertmanager_gotify_bridge_token: "dummyToken"

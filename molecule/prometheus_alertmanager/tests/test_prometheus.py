@@ -10,6 +10,7 @@ PROMETHEUS_ALERTMANAGER_CONFIG_PATH = "/etc/prometheus/alertmanager"
 PROMETHEUS_ALERTMANAGER_BASE_CONFIG_PATH = "/etc/prometheus"
 PROMETHEUS_ALERTMANAGER_DATA_PATH = "/opt/prometheus/alertmanager_data"
 PROMETHEUS_ALERTMANAGER_AMTOOL_CONFIG_PATH = "/etc/amtool"
+PROMETHEUS_ALERTMANAGER_GOTIFY_BRIDGE_PATH = "/opt/prometheus/alertmanager_gotify_bridge"
 
 
 @pytest.fixture()
@@ -27,7 +28,8 @@ def test_user_is_in_prometheus_alertmanager_group(host):
     (PROMETHEUS_ALERTMANAGER_BASE_PATH, "root"),
     (PROMETHEUS_ALERTMANAGER_CONFIG_PATH, PROMETHEUS_ALERTMANAGER_USER),
     (PROMETHEUS_ALERTMANAGER_BASE_CONFIG_PATH, "root"),
-    (PROMETHEUS_ALERTMANAGER_DATA_PATH, PROMETHEUS_ALERTMANAGER_USER)
+    (PROMETHEUS_ALERTMANAGER_DATA_PATH, PROMETHEUS_ALERTMANAGER_USER),
+    (PROMETHEUS_ALERTMANAGER_GOTIFY_BRIDGE_PATH, PROMETHEUS_ALERTMANAGER_USER)
 ])
 def test_directory_owner(host, path, owner):
     assert host.file(path).user == owner
@@ -38,7 +40,8 @@ def test_directory_owner(host, path, owner):
     (PROMETHEUS_ALERTMANAGER_BASE_PATH, "root"),
     (PROMETHEUS_ALERTMANAGER_CONFIG_PATH, PROMETHEUS_ALERTMANAGER_GROUP),
     (PROMETHEUS_ALERTMANAGER_BASE_CONFIG_PATH, "root"),
-    (PROMETHEUS_ALERTMANAGER_DATA_PATH, PROMETHEUS_ALERTMANAGER_GROUP)
+    (PROMETHEUS_ALERTMANAGER_DATA_PATH, PROMETHEUS_ALERTMANAGER_GROUP),
+    (PROMETHEUS_ALERTMANAGER_GOTIFY_BRIDGE_PATH, PROMETHEUS_ALERTMANAGER_GROUP)
 ])
 def test_directory_group(host, path, group):
     assert host.file(path).group == group
@@ -49,7 +52,8 @@ def test_directory_group(host, path, group):
     PROMETHEUS_ALERTMANAGER_BASE_PATH,
     PROMETHEUS_ALERTMANAGER_CONFIG_PATH,
     PROMETHEUS_ALERTMANAGER_BASE_CONFIG_PATH,
-    PROMETHEUS_ALERTMANAGER_DATA_PATH
+    PROMETHEUS_ALERTMANAGER_DATA_PATH,
+    PROMETHEUS_ALERTMANAGER_GOTIFY_BRIDGE_PATH
 ])
 def test_directory_permissions(host, path):
     assert host.file(path).mode == 0o755
@@ -72,5 +76,17 @@ def test_prometheus_alertmanager_service_is_enabled(host):
     assert host.service("prometheus_alertmanager").is_enabled
 
 
-def test_listening_on_port(host):
-    assert host.socket("tcp://0.0.0.0:9093").is_listening
+def test_prometheus_alertmanager_gotify_bridge_service_is_running(host):
+    assert host.service("prometheus_alertmanager_gotify_bridge").is_running
+
+
+def test_prometheus_alertmanager_gotify_bridge_service_is_enabled(host):
+    assert host.service("prometheus_alertmanager_gotify_bridge").is_enabled
+
+
+@pytest.mark.parametrize("listening", [
+    "tcp://0.0.0.0:9093",
+    "tcp://127.0.0.1:8080"
+])
+def test_listening_on_port(host, listening):
+    assert host.socket(listening).is_listening
