@@ -25,7 +25,7 @@ def test_directory_permissions(host):
 
 @pytest.mark.parametrize("config_setting", [
     "listenaddr: \"127.0.0.1\"",
-    "port: 8080",
+    "port: 7070",
     "name: admin",
     "pass: admin"
 ])
