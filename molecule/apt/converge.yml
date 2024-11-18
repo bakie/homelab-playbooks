@@ -4,4 +4,4 @@
   hosts: all
 
   roles:
-    - { role: apt }
+    - role: apt

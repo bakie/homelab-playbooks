@@ -41,4 +41,4 @@
         filename: "molecule.crt"
 
   roles:
-    - { role: apache_vhosts }
+    - role: apache_vhosts
