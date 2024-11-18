@@ -4,7 +4,13 @@
 
 - hosts: link
   roles:
-    - { role: apache, tags: [ "apache" ] }
-    - { role: ssl_cert, tags: [ "ssl_cert" ] }
-    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
-    - { role: miniflux, tags: [ "miniflux" ] }
+    - role: ssl_cert
+      tags: [ ssl_cert ]
+    - role: apache
+      tags: [ apache ]
+    - role: apache_vhosts
+      tags: [ apache, apache_vhosts ]
+    - role: miniflux
+      tags: [ miniflux ]
+    - role: gotify
+      tags: [ gotify ]

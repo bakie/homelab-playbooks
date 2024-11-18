@@ -1,5 +1,17 @@
 ---
-
 # apache_vhosts role
 apache_vhosts_config:
-  - { name: "miniflux", server_name: "{{ miniflux_url }}", listen_port: "{{ miniflux_listen_port }}", enable_ssl: true, template: "proxy_pass" }
+  - name: "miniflux"
+    server_name: "{{ miniflux_url }}"
+    listen_port: "{{ miniflux_listen_port }}"
+    enable_ssl: true
+    template: "proxy_pass"
+  - name: "gotify"
+    server_name: "{{ gotify_url }}"
+    listen_port: "{{ gotify_listen_port }}"
+    enable_ssl: true
+    template: "proxy_pass"
+    rewrite_conditions:
+      - "RewriteCond %{HTTP:Connection} upgrade [NC]"
+      - "RewriteCond %{HTTP:Upgrade} websocket [NC]"
+      - "RewriteRule /stream(.*) ws://127.0.0.1:{{ gotify_listen_port }}/stream$1 [P,L]"
