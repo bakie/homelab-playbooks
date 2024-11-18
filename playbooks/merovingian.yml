@@ -5,7 +5,6 @@
 - hosts: monitoring
   roles:
     - { role: ssl_cert, tags: [ "ssl_cert" ] }
-    - { role: nfs_client, tags: [ "nfs_client" ] }
     - { role: apache, tags: [ "apache" ] }
     - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
     - { role: prometheus, tags: [ "prometheus", "prometheus_instance" ] }
