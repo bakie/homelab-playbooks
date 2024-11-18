@@ -1,5 +1,4 @@
 ---
-
 grafana_url: "grafana.{{ top_lvl_domain }}"
 medusa_url: "medusa.{{ top_lvl_domain }}"
 prometheus_url: "prometheus.{{ top_lvl_domain }}"
@@ -9,6 +8,3 @@ transmission_url: "transmission.{{ top_lvl_domain }}"
 miniflux_url: "miniflux.{{ top_lvl_domain }}"
 pihole_url: "pihole.{{ top_lvl_domain }}"
 gotify_url: "gotify.{{ top_lvl_domain }}"
-
-# resolvconf role
-resolvconf_dns_resolver_ip: 10.1.1.204
