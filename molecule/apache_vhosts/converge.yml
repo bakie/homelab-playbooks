@@ -4,10 +4,33 @@
   hosts: all
   vars:
     apache_vhosts_config:
-      - { name: molecule_proxy_pass_http, server_name: "molecule_proxy_pass_http.random.url", listen_port: "9003", template: "proxy_pass" }
-      - { name: molecule_proxy_pass_https, server_name: "molecule_proxy_pass_https.random.url", listen_port: "9003", template: "proxy_pass", enable_ssl: true }
-      - { name: molecule_document_root_http, server_name: "molecule_document_root_http.random.url", document_root: "/var/www/html/", template: "document_root" }
-      - { name: molecule_document_root_https, server_name: "molecule_document_root_https.random.url", document_root: "/var/www/html/", template: "document_root", enable_ssl: true }
+      - name: molecule_proxy_pass_http
+        server_name: "molecule_proxy_pass_http.random.url"
+        listen_port: "9003"
+        template: "proxy_pass"
+      - name: molecule_proxy_pass_https
+        server_name: "molecule_proxy_pass_https.random.url"
+        listen_port: "9003"
+        template: "proxy_pass"
+        enable_ssl: true
+      - name: molecule_document_root_http
+        server_name: "molecule_document_root_http.random.url"
+        document_root: "/var/www/html/"
+        template: "document_root"
+      - name: molecule_document_root_https
+        server_name: "molecule_document_root_https.random.url"
+        document_root: "/var/www/html/"
+        template: "document_root"
+        enable_ssl: true
+      - name: molecule_rewrite_conditions
+        server_name: "molecule_rewrite_conditions.random_url"
+        listen_port: "9003"
+        template: "proxy_pass"
+        enable_ssl: true
+        rewrite_conditions:
+          - "RewriteCond %{HTTP:Connection} upgrade [NC]"
+          - "RewriteCond %{HTTP:Upgrade} websocket [NC]"
+          - "RewriteRule /stream(.*) ws://127.0.0.1:7070/stream$1 [P,L]"
     skip_apache_vhosts_reload_handler: true
     # To test the ssl configuration
     ssl_cert:

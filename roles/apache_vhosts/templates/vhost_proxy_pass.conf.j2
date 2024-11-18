@@ -31,6 +31,14 @@
     SSLCertificateKeyFile {{ ssl_cert.dir }}/{{ ssl_cert.key.filename }}
 
     ProxyPreserveHost On
+    {% if vhost.rewrite_conditions|d(false) %}
+    <IfModule mod_rewrite.c>
+        RewriteEngine On
+        {% for rewrite_condition in vhost.rewrite_conditions %}
+        {{ rewrite_condition }}
+        {% endfor %}
+    </IfModule>
+    {% endif %}
 
     <Location />
       ProxyPass http://127.0.0.1:80/

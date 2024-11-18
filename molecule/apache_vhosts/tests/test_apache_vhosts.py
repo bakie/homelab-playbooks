@@ -5,7 +5,8 @@ import pytest
     "molecule_proxy_pass_http.conf",
     "molecule_proxy_pass_https.conf",
     "molecule_document_root_http.conf",
-    "molecule_document_root_https.conf"
+    "molecule_document_root_https.conf",
+    "molecule_rewrite_conditions.conf"
 ])
 def test_molecule_vhost_config_exists(host, vhost):
     assert host.file("/etc/apache2/sites-available/" + vhost).exists
@@ -15,7 +16,8 @@ def test_molecule_vhost_config_exists(host, vhost):
     "molecule_proxy_pass_http.conf",
     "molecule_proxy_pass_https.conf",
     "molecule_document_root_http.conf",
-    "molecule_document_root_https.conf"
+    "molecule_document_root_https.conf",
+    "molecule_rewrite_conditions.conf"
 ])
 def test_molecule_vhost_config_symlink(host, vhost):
     assert host.file("/etc/apache2/sites-enabled/" + vhost).linked_to == "/etc/apache2/sites-available/" + vhost
@@ -75,3 +77,12 @@ def test_molecule_document_root_http_does_not_contain_https_config(host, config)
 ])
 def test_molecule_document_root_https_contains_https_config(host, config):
     assert host.file("/etc/apache2/sites-available/molecule_document_root_https.conf").contains(config)
+
+
+@pytest.mark.parametrize("config", [
+    "RewriteCond %{HTTP:Connection} upgrade \\[NC\\]",
+    "RewriteCond %{HTTP:Upgrade} websocket \\[NC\\]",
+    "RewriteRule /stream(.*) ws://127.0.0.1:7070/stream$1 \\[P,L\\]"
+])
+def test_molecule_rewrite_conditions(host, config):
+    assert host.file("/etc/apache2/sites-available/molecule_rewrite_conditions.conf").contains(config)
