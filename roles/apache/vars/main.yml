@@ -14,6 +14,7 @@ apache_modules:
   - ssl
   - proxy_html
   - proxy_http
+  - proxy_wstunnel
   - xml2enc
 apache_security_config:
   - { regexp: '^ServerTokens', line: 'ServerTokens Prod' }
