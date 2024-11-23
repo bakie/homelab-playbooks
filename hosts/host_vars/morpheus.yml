@@ -26,6 +26,7 @@ nfs_imports:
     nfs_server: "neo.local"
     mode: "0755"
     state: present
+
 # prometheus_node_exporter
 prometheus_node_exporter_extra_enabled_collectors:
   - nfs

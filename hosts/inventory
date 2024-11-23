@@ -1,18 +1,11 @@
 [monitoring]
-prometheus ansible_host=prometheus.local
+merovingian ansible_host=merovingian.local
 
 [downloader]
-satan ansible_host=satan.local
 neo ansible_host=neo.local
 
 [searcher]
-lucifer ansible_host=lucifer.local
 morpheus ansible_host=morpheus.local
 
-[dns]
-pihole ansible_host=pihole.local
-trinity ansible_host=trinity.local
-
 [information]
-merovingian ansible_host=merovingian.local
 link ansible_host=link.local

@@ -1,5 +1,0 @@
----
-
-# apache_vhosts role
-apache_vhosts_config:
-  - { name: "medusa", server_name: "{{ medusa_url }}", listen_port: "{{ medusa_listen_port }}", enable_ssl: true, template: "proxy_pass" }
