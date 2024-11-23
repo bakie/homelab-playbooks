@@ -4,10 +4,17 @@
 
 - hosts: neo
   roles:
-    - { role: ssl_cert, tags: [ "ssl_cert" ] }
-    - { role: apache, tags: [ "apache" ] }
-    - { role: apache_vhosts, tags: [ "apache", "apache_vhosts" ] }
-    - { role: openvpn, tags: [ 'openvpn' ] }
-    - { role: sabnzbd, tags: [ "sabnzbd" ] }
-    - { role: nfs_server, tags: [ 'nfs_server' ] }
-    - { role: transmission, tags: [ 'transmission' ] }
+    - role: ssl_cert
+      tags: [ "ssl_cert" ]
+    - role: apache
+      tags: [ "apache" ]
+    - role: apache_vhosts
+      tags: [ "apache", "apache_vhosts" ]
+    - role: openvpn
+      tags: [ 'openvpn' ]
+    - role: sabnzbd
+      tags: [ "sabnzbd" ]
+    - role: nfs_server
+      tags: [ 'nfs_server' ]
+    - role: transmission
+      tags: [ 'transmission' ]

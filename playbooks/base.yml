@@ -2,10 +2,11 @@
 
 - hosts: all
   roles:
-    - { role: apt, tags: [ "apt" ] }
-    - { role: base_setup, tags: [ "base_setup" ] }
-    - { role: prometheus_node_exporter, tags: [ "prometheus", "prometheus_node_exporter" ] }
-
-- hosts: all:!dns
-  roles:
-    - { role: resolvconf, tags: [ "resolvconf" ] }
+    - role: apt
+      tags: [ "apt" ]
+    - role: base_setup
+      tags: [ "base_setup" ]
+    - role: prometheus_node_exporter
+      tags: [ "prometheus", "prometheus_node_exporter" ]
+    - role: resolvconf
+      tags: [ "resolvconf" ]
