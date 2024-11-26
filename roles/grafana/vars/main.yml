@@ -1,7 +1,7 @@
 ---
 
 grafana_group: "grafana"
-grafana_required_packages: [ "apt-transport-https", "adduser", "libfontconfig" ]
+grafana_required_packages: [ "apt-transport-https", "adduser", "libfontconfig", "gnupg2" ]
 grafana_apt_key_url: "https://packages.grafana.com/gpg.key"
 grafana_apt_repo_url: "deb https://packages.grafana.com/oss/deb stable main"
 grafana_version: "10.4.1"
@@ -15,7 +15,7 @@ grafana_datasources:
     options:
       type: prometheus
       access: proxy
-      url: "http://prometheus.local:9090"
+      url: "http://localhost:9090"
 grafana_config_settings:
   - regexp: "^;?admin_user(.*)"
     replace: "admin_user = {{ grafana_admin_user }}"
