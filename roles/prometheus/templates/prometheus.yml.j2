@@ -23,9 +23,6 @@ scrape_configs:
     metrics_path: "/metrics"
     static_configs:
       - targets:
-        {% for host in groups['all'] %}
-        - {{ host }}.local:9100
-        {% endfor %}
         {% for host in prometheus_metrics_job_targets %}
         - {{ host }}:9100
         {% endfor %}

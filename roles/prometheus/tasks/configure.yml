@@ -28,13 +28,13 @@
   shell: |
     if [[ {{ item }} == *.local ]]
     then
-      set -o pipefail getent hosts {{ item }}
+      getent hosts {{ item }}
     else
-      set -o pipefail getent hosts {{ item }}.local
+      getent hosts {{ item }}.local
     fi
   args:
     executable: "/bin/bash"
-  loop: "{{ groups['all'] }} + {{ prometheus_metrics_job_targets }}"
+  loop: "{{ prometheus_metrics_job_targets }}"
   register: hosts_ips
   changed_when: no
   when: not item | regex_search('\d+\.\d+\.\d+\.\d+')
