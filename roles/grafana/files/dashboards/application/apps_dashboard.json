@@ -30,10 +30,7 @@
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -110,10 +107,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_duration_seconds{instance=~\"$instance\", job=~\"$job\"}",
           "instant": false,
@@ -153,10 +147,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -224,10 +215,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "exemplar": true,
           "expr": "probe_success{instance=~\"$instance\", job=~\"$job\"}",
@@ -241,10 +229,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -321,10 +306,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_http_duration_seconds{instance=~\"$instance\", job=~\"$job\"}",
           "instant": false,
@@ -337,10 +319,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "decimals": 0,
@@ -415,10 +394,7 @@
       "repeatDirection": "h",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_http_status_code{instance=~\"$instance\", job=~\"$job\"}",
           "format": "time_series",
@@ -433,10 +409,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -498,10 +471,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_http_version{instance=~\"$instance\", job=~\"$job\"}",
           "format": "time_series",
@@ -516,10 +486,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -585,10 +552,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "avg(probe_duration_seconds{instance=~\"$instance\", job=~\"$job\"})",
           "format": "time_series",
@@ -603,10 +567,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -673,10 +634,7 @@
       "repeatDirection": "h",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "avg(probe_dns_lookup_time_seconds{instance=~\"$instance\", job=~\"$job\"})",
           "format": "time_series",
@@ -691,10 +649,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -771,10 +726,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "exemplar": false,
           "expr": "probe_duration_seconds{instance=~\"$instance\", job=~\"$job\"}",
@@ -788,10 +740,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "mappings": [
@@ -865,10 +814,7 @@
       "repeatDirection": "v",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_http_ssl{instance=~\"$instance\", job=~\"$job\"}",
           "format": "time_series",
@@ -885,7 +831,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "z_0UfxtGz"
+        "uid": "PBFA97CFB590B2093"
       },
       "fieldConfig": {
         "defaults": {
@@ -924,12 +870,12 @@
                 "value": 0
               },
               {
-                "color": "#299c46",
-                "value": 1
+                "color": "orange",
+                "value": 1210000
               },
               {
-                "color": "dark-red",
-                "value": 2
+                "color": "green",
+                "value": 2420000
               }
             ]
           },
@@ -965,10 +911,7 @@
       "repeatDirection": "h",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "probe_ssl_earliest_cert_expiry{instance=~\"$instance\", job=~\"$job\"} - time()",
           "format": "time_series",
@@ -996,7 +939,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "z_0UfxtGz"
+          "uid": "PBFA97CFB590B2093"
         },
         "definition": "",
         "hide": 0,
@@ -1059,6 +1002,6 @@
   "timezone": "Europe/Brussels",
   "title": "Apps",
   "uid": "xtkCtBkiz",
-  "version": 18,
+  "version": 3,
   "weekStart": ""
 }

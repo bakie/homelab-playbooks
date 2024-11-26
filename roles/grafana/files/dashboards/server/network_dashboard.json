@@ -21,10 +21,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -114,10 +111,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "irate(node_network_receive_bytes_total{instance=~\"$instance\"}[5m])*8",
           "instant": false,
@@ -127,10 +121,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "irate(node_network_transmit_bytes_total{instance=~\"$instance\"}[5m])*8",
           "hide": false,
@@ -160,10 +151,7 @@
             "$__all"
           ]
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "z_0UfxtGz"
-        },
+        "datasource": "Prometheus",
         "definition": "label_values({job=~\"metrics\"}, instance)",
         "hide": 0,
         "includeAll": true,

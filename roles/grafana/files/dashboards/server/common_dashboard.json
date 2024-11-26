@@ -21,10 +21,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -101,10 +98,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_memory_MemAvailable_bytes{instance=~\"$instance\"}",
           "instant": false,
@@ -114,10 +108,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_memory_MemTotal_bytes{instance=~\"$instance\"} - node_memory_MemAvailable_bytes{instance=~\"${instance}\"}",
           "hide": false,
@@ -132,10 +123,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -211,10 +199,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_load1{instance=~\"$instance\"}",
           "instant": false,
@@ -224,10 +209,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_load5{instance=~\"$instance\"}",
           "hide": false,
@@ -238,10 +220,7 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_load15{instance=~\"$instance\"}",
           "hide": false,
@@ -256,10 +235,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -336,10 +312,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "node_filesystem_size_bytes{instance=~\"$instance\"} - node_filesystem_avail_bytes{instance=~\"$instance\"}",
           "instant": false,
@@ -369,10 +342,7 @@
             "$__all"
           ]
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "z_0UfxtGz"
-        },
+        "datasource": "Prometheus",
         "definition": "label_values({job=~\"metrics\"}, instance)",
         "hide": 0,
         "includeAll": true,

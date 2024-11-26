@@ -34,10 +34,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -102,10 +99,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "sum(increase(ha_sensor_energy_kwh{domain=\"sensor\",entity=~\"sensor.energy_consumed_tariff.+\"}[24h]))",
           "instant": false,
@@ -120,10 +114,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -187,10 +178,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_gas_mu0xb3{domain=\"sensor\",entity=\"sensor.gas_consumed\"}[24h])",
           "instant": false,
@@ -205,10 +193,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -273,10 +258,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_water_mu0xb3{domain=\"sensor\",entity=\"sensor.water_consumed\"}[24h])*1000",
           "instant": false,
@@ -291,10 +273,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -354,10 +333,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "ha_sensor_power_kw{domain=\"sensor\",entity=\"sensor.power_consumed\"}",
           "instant": false,
@@ -370,10 +346,7 @@
       "type": "gauge"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -419,10 +392,7 @@
       "pluginVersion": "10.4.1",
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "ha_sensor_power_kw{domain=\"sensor\",entity=\"sensor.current_average_quarterly_demand\"}",
           "instant": false,
@@ -431,10 +401,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "ha_sensor_power_kw{domain=\"sensor\",entity=\"sensor.month_maximum_quarterly_demand\"}",
           "hide": false,
@@ -444,10 +411,7 @@
           "refId": "B"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "ha_sensor_power_kw{domain=\"sensor\",entity=\"sensor.13_month_maximum_quarterly_demand\"}",
           "hide": false,
@@ -461,10 +425,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -541,10 +502,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "ha_sensor_power_kw{entity=~\"sensor.power_consumed.*\"}",
           "instant": false,
@@ -557,10 +515,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -675,10 +630,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_gas_mu0xb3{domain=\"sensor\",entity=\"sensor.gas_consumed\"}[1m])",
           "instant": false,
@@ -687,10 +639,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_gas_mu0xb3{domain=\"sensor\",entity=\"sensor.gas_consumed\"}[1h])",
           "hide": false,
@@ -705,10 +654,7 @@
       "type": "timeseries"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -824,10 +770,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_water_mu0xb3{domain=\"sensor\",entity=\"sensor.water_consumed\"}[1m])*1000",
           "instant": false,
@@ -836,10 +779,7 @@
           "refId": "A"
         },
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "editorMode": "code",
           "expr": "increase(ha_sensor_water_mu0xb3{domain=\"sensor\",entity=\"sensor.water_consumed\"}[1h])*1000",
           "hide": false,
@@ -867,10 +807,7 @@
       "type": "row"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -973,10 +910,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "sum(increase(ha_sensor_energy_kwh{domain=\"sensor\",entity=~\"sensor.energy_consumed_tariff.+\"}[1d] offset -1d))",
@@ -995,10 +929,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1101,10 +1032,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "sum(increase(ha_sensor_gas_mu0xb3{domain=\"sensor\",entity=\"sensor.gas_consumed\"}[1d] offset -1d))",
@@ -1123,10 +1051,7 @@
       "type": "barchart"
     },
     {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "z_0UfxtGz"
-      },
+      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1229,10 +1154,7 @@
       },
       "targets": [
         {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "z_0UfxtGz"
-          },
+          "datasource": "Prometheus",
           "disableTextWrap": false,
           "editorMode": "code",
           "expr": "sum(increase(ha_sensor_water_mu0xb3{domain=\"sensor\",entity=\"sensor.water_consumed\"}[1d] offset -1d))*1000",
