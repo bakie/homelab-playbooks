@@ -7,6 +7,7 @@ apache_modules:
   - expires
   - filter
   - headers
+  - http2
   - include
   - mime
   - rewrite

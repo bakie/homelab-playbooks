@@ -15,6 +15,7 @@ def test_apache_is_running(host):
     "expires",
     "filter",
     "headers",
+    "http2",
     "include",
     "mime",
     "rewrite",
@@ -22,6 +23,7 @@ def test_apache_is_running(host):
     "ssl",
     "proxy_html",
     "proxy_http",
+    "proxy_wstunnel",
     "xml2enc"
 ])
 def test_modules_are_enabled(host, name):
