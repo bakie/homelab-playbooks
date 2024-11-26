@@ -11,7 +11,7 @@
     - role: apache_vhosts
       tags: [ "apache", "apache_vhosts" ]
     - role: prometheus
-      tags: [ "prometheus", "prometheus_instance" ]
+      tags: [ "prometheus", "prometheus_controller" ]
     - role: prometheus_alertmanager
       tags: [ "prometheus", "prometheus_alertmanager" ]
     - role: grafana

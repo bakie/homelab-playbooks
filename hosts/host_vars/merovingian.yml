@@ -21,31 +21,42 @@ apache_vhosts_config:
 # prometheus role
 prometheus_metrics_job_targets:
   - 10.1.1.1
-  - kodi.local
-  - azmodan.local
+  - merovingian.local
+  - morpheus.local
+  - neo.local
+  - link.local
+#  - kodi.local
+#  - azmodan.local
 prometheus_metrics_job_relabel_configs:
   - source_labels: "[__address__]"
     regex: 10\\.1\\.1\\.1(.*)
     replacement: openwrt
     target_label: instance
 prometheus_blackbox_exporter_targets:
-  - url: "transmission.{{ top_lvl_domain }}"
-    instance: "transmission"
+  - url: "{{ gotify_url }}"
+    instance: "gotify"
     job: "blackbox"
-  - url: "sabnzbd.{{ top_lvl_domain }}"
+  - url: "{{ grafana_url }}"
+    instance: "grafana"
+    job: "blackbox"
+  - url: "{{ medusa_url }}"
+    instance: "medusa"
+    job: "blackbox"
+  - url: "{{ miniflux_url }}"
+    instance: "miniflux"
+    job: "blackbox"
+  - url: "{{ prometheus_url  }}"
+    instance: "prometheus"
+    job: "blackbox"
+  - url: "{{ prometheus_alertmanager_web_external_url  }}"
+    instance: "prometheus_alertmanager"
+    job: "blackbox"
+  - url: "{{ sabnzbd_url }}"
     instance: "sabnzbd"
     job: "blackbox"
-  - url: "medusa.{{ top_lvl_domain }}"
-    instance: "medusa"
+  - url: "{{ transmission_url }}"
+    instance: "transmission"
     job: "blackbox"
 
 # prometheus_alertmanager
 prometheus_alertmanager_gotify_bridge_endpoint: "http://10.1.1.204:80/message"
-
-# nfs_client
-nfs_imports:
-  - local_dir: "/mnt/nas/prometheus_data"
-    remote_dir: "/share/MD0_DATA/data/prometheus/"
-    nfs_server: "azmodan.local"
-    mode: 0777
-    state: present
