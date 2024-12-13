@@ -1,3 +1,4 @@
 ---
 
 prometheus_alertmanager_gotify_bridge_token: "dummyToken"
+prometheus_alertmanager_gotify_bridge_endpoint: "http://localhost/message"

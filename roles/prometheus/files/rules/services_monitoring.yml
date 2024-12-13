@@ -17,13 +17,13 @@ groups:
           summary: "medusa is down (instance {{ $labels.instance }})"
           description: "medusa is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 
-      - alert: openvpn@airvpnDown
-        expr: node_systemd_unit_state{name="openvpn@airvpn.service", state="active"} != 1
+      - alert: openvpnDown
+        expr: node_systemd_unit_state{name=~"openvpn.+", state="active"} != 1
         labels:
           severity: "critical"
         annotations:
-          summary: "openvpn@airvpn is down (instance {{ $labels.instance }})"
-          description: "openvpn@airvpn is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+          summary: "openvpn is down (instance {{ $labels.instance }})"
+          description: "openvpn is down \n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
 
       - alert: SabnzbdDown
         expr: node_systemd_unit_state{name="sabnzbdplus.service", state="active"} != 1

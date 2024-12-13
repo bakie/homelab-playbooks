@@ -27,4 +27,3 @@ prometheus_alertmanager_gotify_bridge_bind_address: 127.0.0.1
 prometheus_alertmanager_gotify_bridge_port: 8080
 prometheus_alertmanager_gotify_bridge_webhook_path: "/gotify_webhook"
 prometheus_alertmanager_gotify_bridge_full_url: "http://{{ prometheus_alertmanager_gotify_bridge_bind_address }}:{{ prometheus_alertmanager_gotify_bridge_port }}{{ prometheus_alertmanager_gotify_bridge_webhook_path }}"
-prometheus_alertmanager_gotify_bridge_endpoint: "http://localhost/message"
