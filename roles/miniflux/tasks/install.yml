@@ -1,7 +1,7 @@
 ---
 
 - name: Install miniflux
-  become: yes
+  become: true
   apt:
     name: "miniflux"
     state: present

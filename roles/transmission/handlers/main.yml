@@ -1,13 +1,13 @@
 ---
 
 - name: reload transmission
-  become: yes
+  become: true
   service:
     name: transmission-daemon
     state: reloaded
 
 - name: restart transmission
-  become: yes
+  become: true
   service:
     name: transmission-daemon
     state: restarted

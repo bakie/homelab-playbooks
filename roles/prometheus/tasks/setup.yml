@@ -1,20 +1,20 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "procps"
     state: present
 
 - name: create prometheus group
-  become: yes
+  become: true
   group:
     name: "{{ prometheus_group }}"
     system: yes
     state: present
 
 - name: create prometheus user
-  become: yes
+  become: true
   user:
     name: "{{ prometheus_user }}"
     shell: "/usr/sbin/nologin"
@@ -25,7 +25,7 @@
     state: present
 
 - name: create prometheus base paths
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory

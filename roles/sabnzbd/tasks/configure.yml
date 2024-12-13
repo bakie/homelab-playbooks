@@ -1,7 +1,7 @@
 ---
 
 - name: change the default settings of sabnzbdplus
-  become: yes
+  become: true
   lineinfile:
     path: "/etc/default/sabnzbdplus"
     regexp: "{{ item.regexp }}"
@@ -13,7 +13,7 @@
   notify: restart sabnzbd
 
 - name: start and enable sabnzbd
-  become: yes
+  become: true
   service:
     name: sabnzbdplus
     state: started
@@ -26,7 +26,7 @@
   meta: flush_handlers
 
 - name: add the sabnzbd_url to host_whitelist
-  become: yes
+  become: true
   lineinfile:
     path: "{{ sabnzbd_install_path }}/.sabnzbd/sabnzbd.ini"
     regexp: "^host_whitelist.*"

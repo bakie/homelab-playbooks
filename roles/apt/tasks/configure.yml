@@ -5,7 +5,7 @@
     reboot_time: "0{{ 3 | random(start=1, seed=ansible_hostname) }}:{{ 59 | random(start=10, seed=ansible_host) }}"
 
 - name: config unattended-upgrades
-  become: yes
+  become: true
   lineinfile:
     path: "/etc/apt/apt.conf.d/50unattended-upgrades"
     regexp: "{{ item.regexp }}"
@@ -17,7 +17,7 @@
     - { regexp: "Unattended-Upgrade::Automatic-Reboot-Time", line: "Unattended-Upgrade::Automatic-Reboot-Time \"{{ reboot_time }}\";" }
 
 - name: enable unattended-upgrades
-  become: yes
+  become: true
   lineinfile:
     path: "/etc/apt/apt.conf.d/20auto-upgrades"
     regexp: "{{ item.regexp }}"

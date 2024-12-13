@@ -1,7 +1,7 @@
 ---
 
 - name: set owner/group on medusa install path
-  become: yes
+  become: true
   file:
     path: "{{ medusa_install_path }}"
     owner: "{{ medusa_user }}"
@@ -9,7 +9,7 @@
     recurse: yes
 
 - name: restart medusa
-  become: yes
+  become: true
   service:
     name: medusa
     state: restarted

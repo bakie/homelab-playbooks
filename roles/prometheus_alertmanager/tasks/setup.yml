@@ -1,14 +1,14 @@
 ---
 
 - name: create prometheus_alertmanager group
-  become: yes
+  become: true
   group:
     name: "{{ prometheus_alertmanager_group }}"
     system: yes
     state: present
 
 - name: create prometheus_alertmanager user
-  become: yes
+  become: true
   user:
     name: "{{ prometheus_alertmanager_user }}"
     shell: "/usr/sbin/nologin"
@@ -18,7 +18,7 @@
     home: "{{ prometheus_alertmanager_install_path }}"
 
 - name: create prometheus_alertmanager base paths
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory

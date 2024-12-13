@@ -1,7 +1,7 @@
 ---
 
 - name: template the blackbox_exporter_targets.yml
-  become: yes
+  become: true
   become_user: "{{ prometheus_user }}"
   template:
     src: "blackbox_exporter_targets.json.j2"

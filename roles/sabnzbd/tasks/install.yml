@@ -1,7 +1,7 @@
 ---
 
 - name: install sabnzbd and dependencies
-  become: yes
+  become: true
   apt:
     name: "sabnzbdplus"
     state: present

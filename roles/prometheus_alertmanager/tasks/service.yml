@@ -1,7 +1,7 @@
 ---
 
 - name: create alertmanager service file
-  become: yes
+  become: true
   template:
     src: alertmanager.service.j2
     dest: /etc/systemd/system/prometheus_alertmanager.service
@@ -11,7 +11,7 @@
   notify: restart prometheus_alertmanager
 
 - name: enable and start alertmanager
-  become: yes
+  become: true
   service:
     daemon_reload: yes
     name: prometheus_alertmanager
@@ -19,7 +19,7 @@
     enabled: yes
 
 - name: create alertmanager_gotify_bridge service file
-  become: yes
+  become: true
   template:
     src: alertmanager_gotify_bridge.service.j2
     dest: /etc/systemd/system/prometheus_alertmanager_gotify_bridge.service
@@ -29,7 +29,7 @@
   notify: restart prometheus_alertmanager_gotify_bridge
 
 - name: enable and start alertmanager_gotify_bridge
-  become: yes
+  become: true
   service:
     daemon_reload: yes
     name: prometheus_alertmanager_gotify_bridge

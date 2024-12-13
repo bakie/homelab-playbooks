@@ -1,20 +1,20 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "{{ pihole_required_packages }}"
     state: present
     install_recommends: no
 
 - name: add pihole group
-  become: yes
+  become: true
   group:
     name: "{{ pihole_group }}"
     state: present
 
 - name: create pihole user
-  become: yes
+  become: true
   user:
     name: "{{ pihole_user }}"
     home: "/etc/pihole" # can't change this as the setupVars need to be in this folder for the --unattended to work

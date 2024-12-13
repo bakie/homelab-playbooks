@@ -6,34 +6,34 @@
   changed_when: false
 
 - name: create the prometheus_blackbox_exporter_install_path base dir
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_blackbox_exporter_install_path | regex_replace('/$', '') | dirname }}"
     state: directory
     mode: 0755
 
 - name: download and unarchive prometheus_blackbox_exporter
-  become: yes
+  become: true
   unarchive:
     src: "{{ prometheus_blackbox_exporter_download_url }}"
     dest: /tmp
     remote_src: yes
 
 - name: Remove currently installed prometheus_blackbox_exporter version
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_blackbox_exporter_install_path }}"
     state: absent
 
 - name: rename prometheus_blackbox_exporter directory
-  become: yes
+  become: true
   command: "mv /tmp/blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_blackbox_exporter_install_path }}"
   args:
     creates: "{{ prometheus_blackbox_exporter_install_path }}"
   notify: restart prometheus_blackbox_exporter
 
 - name: set permissions on prometheus_blackbox_exporter_install_path
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_blackbox_exporter_install_path }}"
     recurse: yes

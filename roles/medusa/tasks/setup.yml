@@ -1,19 +1,19 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "{{ medusa_required_packages }}"
     state: present
 
 - name: add medusa group
-  become: yes
+  become: true
   group:
     name: "{{ medusa_group }}"
     state: present
 
 - name: create medusa user
-  become: yes
+  become: true
   user:
     name: "{{ medusa_user }}"
     comment: "medusa"
@@ -24,7 +24,7 @@
     state: present
 
 - name: ensure {{ medusa_install_path }} dir exists
-  become: yes
+  become: true
   file:
     path: "{{ medusa_install_path }}"
     owner: "{{ medusa_user }}"

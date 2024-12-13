@@ -6,7 +6,7 @@
   changed_when: false
 
 - name: create the gotify_install_path dir
-  become: yes
+  become: true
   file:
     path: "{{ gotify_install_path }}"
     owner: "{{ gotify_user }}"
@@ -15,7 +15,7 @@
     mode: 0755
 
 - name: download and unarchive gotify
-  become: yes
+  become: true
   unarchive:
     src: "{{ gotify_download_url }}"
     dest: "{{ gotify_install_path }}"
@@ -24,7 +24,7 @@
     remote_src: yes
 
 - name: template the version file
-  become: yes
+  become: true
   template:
     src: version.j2
     dest: "{{ gotify_version_file_path }}"

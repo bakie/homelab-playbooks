@@ -1,7 +1,7 @@
 ---
 
 - name: restart prometheus_node_exporter
-  become: yes
+  become: true
   service:
     name: prometheus_node_exporter
     state: restarted

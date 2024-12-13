@@ -1,7 +1,7 @@
 ---
 
 - name: install resolvconf
-  become: yes
+  become: true
   apt:
     name: "{{ resolvconf_install_packages }}"
     state: present

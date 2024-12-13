@@ -1,13 +1,13 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "{{ apache_required_packages }}"
     state: present
 
 - name: install apache2
-  become: yes
+  become: true
   apt:
     name: "apache2"
     state: present

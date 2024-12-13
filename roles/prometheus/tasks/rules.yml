@@ -11,7 +11,7 @@
     rules_files: "{{ ls_rules_files.stdout_lines }}"
 
 - name: copy the rule files
-  become: yes
+  become: true
   copy:
     src: "rules/{{ item }}"
     dest: "{{ prometheus_rules_config_path }}"

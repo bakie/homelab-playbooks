@@ -1,7 +1,7 @@
 ---
 
 - name: create prometheus_node_exporter directories
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory
@@ -14,7 +14,7 @@
     - "{{ prometheus_node_exporter_textfile_scripts_output_path }}"
 
 - name: copy the prometheus_node_exporter config file
-  become: yes
+  become: true
   template:
     src: config.yml.j2
     dest: "{{ prometheus_node_exporter_config_path }}/config.yml"

@@ -1,7 +1,7 @@
 ---
 
 - name: installed required packages
-  become: yes
+  become: true
   apt:
     name: "{{ resolvconf_required_packages }}"
     state: present

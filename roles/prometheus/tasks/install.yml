@@ -6,7 +6,7 @@
   changed_when: false
 
 - name: Download prometheus
-  become: yes
+  become: true
   become_user: "{{ prometheus_user }}"
   unarchive:
     src: "{{ prometheus_download_url }}"
@@ -14,20 +14,20 @@
     remote_src: yes
 
 - name: Remove currently installed prometheus version
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_install_path }}"
     state: absent
 
 - name: rename prometheus directory
-  become: yes
+  become: true
   command: "mv /tmp/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_install_path }}"
   args:
     creates: "{{ prometheus_install_path }}"
   notify: restart prometheus
 
 - name: set permissions on prometheus_install_path
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_install_path }}"
     recurse: yes

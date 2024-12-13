@@ -1,7 +1,7 @@
 ---
 
 - name: 'Template the setupVars for unattended install'
-  become: yes
+  become: true
   template:
     src: setupVars.conf.j2
     dest: /etc/pihole/setupVars.conf
@@ -10,14 +10,14 @@
     mode: 0644
 
 - name: download the pihole installer
-  become: yes
+  become: true
   get_url:
     url: "https://install.pi-hole.net"
     dest: "/tmp/pihole-install.sh"
     mode: 0755
 
 - name: run pihole installer
-  become: yes
+  become: true
   command: "./pihole-install.sh --unattended"
   args:
     chdir: "/tmp"

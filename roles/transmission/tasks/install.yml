@@ -1,14 +1,14 @@
 ---
 
 - name: install transmission
-  become: yes
+  become: true
   apt:
     name: [ "transmission-cli", "transmission-common", "transmission-daemon" ]
     state: present
     install_recommends: no
 
 - name: set correct user in systemd file
-  become: yes
+  become: true
   lineinfile:
     dest: "/lib/systemd/system/transmission-daemon.service"
     regexp: "^User="
@@ -17,7 +17,7 @@
   notify: restart transmission
 
 - name: start transmission
-  become: yes
+  become: true
   systemd:
     name: transmission-daemon
     state: started

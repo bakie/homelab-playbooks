@@ -1,7 +1,7 @@
 ---
 
 - name: configure apache vhost {{ vhost.name }}
-  become: yes
+  become: true
   template:
     src: "vhost_{{ vhost.template }}.conf.j2"
     dest: "/etc/apache2/sites-available/{{ vhost.name }}.conf"
@@ -9,7 +9,7 @@
   notify: reload apache
 
 - name: link apache vhost {{ vhost.name }}
-  become: yes
+  become: true
   file:
     src: "/etc/apache2/sites-available/{{ vhost.name }}.conf"
     dest: "/etc/apache2/sites-enabled/{{ vhost.name }}.conf"

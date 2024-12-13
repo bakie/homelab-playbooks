@@ -1,7 +1,7 @@
 ---
 
 - name: copy the script {{ textfile_script.script_name }}
-  become: yes
+  become: true
   copy:
     src: "{{ textfile_script.script_name }}"
     dest: "{{ prometheus_node_exporter_textfile_scripts_path }}"
@@ -10,7 +10,7 @@
     mode: 0755
 
 - name: add the cronjob {{ textfile_script.cronjob.name }} to the root user
-  become: yes
+  become: true
   cron:
     name: "{{ textfile_script.cronjob.name }}"
     minute: "{{ textfile_script.cronjob.minute|d('*') }}"

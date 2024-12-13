@@ -6,34 +6,34 @@
   changed_when: false
 
 - name: create the prometheus_alertmanager_install_path base dir
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_alertmanager_install_path | regex_replace('/$', '') | dirname }}"
     state: directory
     mode: 0755
 
 - name: download and unarchive prometheus_alertmanager
-  become: yes
+  become: true
   unarchive:
     src: "{{ prometheus_alertmanager_download_url }}"
     dest: /tmp
     remote_src: yes
 
 - name: Remove currently installed prometheus alertmanager version
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_alertmanager_install_path }}"
     state: absent
 
 - name: rename prometheus_alertmanager directory
-  become: yes
+  become: true
   command: "mv /tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_alertmanager_install_path }}"
   args:
     creates: "{{ prometheus_alertmanager_install_path }}"
   notify: restart prometheus_alertmanager
 
 - name: set permissions on prometheus_alertmanager_install_path
-  become: yes
+  become: true
   file:
     path: "{{ prometheus_alertmanager_install_path }}"
     recurse: yes

@@ -1,20 +1,20 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "unzip"
     state: present
 
 - name: create gotify group
-  become: yes
+  become: true
   group:
     name: "{{ gotify_group }}"
     system: yes
     state: present
 
 - name: create gotify user
-  become: yes
+  become: true
   user:
     name: "{{ gotify_user }}"
     shell: "/usr/sbin/nologin"
@@ -24,7 +24,7 @@
     home: "{{ gotify_install_path }}"
 
 - name: create gotify config path
-  become: yes
+  become: true
   file:
     path: "{{ gotify_config_path }}"
     state: directory

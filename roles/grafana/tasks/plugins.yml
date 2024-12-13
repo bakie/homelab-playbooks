@@ -1,7 +1,7 @@
 ---
 
 - name: install grafana plugins
-  become: yes
+  become: true
   grafana_plugin:
     name: "{{ item }}"
     state: present

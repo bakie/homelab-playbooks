@@ -1,7 +1,7 @@
 ---
 
 - name: configure Grafana ini file
-  become: yes
+  become: true
   replace:
     path: "{{ grafana_config_path }}/grafana.ini"
     regexp: "{{ item.regexp }}"
@@ -10,7 +10,7 @@
   notify: restart grafana
 
 - name: template the datasources
-  become: yes
+  become: true
   template:
     src: datasources.yaml.j2
     dest: "{{ grafana_config_path }}/provisioning/datasources/datasources.yaml"
@@ -19,7 +19,7 @@
   notify: restart grafana
 
 - name: template the dashboards
-  become: yes
+  become: true
   template:
     src: dashboards.yaml.j2
     dest: "{{ grafana_config_path }}/provisioning/dashboards/dashboards.yaml"
@@ -28,7 +28,7 @@
   notify: restart grafana
 
 - name: create the dashboards config path
-  become: yes
+  become: true
   file:
     state: directory
     group: "{{ grafana_group }}"
@@ -36,7 +36,7 @@
     mode: "0755"
 
 - name: create the dashboards paths
-  become: yes
+  become: true
   file:
     state: directory
     group: "{{ grafana_group }}"
@@ -45,7 +45,7 @@
   loop: "{{ grafana_dashboards }}"
 
 - name: copy the dashboards
-  become: yes
+  become: true
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -55,7 +55,7 @@
   notify: restart grafana
 
 - name: enable and start grafana
-  become: yes
+  become: true
   service:
     name: grafana-server
     state: started

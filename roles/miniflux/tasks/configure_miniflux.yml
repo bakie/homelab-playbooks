@@ -1,7 +1,7 @@
 ---
 
 - name: template the miniflux config file
-  become: yes
+  become: true
   template:
     src: "miniflux.conf.j2"
     dest: "/etc/miniflux.conf"

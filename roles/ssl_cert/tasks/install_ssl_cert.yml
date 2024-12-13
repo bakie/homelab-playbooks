@@ -1,7 +1,7 @@
 ---
 
 - name: create ssl dir
-  become: yes
+  become: true
   file:
     path: "{{ ssl_cert.dir }}"
     state: directory
@@ -10,7 +10,7 @@
     mode: 0650
 
 - name: create the key file
-  become: yes
+  become: true
   copy:
     content: "{{ ssl_cert.key.content }}"
     dest: "{{ ssl_cert.dir }}/{{ ssl_cert.key.filename }}"
@@ -19,7 +19,7 @@
     mode: 0640
 
 - name: create the crt file
-  become: yes
+  become: true
   copy:
     content: "{{ ssl_cert.crt.content }}"
     dest: "{{ ssl_cert.dir }}/{{ ssl_cert.crt.filename }}"

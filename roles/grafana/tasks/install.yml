@@ -1,7 +1,7 @@
 ---
 
 - name: install grafana
-  become: yes
+  become: true
   apt:
     name: "grafana={{ grafana_version }}"
     state: present

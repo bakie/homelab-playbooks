@@ -1,7 +1,7 @@
 ---
 
 - name: install unattended-upgrades
-  become: yes
+  become: true
   apt:
     name: unattended-upgrades
     state: present

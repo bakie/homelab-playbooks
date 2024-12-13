@@ -1,14 +1,14 @@
 ---
 
 - name: create prometheus_blackbox_exporter group
-  become: yes
+  become: true
   group:
     name: "{{ prometheus_blackbox_exporter_group }}"
     system: yes
     state: present
 
 - name: create prometheus_blackbox_exporter user
-  become: yes
+  become: true
   user:
     name: "{{ prometheus_blackbox_exporter_user }}"
     shell: "/usr/sbin/nologin"
@@ -18,7 +18,7 @@
     home: "{{ prometheus_blackbox_exporter_install_path }}"
 
 - name: create prometheus base paths
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory

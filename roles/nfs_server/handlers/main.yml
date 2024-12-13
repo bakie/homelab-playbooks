@@ -1,7 +1,7 @@
 ---
 
 - name: restart nfs
-  become: yes
+  become: true
   service:
     name: nfs-kernel-server
     state: restarted

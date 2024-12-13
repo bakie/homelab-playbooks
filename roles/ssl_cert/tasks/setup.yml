@@ -1,7 +1,7 @@
 ---
 
 - name: ensure the ssl group {{ ssl_group }} exists
-  become: yes
+  become: true
   group:
     name: "{{ ssl_group }}"
     system: yes

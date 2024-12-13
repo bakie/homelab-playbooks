@@ -1,7 +1,7 @@
 ---
 
 - name: create prometheus_alertmanager configuration directories
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory
@@ -15,7 +15,7 @@
     - "{{ prometheus_alertmanager_gotify_bridge_path }}"
 
 - name: configure amtool
-  become: yes
+  become: true
   template:
     src: "amtool.yml.j2"
     dest: "{{ prometheus_alertmanager_amtool_config_file_path }}"
@@ -24,7 +24,7 @@
     mode: 0640
 
 - name: configure alertmanager.yml
-  become: yes
+  become: true
   template:
     src: "alertmanager.yml.j2"
     dest: "{{ prometheus_alertmanager_config_path }}/alertmanager.yml"

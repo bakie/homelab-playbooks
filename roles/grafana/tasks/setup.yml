@@ -1,19 +1,19 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "{{ grafana_required_packages }}"
     state: present
 
 - name: Add Grafana apt signing key
-  become: yes
+  become: true
   apt_key:
     url: "{{ grafana_apt_key_url }}"
     state: present
 
 - name: Add Grafana repositories
-  become: yes
+  become: true
   apt_repository:
     repo: "{{ grafana_apt_repo_url }}"
     state: present

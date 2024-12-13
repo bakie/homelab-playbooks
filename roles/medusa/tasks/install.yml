@@ -1,13 +1,13 @@
 ---
 
 - name: work around permission issue
-  become: yes
+  become: true
   command: git config --global --add safe.directory {{ medusa_install_path }}
   changed_when: no
   tags: skip_ansible_lint
 
 - name: clone the medusa gitrepo
-  become: yes
+  become: true
   git:
     repo: "{{ medusa_repo_url }}"
     dest: "{{ medusa_install_path }}"

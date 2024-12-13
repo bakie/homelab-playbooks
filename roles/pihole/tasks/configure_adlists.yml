@@ -1,7 +1,7 @@
 ---
 
 - name: allow user {{ pihole_user }} to execute pihole as root without password
-  become: yes
+  become: true
   copy:
     dest: "/etc/sudoers.d/pihole"
     validate: /usr/sbin/visudo -csf %s
@@ -10,7 +10,7 @@
     mode: 0440
 
 - name: template the update_adlists script
-  become: yes
+  become: true
   template:
     src: "update_adlists.j2"
     dest: "{{ pihole_config_path }}/update_adlists"
@@ -19,7 +19,7 @@
     mode: 0644
 
 - name: add a cronjob to run update_adlists script
-  become: yes
+  become: true
   cron:
     name: "update adlists"
     user: "{{ pihole_user }}"
@@ -29,7 +29,7 @@
     job: "bash {{ pihole_config_path }}/update_adlists"
 
 - name: trigger the update_adlists script if we have just installed or updated pihole
-  become: yes
+  become: true
   command: bash {{ pihole_config_path }}/update_adlists
   args:
     executable: "/bin/bash"

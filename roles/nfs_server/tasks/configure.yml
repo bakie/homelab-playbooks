@@ -1,7 +1,7 @@
 ---
 
 - name: add After and Wants to service file to wait until network is online
-  become: yes
+  become: true
   lineinfile:
     path: "/lib/systemd/system/nfs-kernel-server.service"
     regexp: "{{ item.regexp }}"

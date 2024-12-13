@@ -1,7 +1,7 @@
 ---
 
 - name: check for pihole executable
-  become: yes
+  become: true
   command: "/bin/which pihole"
   register: pihole_executable
   failed_when: no
@@ -18,7 +18,7 @@
   when: pihole_executable is defined and pihole_executable.rc == 0
 
 - name: check the current version
-  become: yes
+  become: true
   shell: |
     set -o pipefail
     pihole version --current 2>&1 | grep -i pi-hole | grep {{ pihole_latest_release.tag }}

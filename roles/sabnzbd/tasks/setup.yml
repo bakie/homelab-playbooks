@@ -1,7 +1,7 @@
 ---
 
 - name: add the debian repositories
-  become: yes
+  become: true
   replace:
     path: "/etc/apt/sources.list.d/debian.sources"
     regexp: '^(Components(?!.* {{ item }}).*)'
@@ -12,20 +12,20 @@
     - "non-free-firmware"
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "{{ sabnzbd_required_packages }}"
     state: present
     update_cache: yes
 
 - name: add sabnzbd group
-  become: yes
+  become: true
   group:
     name: "{{ sabnzbd_group }}"
     state: present
 
 - name: create sabnzbd user
-  become: yes
+  become: true
   user:
     name: "{{ sabnzbd_user }}"
     shell: "/usr/sbin/nologin"
@@ -35,7 +35,7 @@
     state: present
 
 - name: create nesessary directories
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory

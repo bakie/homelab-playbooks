@@ -1,7 +1,7 @@
 ---
 
 - name: template the dns records
-  become: yes
+  become: true
   template:
     src: "dns_records.j2"
     dest: "{{ pihole_config_path }}/custom.list"

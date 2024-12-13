@@ -6,7 +6,7 @@
 # We can also preserve everything with `sudo -E bash`.
 # https://askubuntu.com/questions/1186999/how-does-sudo-handle-home-differently-since-19-10
 - name: create the keep-home file in sudoers.d
-  become: yes
+  become: true
   copy:
     dest: "/etc/sudoers.d/keep-home"
     content: |

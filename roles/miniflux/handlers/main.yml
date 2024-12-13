@@ -1,7 +1,7 @@
 ---
 
 - name: restart miniflux
-  become: yes
+  become: true
   service:
     name: miniflux
     state: restarted

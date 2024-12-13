@@ -1,19 +1,19 @@
 ---
 
 - name: install required packages
-  become: yes
+  become: true
   apt:
     name: "procps"
     state: present
 
 - name: add transmission group
-  become: yes
+  become: true
   group:
     name: "{{ transmission_group }}"
     state: present
 
 - name: create transmission user
-  become: yes
+  become: true
   user:
     name: "{{ transmission_user }}"
     shell: "/usr/sbin/nologin"
@@ -23,7 +23,7 @@
     state: present
 
 - name: create necessary dirs
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     state: directory

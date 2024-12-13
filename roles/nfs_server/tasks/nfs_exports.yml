@@ -1,7 +1,7 @@
 ---
 
 - name: template the exports file
-  become: yes
+  become: true
   template:
     src: "exports.j2"
     dest: "/etc/exports"

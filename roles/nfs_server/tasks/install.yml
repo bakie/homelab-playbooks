@@ -1,13 +1,13 @@
 ---
 
 - name: install nfs-kernel-server
-  become: yes
+  become: true
   apt:
     name: [ "nfs-kernel-server" ]
     state: present
 
 - name: start and enabled
-  become: yes
+  become: true
   service:
     name: nfs-kernel-server
     state: started

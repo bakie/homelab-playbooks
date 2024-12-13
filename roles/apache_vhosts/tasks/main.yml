@@ -1,7 +1,7 @@
 ---
 
 - name: Create necessary directories
-  become: yes
+  become: true
   file:
     path: "{{ item }}"
     access_time: preserve
