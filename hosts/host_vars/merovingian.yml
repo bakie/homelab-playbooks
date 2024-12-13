@@ -59,4 +59,4 @@ prometheus_blackbox_exporter_targets:
     job: "blackbox"
 
 # prometheus_alertmanager
-prometheus_alertmanager_gotify_bridge_endpoint: "http://10.1.1.204:80/message"
+prometheus_alertmanager_gotify_bridge_endpoint: "https://{{ gotify_url }}/message"
