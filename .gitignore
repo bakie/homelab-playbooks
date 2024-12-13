@@ -11,3 +11,5 @@ __pycache__
 *.pyc
 # secrets file
 hosts/group_vars/all/secrets.yml
+*ovpn*
+!dummy.ovpn.j2

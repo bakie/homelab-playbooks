@@ -1,0 +1,39 @@
+client
+dev tun
+proto udp
+
+remote 1.1.1.1 4569
+remote 1.1.1.1 80
+
+remote-random
+resolv-retry infinite
+nobind
+
+cipher AES-256-GCM
+
+setenv CLIENT_CERT 0
+tun-mtu 1500
+mssfix 0
+persist-key
+persist-tun
+
+reneg-sec 0
+
+remote-cert-tls server
+auth-user-pass {{ openvpn_auth_user_pass_file_path }}
+
+script-security 2
+up /etc/openvpn/update-resolv-conf
+down /etc/openvpn/update-resolv-conf
+
+<ca>
+-----BEGIN CERTIFICATE-----
+DUMMY_CERTIFICATE
+-----END CERTIFICATE-----
+</ca>
+
+<tls-crypt>
+-----BEGIN OpenVPN Static key V1-----
+DUMMY_CERTIFICATE
+-----END OpenVPN Static key V1-----
+</tls-crypt>

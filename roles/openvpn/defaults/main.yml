@@ -1,9 +1,6 @@
 ---
 
+openvpn_auth_user_pass_file_path: "/etc/openvpn/auth_user_pass"
 openvpn_name: "openvpn_name"
-openvpn_remote: "default_openvpn_remote"
-openvpn_remote_port: 443
-openvpn_ca: "openvpn_ca"
-openvpn_cert: "openvpn_cert"
-openvpn_key: "openvpn_key"
-openvpn_tls_auth: "openvpn_tls_auth"
+openvpn_username: "openvpn_user"
+openvpn_password: "openvpn_password"

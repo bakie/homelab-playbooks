@@ -1,7 +1,7 @@
 ---
 
 - name: install openvpn
-  become: yes
+  become: true
   apt:
     name: openvpn
     state: present
