@@ -2,6 +2,7 @@
 
 groups:
   - name: HomeAssistantSensorsTransform
+    interval: 1h
     rules:
       - record: ha_sensor_power_consumed_day_month_year
         expr: ha_sensor_energy_kwh{domain="sensor",entity=~"sensor.energy_consumed_tariff.+"} + ignoring(year,month,day) group_right count_values without() ("year", year(timestamp(count_values without() ("month", month(timestamp(count_values without() ("day", day_of_month(timestamp(ha_sensor_energy_kwh{domain="sensor",entity=~"sensor.energy_consumed_tariff.+"}))))))))) * 0
