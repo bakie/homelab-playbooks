@@ -5,7 +5,6 @@
   vars:
     prometheus_metrics_job_targets:
       - 10.1.1.1
-      - azmodan.local
     prometheus_metrics_job_relabel_configs:
       - source_labels: "[__custom_source_label__]"
         regex: custom\\.regex\\.test(.*)

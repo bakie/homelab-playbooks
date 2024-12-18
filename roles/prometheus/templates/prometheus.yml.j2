@@ -10,7 +10,8 @@ global:
   evaluation_interval: 10s
 
 rule_files:
-  - {{ prometheus_rules_config_path }}/*.yml
+  - {{ prometheus_alerting_rules_config_path }}/*.yml
+  - {{ prometheus_recording_rules_config_path }}/*.yml
 
 alerting:
   alertmanagers:

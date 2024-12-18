@@ -7,7 +7,8 @@ PROMETHEUS_GROUP = "prometheus"
 PROMETHEUS_PATH = "/opt/prometheus/prometheus"
 PROMETHEUS_BASE_PATH = "/opt/prometheus"
 PROMETHEUS_CONFIG_PATH = "/etc/prometheus/prometheus"
-PROMETHEUS_RULES_CONFIG_PATH = "/etc/prometheus/prometheus/rules"
+PROMETHEUS_ALERTING_RULES_CONFIG_PATH = "/etc/prometheus/prometheus/rules/alerting"
+PROMETHEUS_RECORDING_RULES_CONFIG_PATH = "/etc/prometheus/prometheus/rules/recording"
 PROMETHEUS_FILE_SD_CONFIG_PATH = "/etc/prometheus/prometheus/file_sd"
 PROMETHEUS_BASE_CONFIG_PATH = "/etc/prometheus"
 PROMETHEUS_DATA_PATH = "/opt/prometheus/prometheus_data"
@@ -29,7 +30,8 @@ def test_user_is_in_prometheus_group(host):
     (PROMETHEUS_CONFIG_PATH, PROMETHEUS_USER),
     (PROMETHEUS_BASE_CONFIG_PATH, "root"),
     (PROMETHEUS_DATA_PATH, PROMETHEUS_USER),
-    (PROMETHEUS_RULES_CONFIG_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_ALERTING_RULES_CONFIG_PATH, PROMETHEUS_USER),
+    (PROMETHEUS_RECORDING_RULES_CONFIG_PATH, PROMETHEUS_USER),
     (PROMETHEUS_FILE_SD_CONFIG_PATH, PROMETHEUS_USER)
 ])
 def test_directory_owner(host, path, owner):
@@ -42,7 +44,8 @@ def test_directory_owner(host, path, owner):
     (PROMETHEUS_CONFIG_PATH, PROMETHEUS_GROUP),
     (PROMETHEUS_BASE_CONFIG_PATH, "root"),
     (PROMETHEUS_DATA_PATH, PROMETHEUS_GROUP),
-    (PROMETHEUS_RULES_CONFIG_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_ALERTING_RULES_CONFIG_PATH, PROMETHEUS_GROUP),
+    (PROMETHEUS_RECORDING_RULES_CONFIG_PATH, PROMETHEUS_GROUP),
     (PROMETHEUS_FILE_SD_CONFIG_PATH, PROMETHEUS_GROUP)
 ])
 def test_directory_group(host, path, group):
@@ -55,7 +58,8 @@ def test_directory_group(host, path, group):
     PROMETHEUS_CONFIG_PATH,
     PROMETHEUS_BASE_CONFIG_PATH,
     PROMETHEUS_DATA_PATH,
-    PROMETHEUS_RULES_CONFIG_PATH,
+    PROMETHEUS_ALERTING_RULES_CONFIG_PATH,
+    PROMETHEUS_RECORDING_RULES_CONFIG_PATH,
     PROMETHEUS_FILE_SD_CONFIG_PATH
 ])
 def test_directory_permissions(host, path):
@@ -92,8 +96,12 @@ def test_prometheus_config(host, config):
     assert host.file(PROMETHEUS_CONFIG_PATH+"/prometheus.yml").contains(config)
 
 
-def test_rules(host):
-    assert host.file(PROMETHEUS_RULES_CONFIG_PATH+"/prometheus_monitoring.yml").exists
+def test_alerting_rules(host):
+    assert host.file(PROMETHEUS_ALERTING_RULES_CONFIG_PATH+"/prometheus_monitoring.yml").exists
+
+
+def test_recording_rules(host):
+    assert host.file(PROMETHEUS_RECORDING_RULES_CONFIG_PATH+"/homeassistant_sensors.yml").exists
 
 
 def test_prometheus_correct_version_is_installed(host, ansible_defaults):

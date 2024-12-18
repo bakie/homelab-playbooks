@@ -6,5 +6,10 @@
   when: install_prometheus
 - include_tasks: configure.yml
 - include_tasks: rules.yml
+  loop:
+    - "alerting"
+    - "recording"
+  loop_control:
+    loop_var: rule_type
 - include_tasks: exporter_targets.yml
 - include_tasks: service.yml

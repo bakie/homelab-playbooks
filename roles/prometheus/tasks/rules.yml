@@ -1,20 +1,20 @@
 ---
 
-- name: ls the rules files
-  command: "ls {{ role_path }}/files/rules/"
+- name: ls the {{ rule_type }} rules files
+  command: "ls {{ role_path }}/files/{{ rule_type }}_rules/"
   delegate_to: 127.0.0.1
   register: "ls_rules_files"
   changed_when: no
 
-- name: create list of rules files
+- name: create list of {{ rule_type }} rules files
   set_fact:
     rules_files: "{{ ls_rules_files.stdout_lines }}"
 
-- name: copy the rule files
+- name: copy the {{ rule_type }} rule files
   become: true
   copy:
-    src: "rules/{{ item }}"
-    dest: "{{ prometheus_rules_config_path }}"
+    src: "{{ rule_type }}_rules/{{ item }}"
+    dest: "{{ lookup('vars', 'prometheus_' ~ rule_type ~ '_rules_config_path') }}"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
     mode: 0755

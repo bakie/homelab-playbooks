@@ -9,9 +9,10 @@ prometheus_data_path: "{{ prometheus_base_path }}/prometheus_data"
 # Base path where all the config dirs for prometheus are created
 prometheus_base_config_path: "/etc/prometheus"
 prometheus_config_path: "{{ prometheus_base_config_path }}/prometheus"
-prometheus_rules_config_path: "{{ prometheus_config_path }}/rules"
+prometheus_alerting_rules_config_path: "{{ prometheus_config_path }}/rules/alerting"
+prometheus_recording_rules_config_path: "{{ prometheus_config_path }}/rules/recording"
 prometheus_file_sd_config_path: "{{ prometheus_config_path }}/file_sd"
-prometheus_storage_retention: "30d"
+prometheus_storage_retention: "2y"
 prometheus_version: 2.51.1
 prometheus_download_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
 prometheus_listen_port: 9090

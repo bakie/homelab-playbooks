@@ -10,7 +10,8 @@
     mode: 0755
   loop:
     - "{{ prometheus_data_path }}"
-    - "{{ prometheus_rules_config_path }}"
+    - "{{ prometheus_alerting_rules_config_path }}"
+    - "{{ prometheus_recording_rules_config_path }}"
     - "{{ prometheus_file_sd_config_path }}"
 
 - name: configure prometheus.yml
