@@ -1,5 +1,0 @@
----
-
-- name: reload dns
-  become: true
-  command: "pihole restartdns reload"
