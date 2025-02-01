@@ -1,0 +1,19 @@
+---
+
+- name: Remove default debian-transmission user
+  become: true
+  user:
+    name: "debian-transmission"
+    state: absent
+
+- name: remove default debian-transmission group
+  become: true
+  group:
+    name: "debian-transmission"
+    state: absent
+
+- name: remove the /etc/transmission-daemon dir
+  become: true
+  file:
+    path: "/etc/transmission-daemon"
+    state: absent

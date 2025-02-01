@@ -4,6 +4,18 @@ TRANSMISSION_INSTALL_PATH = "/opt/transmission"
 TRANSMISSION_SETTINGS_PATH = "/opt/transmission/.config/transmission-daemon/settings.json"
 
 
+def test_default_transmission_group_does_not_exists(host):
+    assert not host.group("debian-transmission").exists
+
+
+def test_default_transmission_user_does_not_exists(host):
+    assert not host.user("debian-transmission").exists
+
+
+def test_default_transmission_dir_does_not_exists(host):
+    assert not host.file("/etc/transmission-daemon").exists
+
+
 def test_transmission_group_exists(host):
     assert host.group("transmission").exists
 

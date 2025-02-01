@@ -2,4 +2,5 @@
 
 - import_tasks: setup.yml
 - import_tasks: install.yml
+- import_tasks: post_install_cleanup.yml
 - import_tasks: configure.yml
