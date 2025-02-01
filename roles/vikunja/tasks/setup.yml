@@ -1,0 +1,24 @@
+---
+
+- name: install required packages
+  become: true
+  apt:
+    name: "{{ vikunja_required_packages }}"
+    state: present
+
+- name: create vikunja group
+  become: true
+  group:
+    name: "{{ vikunja_group }}"
+    system: yes
+    state: present
+
+- name: create vikunja user
+  become: true
+  user:
+    name: "{{ vikunja_user }}"
+    shell: "/usr/sbin/nologin"
+    system: yes
+    group: "{{ vikunja_group }}"
+    create_home: no
+    home: "{{ vikunja_install_path }}"

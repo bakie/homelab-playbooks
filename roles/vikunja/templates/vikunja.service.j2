@@ -1,0 +1,17 @@
+[Unit]
+Description=Vikunja
+After=syslog.target
+After=network.target
+#Requires=redis.service
+
+[Service]
+RestartSec=2s
+Type=simple
+User={{ vikunja_user }}
+Group={{ vikunja_group }}
+WorkingDirectory=/opt/vikunja
+ExecStart=/opt/vikunja/vikunja
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+---
+
+- name: install vikunja deb file
+  become: true
+  apt:
+    deb: "{{ vikunja_download_url }}"
+    state: "present"
+
+- name: set owner/group on {{ vikunja_install_path }}
+  become: true
+  file:
+    path: "{{ vikunja_install_path }}"
+    owner: "{{ vikunja_user }}"
+    group: "{{ vikunja_group }}"
+    recurse: true
