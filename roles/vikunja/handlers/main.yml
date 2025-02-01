@@ -1,0 +1,7 @@
+---
+
+- name: restart vikunja
+  become: true
+  service:
+    name: vikunja
+    state: restarted

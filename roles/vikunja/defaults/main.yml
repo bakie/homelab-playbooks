@@ -1,0 +1,10 @@
+---
+
+vikunja_listen_port: 8080
+vikunja_listen_address: "127.0.0.1"
+vikunja_group: "vikunja"
+vikunja_user: "vikunja"
+vikunja_timezone: "GMT"
+vikunja_config:
+  - { regexp: '^  interface:', line: '  interface: "{{ vikunja_listen_address }}:{{ vikunja_listen_port }}"' }
+  - { regexp: '^  timezone:', line: '  timezone: {{ vikunja_timezone }}' }

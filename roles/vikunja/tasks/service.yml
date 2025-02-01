@@ -1,0 +1,19 @@
+---
+
+- name: create service file
+  become: true
+  template:
+    src: vikunja.service.j2
+    dest: /etc/systemd/system/vikunja.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart vikunja
+
+- name: enable and start vikunja
+  become: true
+  service:
+    daemon_reload: yes
+    name: vikunja
+    state: started
+    enabled: yes
