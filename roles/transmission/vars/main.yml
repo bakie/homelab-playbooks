@@ -11,6 +11,8 @@ transmission_required_paths:
 transmission_settings_file_path: "{{ transmission_install_path }}/.config/transmission-daemon/settings.json"
 transmission_listen_port: 9091
 transmission_settings:
+  - option: "\"download-queue-size\""
+    value: 10
   - option: "\"rpc-username\""
     value: "\"transmission\""
   - option: "\"rpc-password\""
