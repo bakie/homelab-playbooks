@@ -16,3 +16,8 @@ apache_vhosts_config:
       - "RewriteCond %{HTTP:Connection} upgrade [NC]"
       - "RewriteCond %{HTTP:Upgrade} websocket [NC]"
       - "RewriteRule /stream(.*) ws://127.0.0.1:{{ gotify_listen_port }}/stream$1 [P,L]"
+  - name: "vikunja"
+    server_name: "{{ vikunja_url }}"
+    listen_port: "{{ vikunja_listen_port }}"
+    enable_ssl: true
+    template: "proxy_pass"

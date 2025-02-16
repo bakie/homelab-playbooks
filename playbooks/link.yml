@@ -14,3 +14,5 @@
       tags: [ miniflux ]
     - role: gotify
       tags: [ gotify ]
+    - role: vikunja
+      tags: [ vikunja ]
