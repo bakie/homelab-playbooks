@@ -5,9 +5,6 @@ Install and configures apache on the remote hosts.
 None
 
 ## Role defaults
-None
-
-## Role vars
 | Variable                 | Value                 | Comments                                                                |
 |--------------------------|-----------------------|-------------------------------------------------------------------------|
 | apache_required_packages | [ "python3-passlib" ] | List of required packages that need to be installed with apache2        |
