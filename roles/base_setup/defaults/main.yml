@@ -1,3 +1,6 @@
 ---
 
-base_setup_additional_packages: []
+# acl package is needed to become an unprivileged user. Without acl we get the following error:
+# Failed to set permissions on the temporary files Ansible needs to create when becoming an unprivileged user
+# (rc: 1, err: chmod: invalid mode: 'A+user:node_exporter:rx:allow' Try 'chmod --help' for more information.
+base_setup_packages: [ "python3-apt", "aptitude", "curl", "htop", "rsync", "sudo", "vim", "build-essential", "acl", "cron" ]

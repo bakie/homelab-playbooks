@@ -6,9 +6,3 @@
     name: "{{ base_setup_packages }}"
     state: present
     install_recommends: no
-
-- name: install additional packages
-  become: true
-  apt:
-    name: "{{ base_setup_additional_packages }}"
-    state: present
