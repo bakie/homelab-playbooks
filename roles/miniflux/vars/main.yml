@@ -1,3 +1,0 @@
----
-
-miniflux_required_packages: [ "postgresql-15", "python3-psycopg2" ]
