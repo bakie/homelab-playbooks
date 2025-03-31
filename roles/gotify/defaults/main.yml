@@ -9,5 +9,4 @@ gotify_config_path: "/etc/gotify"
 gotify_config_file_path: "{{ gotify_config_path }}/config.yml"
 gotify_version: 2.5.0
 gotify_version_file_path: "{{ gotify_install_path }}/version"
-gotify_download_url: "https://github.com/gotify/server/releases/download/v{{ gotify_version }}/gotify-linux-{{ deb_architecture.stdout }}.zip"
 gotify_listen_port: 9090
