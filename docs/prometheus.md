@@ -4,8 +4,8 @@ Install and configure prometheus on the remote hosts.
 ## Requirements
 None.
 
-## Role variables
-Available variables are listed below, along with default value (see `defaults/main.yml`)
+## Role defaults
+Available defaults are listed below, along with default value (see `defaults/main.yml`)
 
 ```yaml
 prometheus_user: "prometheus"

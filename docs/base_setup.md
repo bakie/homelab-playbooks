@@ -1,10 +1,12 @@
 # homelab.playbooks.base_setup
-Install some default packages on the remote hosts.
+Install default packages on the remote hosts.
 
 ## Requirements
 None
 
 ## Role defaults
-| Variable                    | Default | Comments                                                 |
-|-----------------------------|---------|----------------------------------------------------------|
-| base_setup_default_packages | []      | A list of default packages to install on the remote host |
+Available defaults are listed below, along with default value (see [defaults/main.yml](../roles/base_setup/defaults/main.yml))
+```yaml
+base_setup_packages: [ "python3-apt", "aptitude", "curl", "htop", "rsync", "sudo", "vim", "build-essential", "acl", "cron" ]
+```
+A list of default packages to install on the remote host.

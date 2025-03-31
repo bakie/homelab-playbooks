@@ -4,5 +4,5 @@ Install and configure apt settings such as unattended upgrades.
 ## Requirements
 None
 
-## Role variables
+## Role defaults
 None
