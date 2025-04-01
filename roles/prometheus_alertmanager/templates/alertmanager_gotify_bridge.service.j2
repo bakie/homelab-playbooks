@@ -7,7 +7,7 @@ Type=simple
 User={{ prometheus_alertmanager_user }}
 Group={{ prometheus_alertmanager_group }}
 ExecStart={{ prometheus_alertmanager_gotify_bridge_install_path }}/alertmanager_gotify_bridge \
-    --gotify_endpoint={{ prometheus_alertmanager_gotify_bridge_endpoint }} \
+    --gotify_endpoint={{ prometheus_alertmanager_gotify_endpoint }} \
     --bind_address={{ prometheus_alertmanager_gotify_bridge_bind_address }} \
     --port={{ prometheus_alertmanager_gotify_bridge_port }} \
     --webhook_path={{ prometheus_alertmanager_gotify_bridge_webhook_path }}
@@ -15,7 +15,7 @@ SyslogIdentifier=prometheus_alertmanager_gotify_bridge
 Restart=always
 RestartSec=1
 StartLimitInterval=0
-Environment="GOTIFY_TOKEN={{ prometheus_alertmanager_gotify_bridge_token }}"
+Environment="GOTIFY_TOKEN={{ prometheus_alertmanager_gotify_token }}"
 
 {% for m in ansible_mounts if m.mount == '/home' %}
 ProtectHome=read-only

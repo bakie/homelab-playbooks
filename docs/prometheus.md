@@ -2,7 +2,9 @@
 Install and configure prometheus on the remote hosts.
 
 ## Requirements
-None.
+- [Prometheus alertmanager](prometheus_alertmanager.md)
+- [Prometheus blackbox exporter](prometheus_blackbox_exporter.md)
+- [Prometheus node exporter](prometheus_node_exporter.md)
 
 ## Role defaults
 Available defaults are listed below, along with default value (see `defaults/main.yml`)

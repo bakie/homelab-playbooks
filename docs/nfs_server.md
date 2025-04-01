@@ -4,7 +4,13 @@ Install and configure nfs exports on the remote hosts.
 ## Requirements
 None
 
-## Role variables
-| Variable           | Default | Comments                                                                                                                                                                                                                                                       |
-|--------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| nfs_exports        | []      | example: <pre>nfs_exports:<br>  - /home/dir1 host1.local(rw,sync,no_root_squash,no_subtree_check)<br>  - /home/dir2/dir host2.local(rw,sync,no_root_squash,no_subtree_check)<br>  - /home/dir1/test host3.local(rw,sync,no_root_squash,no_subtree_check)</pre> |
+## Role defaults
+Available defaults are listed below, along with default value (see [defaults/main.yml](../roles/nfs_server/defaults/main.yml))
+```yaml
+nfs_exports: []
+# nfs_exports:
+#   - /home/dir1 remote_host1.local(rw,sync,no_root_squash,no_subtree_check)
+#   - /home/dir2/dir remote_host2.local(rw,sync,no_root_squash,no_subtree_check)
+#   - /home/dir1/test remote_host3.local(rw,sync,no_root_squash,no_subtree_check)
+```
+A list of nfs_exports. This list will be places in the `/etc/exports` file. The file controls which file systems are exported to remote hosts and specifies options.

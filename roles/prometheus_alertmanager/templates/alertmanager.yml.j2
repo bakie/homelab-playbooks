@@ -12,7 +12,7 @@ route:
 receivers:
 - name: 'gotify_webhook'
   webhook_configs:
-  - url: "{{ prometheus_alertmanager_gotify_bridge_full_url }}"
+  - url: "{{ prometheus_alertmanager_webhook_url }}"
 
 # Inhibition rules allow to mute a set of alerts given that another alert is
 # firing.

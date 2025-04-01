@@ -1,29 +1,4 @@
 ---
 
-prometheus_alertmanager_group: "prometheus_alertmanager"
-prometheus_alertmanager_user: "prometheus_alertmanager"
-# Base path where all the dirs for prometheus alertmanager are created
-prometheus_alertmanager_base_path: "/opt/prometheus"
-prometheus_alertmanager_install_path: "{{ prometheus_alertmanager_base_path }}/alertmanager"
-prometheus_alertmanager_data_path: "{{ prometheus_alertmanager_base_path }}/alertmanager_data"
-# Base path where all the config dirs for prometheus alertmanager are created
-prometheus_alertmanager_base_config_path: "/etc/prometheus"
-prometheus_alertmanager_config_path: "{{ prometheus_alertmanager_base_config_path }}/alertmanager"
-# This need to be either /etc/amtool of $HOME/.config/amtool/config.yml
-prometheus_alertmanager_amtool_config_path: "/etc/amtool"
-prometheus_alertmanager_amtool_config_file_path: "{{ prometheus_alertmanager_amtool_config_path }}/config.yml"
-prometheus_alertmanager_version: 0.27.0
 prometheus_alertmanager_download_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
-prometheus_alertmanager_listen_port: 9093
-prometheus_alertmanager_web_listen_address: "0.0.0.0:{{ prometheus_alertmanager_listen_port }}"
-# Url used in the amtool config file
-prometheus_alertmanager_amtool_url: "http://127.0.0.1:{{ prometheus_alertmanager_listen_port }}"
-# Alertmanager gotify bridge
-prometheus_alertmanager_gotify_bridge_path: "{{ prometheus_alertmanager_base_path }}/alertmanager_gotify_bridge"
-prometheus_alertmanager_gotify_bridge_install_path: "{{ prometheus_alertmanager_gotify_bridge_path }}"
-prometheus_alertmanager_gotify_bridge_version: "v2.3.0"
 prometheus_alertmanager_gotify_bridge_download_url: "https://github.com/DRuggeri/alertmanager_gotify_bridge/releases/download/{{ prometheus_alertmanager_gotify_bridge_version }}/alertmanager_gotify_bridge-{{ prometheus_alertmanager_gotify_bridge_version }}-linux-{{ deb_architecture.stdout }}"
-prometheus_alertmanager_gotify_bridge_bind_address: 127.0.0.1
-prometheus_alertmanager_gotify_bridge_port: 8080
-prometheus_alertmanager_gotify_bridge_webhook_path: "/gotify_webhook"
-prometheus_alertmanager_gotify_bridge_full_url: "http://{{ prometheus_alertmanager_gotify_bridge_bind_address }}:{{ prometheus_alertmanager_gotify_bridge_port }}{{ prometheus_alertmanager_gotify_bridge_webhook_path }}"
