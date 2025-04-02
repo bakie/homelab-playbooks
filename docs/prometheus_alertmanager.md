@@ -77,7 +77,7 @@ prometheus_alertmanager_gotify_token: "dummyToken"
 The token generated in Gotify which gets configured in 
 
 ## Role variables
-Available variables are listed below, along with default value (see [vars/main.yml](../roles/gotify/vars/main.yml))
+Available variables are listed below, along with default value (see [vars/main.yml](../roles/blackbox_exporter/vars/main.yml))
 ```yaml
 prometheus_alertmanager_download_url: "https://github.com/prometheus/alertmanager/releases/download/v{{ prometheus_alertmanager_version }}/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }}.tar.gz"
 prometheus_alertmanager_gotify_bridge_download_url: "https://github.com/DRuggeri/alertmanager_gotify_bridge/releases/download/{{ prometheus_alertmanager_gotify_bridge_version }}/alertmanager_gotify_bridge-{{ prometheus_alertmanager_gotify_bridge_version }}-linux-{{ deb_architecture.stdout }}"
