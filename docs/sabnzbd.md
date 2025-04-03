@@ -10,7 +10,7 @@ Available defaults are listed below, along with default value (see [defaults/mai
 sabnzbd_user: "sabnzbd"
 sabnzbd_group: "sabnzbd"
 ```
-Sets the user and group for all sabnzbd and directories. Also sets the user and group that the sabnzbd process is executed as.
+Sets the user and group for all sabnzbd files and directories. Also sets the user and group that the sabnzbd process is executed as.
 
 ```yaml
 sabnzbd_install_path: "/opt/sabnzbd"

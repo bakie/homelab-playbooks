@@ -1,7 +1,7 @@
 ---
 
-transmission_group: "transmission"
 transmission_user: "transmission"
+transmission_group: "transmission"
 transmission_install_path: "/opt/transmission"
 transmission_required_paths:
   - "{{ transmission_install_path }}/completed"
