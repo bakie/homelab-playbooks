@@ -14,7 +14,7 @@
 - name: install required packages
   become: true
   apt:
-    name: "{{ sabnzbd_required_packages }}"
+    name: [ "software-properties-common", "unrar", "python3-cheroot" ]
     state: present
     update_cache: yes
 

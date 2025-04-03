@@ -1,3 +1,17 @@
 ---
 
+sabnzbd_user: "sabnzbd"
+sabnzbd_group: "sabnzbd"
+sabnzbd_required_packages: [ "software-properties-common", "unrar", "python3-cheroot" ]
+sabnzbd_install_path: "/opt/sabnzbd"
+sabnzbd_required_paths:
+  - "{{ sabnzbd_install_path }}/.sabnzbd"
+  - "{{ sabnzbd_install_path }}/incomplete"
+  - "{{ sabnzbd_install_path }}/complete"
+  - "{{ sabnzbd_install_path }}/complete/tv"
+  - "{{ sabnzbd_install_path }}/complete/movies"
+  - "{{ sabnzbd_install_path }}/complete/music"
+  - "{{ sabnzbd_install_path }}/nzb"
+sabnzbd_host: 0.0.0.0
+sabnzbd_listen_port: 8080
 sabnzbd_url: "sabnzbd.local.dev"
