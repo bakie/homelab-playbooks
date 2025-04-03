@@ -1,5 +1,6 @@
 ---
 
+ssl_group: "ssl-cert"
 ssl_cert:
   dir: "/etc/ssl/selfsigned"
   key:
