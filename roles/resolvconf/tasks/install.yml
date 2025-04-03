@@ -3,6 +3,6 @@
 - name: install resolvconf
   become: true
   apt:
-    name: "{{ resolvconf_install_packages }}"
+    name: "resolvconf"
     state: present
     install_recommends: no

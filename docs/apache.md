@@ -11,7 +11,6 @@ apache_required_packages: [ "python3-passlib" ]
 ```
 A list of required packages that need to be installed with apache2.
 
-
 ```yaml
 apache_modules: 
   - autoindex

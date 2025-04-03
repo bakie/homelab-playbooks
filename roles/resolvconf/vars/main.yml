@@ -1,4 +1,3 @@
 ---
 
 resolvconf_required_packages: [ "apt-utils" ]
-resolvconf_install_packages: [ "resolvconf" ]
