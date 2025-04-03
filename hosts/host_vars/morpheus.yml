@@ -32,5 +32,5 @@ nfs_imports:
     state: present
 
 # prometheus_node_exporter
-prometheus_node_exporter_extra_enabled_collectors:
+prometheus_node_exporter_additional_collectors:
   - nfs

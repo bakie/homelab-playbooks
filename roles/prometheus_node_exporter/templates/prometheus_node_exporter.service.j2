@@ -18,7 +18,7 @@ ExecStart={{ prometheus_node_exporter_install_path }}/node_exporter \
     {% endfor -%}
   {% endif -%}
 {% endfor -%}
-{% for collector in prometheus_node_exporter_extra_enabled_collectors -%}
+{% for collector in prometheus_node_exporter_additional_collectors -%}
   {% if not collector is mapping %}
     --collector.{{ collector }} \
   {% else -%}

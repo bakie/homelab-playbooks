@@ -3,7 +3,7 @@
 - name: copy the script {{ textfile_script.script_name }}
   become: true
   copy:
-    src: "{{ textfile_script.script_name }}"
+    src: "textfile_scripts/{{ textfile_script.script_name }}"
     dest: "{{ prometheus_node_exporter_textfile_scripts_path }}"
     owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"

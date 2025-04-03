@@ -3,7 +3,7 @@
 - name: Converge
   hosts: all
   vars:
-    prometheus_node_exporter_extra_enabled_collectors:
+    prometheus_node_exporter_additional_collectors:
       - "ntp"
       - "zoneinfo"
     group_names: [ "searcher" ]

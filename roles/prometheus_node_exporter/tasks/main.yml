@@ -5,7 +5,7 @@
 - import_tasks: install.yml
   when: install_prometheus_node_exporter
 - import_tasks: configure.yml
-- include_tasks: textfile_cronjob.yml
+- include_tasks: textfile_script.yml
   loop: "{{ prometheus_node_exporter_textfile_scripts }}"
   loop_control:
     loop_var: textfile_script
