@@ -8,12 +8,11 @@ Install and configure prometheus on the remote hosts.
 
 ## Role defaults
 Available defaults are listed below, along with default value (see `defaults/main.yml`)
-
 ```yaml
 prometheus_user: "prometheus"
 prometheus_group: "prometheus"
 ```
-Sets the user and group for all prometheus files and directories.
+Sets the user and group for all prometheus files and directories. Also sets the user and group that the prometheus_alertmanager process is executed as.
 
 ```yaml
 prometheus_base_path: "/opt/prometheus"
