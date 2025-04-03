@@ -1,9 +1,12 @@
 ---
 
+vikunja_user: "vikunja"
+vikunja_group: "vikunja"
+vikunja_install_path: "/opt/vikunja"
+vikunja_config_file_path: "/etc/vikunja/config.yml"
+vikunja_version: 0.24.6
 vikunja_listen_port: 8080
 vikunja_listen_address: "127.0.0.1"
-vikunja_group: "vikunja"
-vikunja_user: "vikunja"
 vikunja_timezone: "GMT"
 vikunja_config:
   - { regexp: '^  interface:', line: '  interface: "{{ vikunja_listen_address }}:{{ vikunja_listen_port }}"' }

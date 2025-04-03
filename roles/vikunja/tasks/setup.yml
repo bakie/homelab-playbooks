@@ -3,7 +3,7 @@
 - name: install required packages
   become: true
   apt:
-    name: "{{ vikunja_required_packages }}"
+    name: "sqlite3"
     state: present
 
 - name: create vikunja group

@@ -1,7 +1,3 @@
 ---
 
-vikunja_required_packages: [ "sqlite3" ]
-vikunja_install_path: "/opt/vikunja"
-vikunja_config_file_path: "/etc/vikunja/config.yml"
-vikunja_version: 0.24.6
 vikunja_download_url: "https://dl.vikunja.io/vikunja/{{ vikunja_version }}/vikunja-{{ vikunja_version }}-amd64.deb"
