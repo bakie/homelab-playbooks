@@ -13,7 +13,7 @@ PROMETHEUS_NODE_EXPORTER_TEXTFILE_SCRIPTS_OUTPUT_PATH = "/etc/prometheus/node_ex
 
 @pytest.fixture()
 def ansible_defaults():
-    with open("roles/prometheus_node_exporter/vars/main.yml", 'r') as stream:
+    with open("roles/prometheus_node_exporter/defaults/main.yml", 'r') as stream:
         return yaml.full_load(stream)
 
 

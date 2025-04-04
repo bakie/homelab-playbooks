@@ -11,7 +11,7 @@ PROMETHEUS_BLACKBOX_EXPORTER_BASE_CONFIG_PATH = "/etc/prometheus"
 
 @pytest.fixture()
 def ansible_defaults():
-    with open("roles/prometheus_blackbox_exporter/vars/main.yml", 'r') as stream:
+    with open("roles/prometheus_blackbox_exporter/defaults/main.yml", 'r') as stream:
         return yaml.full_load(stream)
 
 

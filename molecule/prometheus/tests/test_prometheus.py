@@ -16,7 +16,7 @@ PROMETHEUS_DATA_PATH = "/opt/prometheus/prometheus_data"
 
 @pytest.fixture()
 def ansible_defaults():
-    with open("roles/prometheus/vars/main.yml", 'r') as stream:
+    with open("roles/prometheus/defaults/main.yml", 'r') as stream:
         return yaml.full_load(stream)
 
 
