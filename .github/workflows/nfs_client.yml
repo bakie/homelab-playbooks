@@ -23,7 +23,7 @@ on:
   workflow_dispatch:
 jobs:
   molecule:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     env:
       PY_COLORS: 1
       ANSIBLE_FORCE_COLOR: 1
