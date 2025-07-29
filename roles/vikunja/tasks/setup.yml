@@ -1,21 +1,21 @@
 ---
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "sqlite3"
     state: present
 
-- name: create vikunja group
+- name: Createe vikunja group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ vikunja_group }}"
     system: yes
     state: present
 
-- name: create vikunja user
+- name: Createe vikunja user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ vikunja_user }}"
     shell: "/usr/sbin/nologin"
     system: yes

@@ -1,8 +1,10 @@
 ---
 
-- import_playbook: base.yml
+- name: Import the base playbook
+  import_playbook: base.yml
 
-- hosts: morpheus
+- name: Play for morpheus host
+  hosts: morpheus
   roles:
     - role: ssl_cert
       tags: [ "ssl_cert" ]

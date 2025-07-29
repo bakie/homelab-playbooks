@@ -1,8 +1,10 @@
 ---
 
-- import_playbook: base.yml
+- name: Import the base playbook
+  import_playbook: base.yml
 
-- hosts: monitoring
+- name: Play for merovingian host
+  hosts: merovingian
   roles:
     - role: ssl_cert
       tags: [ "ssl_cert" ]

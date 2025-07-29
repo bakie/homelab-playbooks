@@ -7,8 +7,8 @@ None
 ## Role defaults
 Available defaults are listed below, along with default value (see [defaults/main.yml](../roles/nfs_client/defaults/main.yml))
 ```yaml
-nfs_imports: []
-# nfs_imports:
+nfs_client_imports: []
+# nfs_client_imports:
 #   - local_dir: "/media/dir"
 #     remote_dir: "/home/user/dir"
 #     nfs_server: 10.1.1.1

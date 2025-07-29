@@ -1,13 +1,13 @@
 ---
 
-- name: restart prometheus_alertmanager
+- name: Restart prometheus_alertmanager
   become: true
-  service:
+  ansible.builtin.service:
     name: prometheus_alertmanager
     state: restarted
 
-- name: restart prometheus_alertmanager_gotify_bridge
+- name: Restart prometheus_alertmanager_gotify_bridge
   become: true
-  service:
+  ansible.builtin.service:
     name: prometheus_alertmanager_gotify_bridge
     state: restarted

@@ -1,43 +1,43 @@
 ---
 
-- name: get the deb architecture
-  command: dpkg --print-architecture
+- name: Get the deb architecture
+  ansible.builtin.command: dpkg --print-architecture
   register: deb_architecture
   changed_when: false
 
-- name: create the prometheus_blackbox_exporter_install_path base dir
+- name: Create the prometheus_blackbox_exporter_install_path base dir
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_blackbox_exporter_install_path | regex_replace('/$', '') | dirname }}"
     state: directory
-    mode: 0755
+    mode: "0755"
 
-- name: download and unarchive prometheus_blackbox_exporter
+- name: Download and unarchive prometheus_blackbox_exporter
   become: true
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ prometheus_blackbox_exporter_download_url }}"
     dest: /tmp
     remote_src: yes
 
 - name: Remove currently installed prometheus_blackbox_exporter version
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_blackbox_exporter_install_path }}"
     state: absent
 
-- name: rename prometheus_blackbox_exporter directory
+- name: Rename prometheus_blackbox_exporter directory
   become: true
-  command: "mv /tmp/blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_blackbox_exporter_install_path }}"
+  ansible.builtin.command: "mv /tmp/blackbox_exporter-{{ prometheus_blackbox_exporter_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_blackbox_exporter_install_path }}"
   args:
     creates: "{{ prometheus_blackbox_exporter_install_path }}"
-  notify: restart prometheus_blackbox_exporter
+  notify: Restart prometheus_blackbox_exporter
 
-- name: set permissions on prometheus_blackbox_exporter_install_path
+- name: Set permissions on prometheus_blackbox_exporter_install_path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_blackbox_exporter_install_path }}"
     recurse: yes
-    mode: 0755
+    mode: "0755"
     owner: "{{ prometheus_blackbox_exporter_user }}"
     group: "{{ prometheus_blackbox_exporter_group }}"
-  notify: restart prometheus_blackbox_exporter
+  notify: Restart prometheus_blackbox_exporter

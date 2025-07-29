@@ -2,18 +2,18 @@
 
 - name: Remove default debian-transmission user
   become: true
-  user:
+  ansible.builtin.user:
     name: "debian-transmission"
     state: absent
 
-- name: remove default debian-transmission group
+- name: Remove default debian-transmission group
   become: true
-  group:
+  ansible.builtin.group:
     name: "debian-transmission"
     state: absent
 
-- name: remove the /etc/transmission-daemon dir
+- name: Remove the /etc/transmission-daemon dir
   become: true
-  file:
+  ansible.builtin.file:
     path: "/etc/transmission-daemon"
     state: absent

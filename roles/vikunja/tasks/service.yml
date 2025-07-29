@@ -1,18 +1,18 @@
 ---
 
-- name: create service file
+- name: Createe service file
   become: true
-  template:
+  ansible.builtin.template:
     src: vikunja.service.j2
     dest: /etc/systemd/system/vikunja.service
     owner: root
     group: root
-    mode: 0644
-  notify: restart vikunja
+    mode: "0644"
+  notify: Restart vikunja
 
-- name: enable and start vikunja
+- name: Enable and start vikunja
   become: true
-  service:
+  ansible.builtin.service:
     daemon_reload: yes
     name: vikunja
     state: started

@@ -1,43 +1,43 @@
 ---
 
-- name: get the deb architecture
-  command: dpkg --print-architecture
+- name: Get the deb architecture
+  ansible.builtin.command: dpkg --print-architecture
   register: deb_architecture
   changed_when: false
 
-- name: create the prometheus_alertmanager_install_path base dir
+- name: Create the prometheus_alertmanager_install_path base dir
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_alertmanager_install_path | regex_replace('/$', '') | dirname }}"
     state: directory
-    mode: 0755
+    mode: "0755"
 
-- name: download and unarchive prometheus_alertmanager
+- name: Download and unarchive prometheus_alertmanager
   become: true
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ prometheus_alertmanager_download_url }}"
     dest: /tmp
     remote_src: yes
 
 - name: Remove currently installed prometheus alertmanager version
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_alertmanager_install_path }}"
     state: absent
 
-- name: rename prometheus_alertmanager directory
+- name: Rename prometheus_alertmanager directory
   become: true
-  command: "mv /tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_alertmanager_install_path }}"
+  ansible.builtin.command: "mv /tmp/alertmanager-{{ prometheus_alertmanager_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_alertmanager_install_path }}"
   args:
     creates: "{{ prometheus_alertmanager_install_path }}"
-  notify: restart prometheus_alertmanager
+  notify: Restart prometheus_alertmanager
 
-- name: set permissions on prometheus_alertmanager_install_path
+- name: Set permissions on prometheus_alertmanager_install_path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_alertmanager_install_path }}"
     recurse: yes
-    mode: 0755
+    mode: "0755"
     owner: "{{ prometheus_alertmanager_user }}"
     group: "{{ prometheus_alertmanager_group }}"
-  notify: restart prometheus_alertmanager
+  notify: Restart prometheus_alertmanager

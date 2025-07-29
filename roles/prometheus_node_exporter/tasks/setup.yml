@@ -1,15 +1,15 @@
 ---
 
-- name: create prometheus_node_exporter group
+- name: Create prometheus_node_exporter group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ prometheus_node_exporter_group }}"
     system: yes
     state: present
 
-- name: create prometheus_node_exporter user
+- name: Create prometheus_node_exporter user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ prometheus_node_exporter_user }}"
     shell: "/usr/sbin/nologin"
     system: yes
@@ -17,12 +17,12 @@
     create_home: no
     home: "{{ prometheus_node_exporter_install_path }}"
 
-- name: create prometheus base paths
+- name: Create prometheus base paths
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: "0755"
   loop:
     - "{{ prometheus_node_exporter_base_path }}"
     - "{{ prometheus_node_exporter_base_config_path }}"

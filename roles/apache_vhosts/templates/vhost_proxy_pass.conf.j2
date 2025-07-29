@@ -27,8 +27,8 @@
 <VirtualHost *:443>
     ServerName {{ vhost.server_name }}
 
-    SSLCertificateFile {{ ssl_cert.dir }}/{{ ssl_cert.crt.filename }}
-    SSLCertificateKeyFile {{ ssl_cert.dir }}/{{ ssl_cert.key.filename }}
+    SSLCertificateFile {{ ssl_cert_config.dir }}/{{ ssl_cert_config.crt.filename }}
+    SSLCertificateKeyFile {{ ssl_cert_config.dir }}/{{ ssl_cert_config.key.filename }}
 
     ProxyPreserveHost On
     {% if vhost.rewrite_conditions|d(false) %}

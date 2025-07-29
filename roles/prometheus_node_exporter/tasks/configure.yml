@@ -1,24 +1,24 @@
 ---
 
-- name: create prometheus_node_exporter directories
+- name: Create prometheus_node_exporter directories
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"
-    mode: 0755
+    mode: "0755"
   loop:
     - "{{ prometheus_node_exporter_config_path }}"
     - "{{ prometheus_node_exporter_textfile_scripts_path }}"
     - "{{ prometheus_node_exporter_textfile_scripts_output_path }}"
 
-- name: copy the prometheus_node_exporter config file
+- name: Copy the prometheus_node_exporter config file
   become: true
-  template:
+  ansible.builtin.template:
     src: config.yml.j2
     dest: "{{ prometheus_node_exporter_config_path }}/config.yml"
     owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"
-    mode: 0644
-  notify: restart prometheus_node_exporter
+    mode: "0644"
+  notify: Restart prometheus_node_exporter

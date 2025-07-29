@@ -1,12 +1,12 @@
 ---
 
-- name: stat prometheus_node_exporter binary
-  stat:
+- name: Stat prometheus_node_exporter binary
+  ansible.builtin.stat:
     path: "{{ prometheus_node_exporter_install_path }}/node_exporter"
   register: prometheus_node_exporter_binary
 
-- name: get current prometheus_node_exporter version
-  shell: |
+- name: Get current prometheus_node_exporter version
+  ansible.builtin.shell: |
     set -o pipefail
     ./node_exporter --version 2>&1 | head -1 | awk '{print $3}'
   args:
@@ -16,6 +16,6 @@
   changed_when: false
   register: prometheus_node_exporter_current_version
 
-- name: set fact to install prometheus_node_exporter
-  set_fact:
+- name: Set fact to install prometheus_node_exporter
+  ansible.builtin.set_fact:
     install_prometheus_node_exporter: "{{ not prometheus_node_exporter_binary.stat.exists or prometheus_node_exporter_current_version.stdout != prometheus_node_exporter_version }}"

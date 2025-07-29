@@ -4,6 +4,10 @@
 !.config
 !.github
 !.python-version
+!.pre-commit-config.yaml
+!.flake8
+!.yamllint
+!.ansible-lint
 # Intellij
 .idea
 # testinfra

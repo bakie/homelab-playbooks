@@ -1,7 +1,7 @@
 ---
 
-- name: restart sabnzbd
+- name: Restart sabnzbd
   become: true
-  service:
+  ansible.builtin.service:
     name: sabnzbdplus
     state: restarted

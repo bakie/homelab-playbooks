@@ -2,38 +2,38 @@
 
 - name: Start and enable postgresql
   become: true
-  service:
+  ansible.builtin.service:
     name: postgresql
     state: started
     enabled: yes
 
-- name: Create the {{ miniflux_db_name }} database
+- name: Create the database
   become: true
   become_user: postgres
-  postgresql_db:
+  community.postgresql.postgresql_db:
     name: "{{ miniflux_db_name }}"
 
-- name: create the {{ miniflux_db_user }} db user
+- name: Create the database user
   become: true
   become_user: postgres
-  postgresql_user:
+  community.postgresql.postgresql_user:
     name: "{{ miniflux_db_user }}"
     password: "{{ miniflux_db_password }}"
 
-- name: Grant all privs to {{ miniflux_db_user }} on {{ miniflux_db_name }}
+- name: Grant all privs to the database user on the database
   become: true
   become_user: postgres
-  postgresql_privs:
+  community.postgresql.postgresql_privs:
     database: "{{ miniflux_db_name }}"
     state: present
     privs: ALL
     roles: "{{ miniflux_db_user }}"
     type: database
 
-- name: Grant privs to {{ miniflux_db_user }} on schema public
+- name: Grant privs to the database user on schema public
   become: true
   become_user: postgres
-  postgresql_privs:
+  community.postgresql.postgresql_privs:
     database: "{{ miniflux_db_name }}"
     state: present
     privs: ALL

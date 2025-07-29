@@ -1,28 +1,28 @@
 ---
 
-- name: create ssl dir
+- name: Create ssl dir
   become: true
-  file:
-    path: "{{ ssl_cert.dir }}"
+  ansible.builtin.file:
+    path: "{{ ssl_cert_config.dir }}"
     state: directory
     owner: root
-    group: "{{ ssl_group }}"
-    mode: 0650
+    group: "{{ ssl_cert_group }}"
+    mode: "0650"
 
-- name: create the key file
+- name: Create the key file
   become: true
-  copy:
-    content: "{{ ssl_cert.key.content }}"
-    dest: "{{ ssl_cert.dir }}/{{ ssl_cert.key.filename }}"
+  ansible.builtin.copy:
+    content: "{{ ssl_cert_config.key.content }}"
+    dest: "{{ ssl_cert_config.dir }}/{{ ssl_cert_config.key.filename }}"
     owner: root
-    group: "{{ ssl_group }}"
-    mode: 0640
+    group: "{{ ssl_cert_group }}"
+    mode: "0640"
 
-- name: create the crt file
+- name: Create the crt file
   become: true
-  copy:
-    content: "{{ ssl_cert.crt.content }}"
-    dest: "{{ ssl_cert.dir }}/{{ ssl_cert.crt.filename }}"
+  ansible.builtin.copy:
+    content: "{{ ssl_cert_config.crt.content }}"
+    dest: "{{ ssl_cert_config.dir }}/{{ ssl_cert_config.crt.filename }}"
     owner: root
-    group: "{{ ssl_group }}"
-    mode: 0640
+    group: "{{ ssl_cert_group }}"
+    mode: "0640"

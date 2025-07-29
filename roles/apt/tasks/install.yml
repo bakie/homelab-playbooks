@@ -1,7 +1,7 @@
 ---
 
-- name: install unattended-upgrades
+- name: Install unattended-upgrades
   become: true
-  apt:
+  ansible.builtin.apt:
     name: unattended-upgrades
     state: present

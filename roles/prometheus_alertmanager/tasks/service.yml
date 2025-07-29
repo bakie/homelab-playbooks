@@ -1,36 +1,36 @@
 ---
 
-- name: create alertmanager service file
+- name: Create alertmanager service file
   become: true
-  template:
+  ansible.builtin.template:
     src: alertmanager.service.j2
     dest: /etc/systemd/system/prometheus_alertmanager.service
     owner: root
     group: root
-    mode: 0644
-  notify: restart prometheus_alertmanager
+    mode: "0644"
+  notify: Restart prometheus_alertmanager
 
-- name: enable and start alertmanager
+- name: Enable and start alertmanager
   become: true
-  service:
+  ansible.builtin.service:
     daemon_reload: yes
     name: prometheus_alertmanager
     state: started
     enabled: yes
 
-- name: create alertmanager_gotify_bridge service file
+- name: Create alertmanager_gotify_bridge service file
   become: true
-  template:
+  ansible.builtin.template:
     src: alertmanager_gotify_bridge.service.j2
     dest: /etc/systemd/system/prometheus_alertmanager_gotify_bridge.service
     owner: root
     group: root
-    mode: 0644
-  notify: restart prometheus_alertmanager_gotify_bridge
+    mode: "0644"
+  notify: Restart prometheus_alertmanager_gotify_bridge
 
-- name: enable and start alertmanager_gotify_bridge
+- name: Enable and start alertmanager_gotify_bridge
   become: true
-  service:
+  ansible.builtin.service:
     daemon_reload: yes
     name: prometheus_alertmanager_gotify_bridge
     state: started

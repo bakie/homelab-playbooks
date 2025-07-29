@@ -1,8 +1,8 @@
 ---
 
-- name: reload apache
+- name: Reload apache
   become: true
-  service:
+  ansible.builtin.service:
     name: apache2
     state: reloaded
   when: not skip_apache_vhosts_reload_handler | default(false)

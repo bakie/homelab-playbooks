@@ -1,19 +1,19 @@
 ---
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ grafana_required_packages }}"
     state: present
 
 - name: Add Grafana apt signing key
   become: true
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ grafana_apt_key_url }}"
     state: present
 
 - name: Add Grafana repositories
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ grafana_apt_repo_url }}"
     state: present

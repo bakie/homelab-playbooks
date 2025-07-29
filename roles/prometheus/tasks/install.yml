@@ -1,37 +1,37 @@
 ---
 
-- name: get the deb architecture
-  command: dpkg --print-architecture
+- name: Get the deb architecture
+  ansible.builtin.command: dpkg --print-architecture
   register: deb_architecture
   changed_when: false
 
 - name: Download prometheus
   become: true
   become_user: "{{ prometheus_user }}"
-  unarchive:
+  ansible.builtin.unarchive:
     src: "{{ prometheus_download_url }}"
     dest: "/tmp"
     remote_src: yes
 
 - name: Remove currently installed prometheus version
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_install_path }}"
     state: absent
 
-- name: rename prometheus directory
+- name: Rename prometheus directory
   become: true
-  command: "mv /tmp/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_install_path }}"
+  ansible.builtin.command: "mv /tmp/prometheus-{{ prometheus_version }}.linux-{{ deb_architecture.stdout }} {{ prometheus_install_path }}"
   args:
     creates: "{{ prometheus_install_path }}"
-  notify: restart prometheus
+  notify: Restart prometheus
 
-- name: set permissions on prometheus_install_path
+- name: Set permissions on prometheus_install_path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ prometheus_install_path }}"
     recurse: yes
-    mode: 0755
+    mode: "0755"
     owner: "{{ prometheus_user }}"
     group: "{{ prometheus_group }}"
-  notify: restart prometheus
+  notify: Restart prometheus

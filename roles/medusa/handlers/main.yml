@@ -1,16 +1,16 @@
 ---
 
-- name: set owner/group on medusa install path
+- name: Set owner/group on medusa install path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ medusa_install_path }}"
     owner: "{{ medusa_user }}"
     group: "{{ medusa_group }}"
     recurse: yes
 
-- name: restart medusa
+- name: Restart medusa
   become: true
-  service:
+  ansible.builtin.service:
     name: medusa
     state: restarted
     enabled: yes

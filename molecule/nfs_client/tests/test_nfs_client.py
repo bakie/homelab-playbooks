@@ -21,5 +21,5 @@ def test_local_dir_mode(host, dir, mode):
     assert host.file(dir).mode == mode
 
 
-def test_nfs_exports(host):
+def test_nfs_server_exports(host):
     assert host.file("/etc/fstab").contains("10.1.1.1:/home/user/dir")

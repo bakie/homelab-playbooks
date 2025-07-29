@@ -1,15 +1,15 @@
 ---
 
-- name: restart openvpn
+- name: Restart openvpn
   become: true
-  service:
+  ansible.builtin.service:
     name: openvpn
     state: restarted
   listen: restart openvpn
 
-- name: restart openvpn {{ openvpn_name }}
+- name: Restart openvpn
   become: true
-  service:
+  ansible.builtin.service:
     name: "openvpn@{{ openvpn_name }}"
     state: restarted
   listen: restart openvpn

@@ -1,4 +1,6 @@
 ---
 
-- include_tasks: setup.yml
-- include_tasks: install_ssl_cert.yml
+- name: Import setup tasks
+  ansible.builtin.import_tasks: setup.yml
+- name: Import install ssl cert tasks
+  ansible.builtin.import_tasks: install_ssl_cert.yml

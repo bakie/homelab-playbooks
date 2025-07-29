@@ -1,7 +1,7 @@
 ---
 
-- name: reload apache
+- name: Reload apache
   become: true
-  service:
+  ansible.builtin.service:
     name: apache2
     state: reloaded

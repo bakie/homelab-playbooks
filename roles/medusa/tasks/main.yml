@@ -1,5 +1,8 @@
 ---
 
-- include_tasks: setup.yml
-- include_tasks: install.yml
-- include_tasks: service.yml
+- name: Import setup tasks
+  ansible.builtin.import_tasks: setup.yml
+- name: Import install tasks
+  ansible.builtin.import_tasks: install.yml
+- name: Import servuce tasks
+  ansible.builtin.import_tasks: service.yml

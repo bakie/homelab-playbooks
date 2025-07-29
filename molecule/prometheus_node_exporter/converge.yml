@@ -6,7 +6,7 @@
     prometheus_node_exporter_additional_collectors:
       - "ntp"
       - "zoneinfo"
-    group_names: [ "searcher" ]
+    group_names: [ "searcher" ] # noqa var-naming[read-only]
 
   roles:
     - role: prometheus_node_exporter

@@ -1,7 +1,7 @@
 ---
 
-- name: restart vikunja
+- name: Restart vikunja
   become: true
-  service:
+  ansible.builtin.service:
     name: vikunja
     state: restarted

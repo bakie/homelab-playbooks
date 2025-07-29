@@ -1,62 +1,62 @@
 ---
 
-- name: configure Grafana ini file
+- name: Configure Grafana ini file
   become: true
-  replace:
+  ansible.builtin.replace:
     path: "{{ grafana_config_path }}/grafana.ini"
     regexp: "{{ item.regexp }}"
     replace: "{{ item.replace }}"
   loop: "{{ grafana_config_settings }}"
-  notify: restart grafana
+  notify: Restart grafana
 
-- name: template the datasources
+- name: Template the datasources
   become: true
-  template:
+  ansible.builtin.template:
     src: datasources.yaml.j2
     dest: "{{ grafana_config_path }}/provisioning/datasources/datasources.yaml"
     group: "{{ grafana_group }}"
     mode: "0640"
-  notify: restart grafana
+  notify: Restart grafana
 
-- name: template the dashboards
+- name: Template the dashboards
   become: true
-  template:
+  ansible.builtin.template:
     src: dashboards.yaml.j2
     dest: "{{ grafana_config_path }}/provisioning/dashboards/dashboards.yaml"
     group: "{{ grafana_group }}"
     mode: "0640"
-  notify: restart grafana
+  notify: Restart grafana
 
-- name: create the dashboards config path
+- name: Create the dashboards config path
   become: true
-  file:
+  ansible.builtin.file:
     state: directory
     group: "{{ grafana_group }}"
     path: "{{ grafana_dashboards_config_path }}"
     mode: "0755"
 
-- name: create the dashboards paths
+- name: Create the dashboards paths
   become: true
-  file:
+  ansible.builtin.file:
     state: directory
     group: "{{ grafana_group }}"
     path: "{{ item.dest }}"
     mode: "0755"
   loop: "{{ grafana_dashboards }}"
 
-- name: copy the dashboards
+- name: Copy the dashboards
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     group: "{{ grafana_group }}"
-    mode: 0755
+    mode: "0755"
   loop: "{{ grafana_dashboards }}"
-  notify: restart grafana
+  notify: Restart grafana
 
-- name: enable and start grafana
+- name: Enable and start grafana
   become: true
-  service:
+  ansible.builtin.service:
     name: grafana-server
     state: started
     enabled: yes

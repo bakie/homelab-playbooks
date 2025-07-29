@@ -1,13 +1,13 @@
 ---
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ apache_required_packages }}"
     state: present
 
-- name: install apache2
+- name: Install apache2
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "apache2"
     state: present

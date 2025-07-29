@@ -1,21 +1,21 @@
 ---
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "procps"
     state: present
 
-- name: create prometheus group
+- name: Create prometheus group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ prometheus_group }}"
     system: yes
     state: present
 
-- name: create prometheus user
+- name: Create prometheus user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ prometheus_user }}"
     shell: "/usr/sbin/nologin"
     home: "{{ prometheus_install_path }}"
@@ -24,12 +24,12 @@
     group: "{{ prometheus_group }}"
     state: present
 
-- name: create prometheus base paths
+- name: Create prometheus base paths
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: "0755"
   loop:
     - "{{ prometheus_base_path }}"
     - "{{ prometheus_base_config_path }}"

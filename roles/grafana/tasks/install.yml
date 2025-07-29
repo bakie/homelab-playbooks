@@ -1,7 +1,7 @@
 ---
 
-- name: install grafana
+- name: Install grafana
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "grafana={{ grafana_version }}"
     state: present

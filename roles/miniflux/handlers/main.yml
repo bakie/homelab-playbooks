@@ -1,8 +1,8 @@
 ---
 
-- name: restart miniflux
+- name: Restart miniflux
   become: true
-  service:
+  ansible.builtin.service:
     name: miniflux
     state: restarted
     enabled: yes

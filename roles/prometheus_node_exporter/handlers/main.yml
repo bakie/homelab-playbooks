@@ -1,7 +1,7 @@
 ---
 
-- name: restart prometheus_node_exporter
+- name: Restart prometheus_node_exporter
   become: true
-  service:
+  ansible.builtin.service:
     name: prometheus_node_exporter
     state: restarted

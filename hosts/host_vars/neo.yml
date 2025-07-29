@@ -17,7 +17,7 @@ apache_vhosts_config:
 sabnzbd_user_home: "/opt/sabnzbd"
 
 # nfs_server
-nfs_exports:
+nfs_server_exports:
   - "{{ sabnzbd_user_home }} morpheus.local(rw,sync,no_root_squash,no_subtree_check)"
 
 # prometheus_node_exporter

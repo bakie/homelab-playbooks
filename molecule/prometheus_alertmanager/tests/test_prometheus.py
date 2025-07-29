@@ -15,7 +15,7 @@ PROMETHEUS_ALERTMANAGER_GOTIFY_BRIDGE_PATH = "/opt/prometheus/alertmanager_gotif
 
 @pytest.fixture()
 def ansible_defaults():
-    with open("roles/prometheus_alertmanager/defaults/main.yml", 'r') as stream:
+    with open("../../roles/prometheus_alertmanager/defaults/main.yml", 'r') as stream:
         return yaml.full_load(stream)
 
 

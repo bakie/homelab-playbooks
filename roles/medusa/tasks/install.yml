@@ -1,16 +1,16 @@
 ---
 
-- name: work around permission issue
+- name: Work around permission issue
   become: true
-  command: git config --global --add safe.directory {{ medusa_install_path }}
+  ansible.builtin.command: git config --global --add safe.directory {{ medusa_install_path }}
   changed_when: no
   tags: skip_ansible_lint
 
-- name: clone the medusa gitrepo
+- name: Clone the medusa gitrepo
   become: true
-  git:
+  ansible.builtin.git:
     repo: "{{ medusa_repo_url }}"
     dest: "{{ medusa_install_path }}"
     version: "{{ medusa_version }}"
     depth: 1
-  notify: set owner/group on medusa install path
+  notify: Set owner/group on medusa install path

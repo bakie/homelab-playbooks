@@ -1,12 +1,12 @@
 ---
 
-- name: stat prometheus_blackbox_exporter binary
-  stat:
+- name: Stat prometheus_blackbox_exporter binary
+  ansible.builtin.stat:
     path: "{{ prometheus_blackbox_exporter_install_path }}/blackbox_exporter"
   register: prometheus_blackbox_exporter_binary
 
-- name: get current prometheus_blackbox_exporter version
-  shell: |
+- name: Get current prometheus_blackbox_exporter version
+  ansible.builtin.shell: |
     set -o pipefail
     ./blackbox_exporter --config.file=config,yml --version 2>&1 | head -1 | awk '{print $3}'
   args:
@@ -16,6 +16,6 @@
   changed_when: false
   register: prometheus_blackbox_exporter_current_version
 
-- name: set fact to install prometheus_blackbox_exporter
-  set_fact:
+- name: Set fact to install prometheus_blackbox_exporter
+  ansible.builtin.set_fact:
     install_prometheus_blackbox_exporter: "{{ not prometheus_blackbox_exporter_binary.stat.exists or prometheus_blackbox_exporter_current_version.stdout != prometheus_blackbox_exporter_version }}"

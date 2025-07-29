@@ -1,18 +1,18 @@
 ---
 
-- name: copy the script {{ textfile_script.script_name }}
+- name: Copy the script
   become: true
-  copy:
+  ansible.builtin.copy:
     src: "textfile_scripts/{{ textfile_script.script_name }}"
     dest: "{{ prometheus_node_exporter_textfile_scripts_path }}"
     owner: "{{ prometheus_node_exporter_user }}"
     group: "{{ prometheus_node_exporter_group }}"
-    mode: 0755
+    mode: "0755"
 
-- name: add the cronjob {{ textfile_script.cronjob.name }} to the root user
+- name: Add the cronjob
   become: true
-  cron:
+  ansible.builtin.cron:
     name: "{{ textfile_script.cronjob.name }}"
-    minute: "{{ textfile_script.cronjob.minute|d('*') }}"
-    hour: "{{ textfile_script.cronjob.hour|d('*') }}"
+    minute: "{{ textfile_script.cronjob.minute | d('*') }}"
+    hour: "{{ textfile_script.cronjob.hour | d('*') }}"
     job: "{{ textfile_script.cronjob.job }}"

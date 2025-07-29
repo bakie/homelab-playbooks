@@ -1,17 +1,17 @@
 ---
 
-- name: configure apache vhost {{ vhost.name }}
+- name: Configure apache vhost
   become: true
-  template:
+  ansible.builtin.template:
     src: "vhost_{{ vhost.template }}.conf.j2"
     dest: "/etc/apache2/sites-available/{{ vhost.name }}.conf"
-    mode: 0644
-  notify: reload apache
+    mode: "0644"
+  notify: Reload apache
 
-- name: link apache vhost {{ vhost.name }}
+- name: Link apache vhost
   become: true
-  file:
+  ansible.builtin.file:
     src: "/etc/apache2/sites-available/{{ vhost.name }}.conf"
     dest: "/etc/apache2/sites-enabled/{{ vhost.name }}.conf"
     state: link
-  notify: reload apache
+  notify: Reload apache

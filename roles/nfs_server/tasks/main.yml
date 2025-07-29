@@ -1,5 +1,8 @@
 ---
 
-- include_tasks: install.yml
-- include_tasks: configure.yml
-- include_tasks: nfs_exports.yml
+- name: Import install tasks
+  ansible.builtin.import_tasks: install.yml
+- name: Import configure tasks
+  ansible.builtin.import_tasks: configure.yml
+- name: Import nfs exports tasks
+  ansible.builtin.import_tasks: nfs_exports.yml

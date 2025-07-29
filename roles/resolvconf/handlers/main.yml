@@ -1,5 +1,7 @@
 ---
 
-- name: resolvconf_update
+- name: Run resolvconf update
   become: true
-  command: 'resolvconf -u'
+  ansible.builtin.command: 'resolvconf -u'
+  register: command_output
+  changed_when: command_output.rc != 0

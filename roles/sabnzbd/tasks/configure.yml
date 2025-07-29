@@ -1,8 +1,8 @@
 ---
 
-- name: change the default settings of sabnzbdplus
+- name: Change the default settings of sabnzbdplus
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/default/sabnzbdplus"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
@@ -10,11 +10,11 @@
     - { regexp: "^USER=", line: "USER={{ sabnzbd_user }}" }
     - { regexp: "^HOST=", line: "HOST={{ sabnzbd_host }}" }
     - { regexp: "^PORT=", line: "PORT={{ sabnzbd_listen_port }}" }
-  notify: restart sabnzbd
+  notify: Restart sabnzbd
 
-- name: start and enable sabnzbd
+- name: Start and enable sabnzbd
   become: true
-  service:
+  ansible.builtin.service:
     name: sabnzbdplus
     state: started
     enabled: yes
@@ -22,13 +22,13 @@
 # When installing for the first time the sabnzbd.ini.bak takes some time to get the correct contents.
 # If we then change the host_whitelist in the task below it gets overwritten once the .bak file is correct.
 # When restarting it the sabnzbd.ini.bak gets its content set correctly.
-- name: flush the handlers
-  meta: flush_handlers
+- name: Flush the handlers
+  ansible.builtin.meta: flush_handlers
 
-- name: add the sabnzbd_url to host_whitelist
+- name: Add the sabnzbd_url to host_whitelist
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "{{ sabnzbd_install_path }}/.sabnzbd/sabnzbd.ini"
     regexp: "^host_whitelist.*"
     line: "host_whitelist = {{ inventory_hostname }}, {{ sabnzbd_url }}"
-  notify: restart sabnzbd
+  notify: Restart sabnzbd

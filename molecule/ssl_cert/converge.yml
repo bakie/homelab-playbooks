@@ -3,7 +3,7 @@
 - name: Converge
   hosts: all
   vars:
-    ssl_cert:
+    ssl_cert_config:
       dir: "/etc/ssl-dir"
       key:
         filename: "ssl.key"
