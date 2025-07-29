@@ -1,24 +1,24 @@
 ---
 
-- name: install transmission
+- name: Install transmission
   become: true
-  apt:
+  ansible.builtin.apt:
     name: [ "transmission-cli", "transmission-common", "transmission-daemon" ]
     state: present
     install_recommends: no
 
-- name: set correct user in systemd file
+- name: Set correct user in systemd file
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "/lib/systemd/system/transmission-daemon.service"
     regexp: "^User="
     line: "User={{ transmission_user }}"
     state: present
-  notify: restart transmission
+  notify: Restart transmission
 
-- name: start transmission
+- name: Start transmission
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: transmission-daemon
     state: started
     enabled: yes
@@ -26,5 +26,5 @@
 
 # When installing for the first time the settings.json files is not yet present
 # When restarting transmission the settings.json file gets created
-- name: flush the handlers
-  meta: flush_handlers
+- name: Flush the handlers
+  ansible.builtin.meta: flush_handlers

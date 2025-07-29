@@ -1,6 +1,6 @@
 ---
 
-- name: converge
+- name: Converge
   hosts: all
   vars:
     apache_vhosts_config:
@@ -33,7 +33,7 @@
           - "RewriteRule /stream(.*) ws://127.0.0.1:7070/stream$1 [P,L]"
     skip_apache_vhosts_reload_handler: true
     # To test the ssl configuration
-    ssl_cert:
+    ssl_cert_config:
       dir: "/etc/ssl/molecule"
       key:
         filename: "molecule.key"

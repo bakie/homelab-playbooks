@@ -42,7 +42,7 @@ This will install the python version specified in the .python-version file.
 The following commands will switch you to the virtual env and will install all required packages listed in the poetry.lock file.
 ```
 poetry env use $(cat .python-version)
-poetry shell
+eval $(poetry env activate)
 poetry install
 ```
 

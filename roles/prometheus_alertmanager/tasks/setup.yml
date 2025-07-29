@@ -1,15 +1,15 @@
 ---
 
-- name: create prometheus_alertmanager group
+- name: Create prometheus_alertmanager group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ prometheus_alertmanager_group }}"
     system: yes
     state: present
 
-- name: create prometheus_alertmanager user
+- name: Create prometheus_alertmanager user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ prometheus_alertmanager_user }}"
     shell: "/usr/sbin/nologin"
     system: yes
@@ -17,12 +17,12 @@
     create_home: no
     home: "{{ prometheus_alertmanager_install_path }}"
 
-- name: create prometheus_alertmanager base paths
+- name: Create prometheus_alertmanager base paths
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: "0755"
   loop:
     - "{{ prometheus_alertmanager_base_path }}"
     - "{{ prometheus_alertmanager_base_config_path }}"

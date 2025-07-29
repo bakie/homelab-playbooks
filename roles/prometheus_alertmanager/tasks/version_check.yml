@@ -1,12 +1,12 @@
 ---
 
-- name: stat prometheus_alertmanager binary
-  stat:
+- name: Stat prometheus_alertmanager binary
+  ansible.builtin.stat:
     path: "{{ prometheus_alertmanager_install_path }}/alertmanager"
   register: prometheus_alertmanager_binary
 
-- name: get current prometheus_alertmanager version
-  shell: |
+- name: Get current prometheus_alertmanager version
+  ansible.builtin.shell: |
     set -o pipefail
     ./alertmanager --version 2>&1 | head -1 | awk '{print $3}'
   args:
@@ -16,17 +16,17 @@
   changed_when: false
   register: prometheus_alertmanager_current_version
 
-- name: set fact to install prometheus_alertmanager
-  set_fact:
+- name: Set fact to install prometheus_alertmanager
+  ansible.builtin.set_fact:
     install_prometheus_alertmanager: "{{ not prometheus_alertmanager_binary.stat.exists or prometheus_alertmanager_current_version.stdout != prometheus_alertmanager_version }}"
 
-- name: stat prometheus_alertmanager_gotify_bridge binary
-  stat:
+- name: Stat prometheus_alertmanager_gotify_bridge binary
+  ansible.builtin.stat:
     path: "{{ prometheus_alertmanager_gotify_bridge_install_path }}/alertmanager_gotify_bridge"
   register: prometheus_alertmanager_gotify_bridge_binary
 
-- name: get current prometheus_alertmanager_gotify_bridge version
-  shell: |
+- name: Get current prometheus_alertmanager_gotify_bridge version
+  ansible.builtin.shell: |
     set -o pipefail
     ./alertmanager_gotify_bridge --version 2>&1
   args:
@@ -36,6 +36,6 @@
   changed_when: false
   register: prometheus_alertmanager_gotify_bridge_current_version
 
-- name: set fact to install prometheus_alertmanager_gotify_bridge
-  set_fact:
+- name: Set fact to install prometheus_alertmanager_gotify_bridge
+  ansible.builtin.set_fact:
     install_prometheus_alertmanager_gotify_bridge: "{{ not prometheus_alertmanager_gotify_bridge_binary.stat.exists or prometheus_alertmanager_gotify_bridge_current_version.stdout != prometheus_alertmanager_gotify_bridge_version }}"

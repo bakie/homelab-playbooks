@@ -1,8 +1,8 @@
 ---
 
-- name: restart nfs
+- name: Restart nfs
   become: true
-  service:
+  ansible.builtin.service:
     name: nfs-kernel-server
     state: restarted
     daemon_reload: true

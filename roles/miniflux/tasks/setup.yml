@@ -2,14 +2,14 @@
 
 - name: Add miniflux repository
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb [trusted=yes] https://repo.miniflux.app/apt/ * *"
     filename: "miniflux"
     state: present
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ miniflux_required_packages }}"
     state: present
     install_recommends: no

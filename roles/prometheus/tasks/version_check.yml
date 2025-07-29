@@ -1,12 +1,12 @@
 ---
 
-- name: stat prometheus binary
-  stat:
+- name: Stat prometheus binary
+  ansible.builtin.stat:
     path: "{{ prometheus_install_path }}/prometheus"
   register: prometheus_binary
 
-- name: stat current prometheus version
-  shell: |
+- name: Stat current prometheus version
+  ansible.builtin.shell: |
     set -o pipefail
     ./prometheus --version 2>&1 | head -1 | awk '{print $3}'
   args:
@@ -16,6 +16,6 @@
   register: prometheus_current_version
   changed_when: false
 
-- name: set fact to install prometheus
-  set_fact:
+- name: Set fact to install prometheus
+  ansible.builtin.set_fact:
     install_prometheus: "{{ not prometheus_binary.stat.exists or prometheus_current_version.stdout != prometheus_version }}"

@@ -1,18 +1,18 @@
 ---
 
-- name: create service file
+- name: Create service file
   become: true
-  template:
+  ansible.builtin.template:
     src: prometheus_node_exporter.service.j2
     dest: /etc/systemd/system/prometheus_node_exporter.service
     owner: root
     group: root
-    mode: 0644
-  notify: restart prometheus_node_exporter
+    mode: "0644"
+  notify: Restart prometheus_node_exporter
 
-- name: enable and start prometheus_node_exporter
+- name: Enable and start prometheus_node_exporter
   become: true
-  service:
+  ansible.builtin.service:
     daemon_reload: yes
     name: prometheus_node_exporter
     state: started

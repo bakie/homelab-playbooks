@@ -6,11 +6,6 @@ dependency:
     ignore_warnings: true
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint -c .config/yamllint . --no-warnings
-  ansible-lint -c .config/ansible-lint roles/${MOLECULE_SCENARIO_NAME}
-  flake8 --config .config/flake8
 platforms:
   - name: debian-bookworm-${MOLECULE_SCENARIO_NAME:-instance}
     image: debian:bookworm
@@ -19,6 +14,7 @@ platforms:
     command: "/lib/systemd/systemd"
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    cgroupns_mode: host
 provisioner:
   name: ansible
   log: True
@@ -49,7 +45,6 @@ scenario:
     - check
     - destroy
   converge_sequence:
-    - lint
     - create
     - prepare
     - converge
@@ -57,7 +52,6 @@ scenario:
   destroy_sequence:
     - destroy
   test_sequence:
-    - lint
     - destroy
     - syntax
     - create

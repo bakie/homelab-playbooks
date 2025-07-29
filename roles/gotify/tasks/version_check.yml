@@ -1,16 +1,16 @@
 ---
 
-- name: stat gotify version file
-  stat:
+- name: Stat gotify version file
+  ansible.builtin.stat:
     path: "{{ gotify_version_file_path }}"
   register: gotify_version_file_stat
 
-- name: slurp gotify version file
-  slurp:
+- name: Slurp gotify version file
+  ansible.builtin.slurp:
     path: "{{ gotify_version_file_path }}"
   register: gotify_version_file
   when: gotify_version_file_stat.stat.exists
 
-- name: set fact to install gotify
-  set_fact:
+- name: Set fact to install gotify
+  ansible.builtin.set_fact:
     install_gotify: "{{ not gotify_version_file_stat.stat.exists or gotify_version_file['content'] | b64decode | trim != gotify_version }}"

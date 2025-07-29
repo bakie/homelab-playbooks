@@ -1,7 +1,7 @@
 ---
 
-ssl_group: "ssl-cert"
-ssl_cert:
+ssl_cert_group: "ssl-cert"
+ssl_cert_config:
   dir: "/etc/ssl/selfsigned"
   key:
     filename: "selfsigned.key"

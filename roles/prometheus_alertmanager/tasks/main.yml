@@ -1,10 +1,16 @@
 ---
 
-- include_tasks: setup.yml
-- include_tasks: version_check.yml
-- include_tasks: install_alertmanager.yml
+- name: Import setup tasks
+  ansible.builtin.import_tasks: setup.yml
+- name: Import version check tasks
+  ansible.builtin.import_tasks: version_check.yml
+- name: Include install alertmanager tasks
+  ansible.builtin.include_tasks: install_alertmanager.yml
   when: install_prometheus_alertmanager
-- include_tasks: install_alertmanager_gotify_bridge.yml
+- name: Include install alertmanager gotify bridge tasks
+  ansible.builtin.include_tasks: install_alertmanager_gotify_bridge.yml
   when: install_prometheus_alertmanager_gotify_bridge
-- include_tasks: configure.yml
-- include_tasks: service.yml
+- name: Import configure tasks
+  ansible.builtin.import_tasks: configure.yml
+- name: Import servuce tasks
+  ansible.builtin.import_tasks: service.yml

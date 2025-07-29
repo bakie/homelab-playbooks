@@ -1,8 +1,8 @@
 ---
 
-- name: install resolvconf
+- name: Install resolvconf
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "resolvconf"
     state: present
     install_recommends: no

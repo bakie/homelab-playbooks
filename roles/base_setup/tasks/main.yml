@@ -1,4 +1,6 @@
 ---
 
-- include_tasks: packages.yml
-- include_tasks: sudo.yml
+- name: Import packages tasks
+  ansible.builtin.import_tasks: packages.yml
+- name: Import sudo tasks
+  ansible.builtin.import_tasks: sudo.yml

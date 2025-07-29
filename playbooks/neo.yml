@@ -1,8 +1,10 @@
 ---
 
-- import_playbook: base.yml
+- name: Import the base playbook
+  import_playbook: base.yml
 
-- hosts: neo
+- name: Play for neo host
+  hosts: neo
   roles:
     - role: ssl_cert
       tags: [ "ssl_cert" ]

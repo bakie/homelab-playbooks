@@ -7,12 +7,12 @@ None
 ## Role defaults
 Available defaults are listed below, along with default value (see [defaults/main.yml](../roles/ssl_cert/defaults/main.yml))
 ```yaml
-ssl_group: "ssl-cert"
+ssl_cert_group: "ssl-cert"
 ```
 The group for the created ssl dir and ssl files. The owner of the ssl dir and ssl files is root.
 
 ```yaml
-ssl_cert:
+ssl_cert_config:
   dir: "/etc/ssl/selfsigned"
   key:
     filename: "selfsigned.key"

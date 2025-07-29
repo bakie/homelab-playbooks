@@ -15,5 +15,5 @@ prometheus_blackbox_exporter_configuration_modules:
     timeout: 5s
     http:
       method: GET
-      valid_status_codes: [] # Defaults to 2xx
+      valid_status_codes: []  # Defaults to 2xx
       preferred_ip_protocol: "ip4"

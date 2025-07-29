@@ -1,8 +1,8 @@
 ---
 
-- name: install sabnzbd and dependencies
+- name: Install sabnzbd and dependencies
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "sabnzbdplus"
     state: present
     install_recommends: no

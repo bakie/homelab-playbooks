@@ -1,8 +1,8 @@
 ---
 
-- name: installed required packages
+- name: Installed required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "{{ resolvconf_required_packages }}"
     state: present
     install_recommends: no

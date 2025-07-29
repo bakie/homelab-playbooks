@@ -1,18 +1,19 @@
 ---
 
-- name: Create necessary directories
+- name: Createe necessary directories
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     access_time: preserve
     state: directory
-    mode: 0755
+    mode: "0755"
   loop:
     - "/etc/apache2"
     - "/etc/apache2/sites-available"
     - "/etc/apache2/sites-enabled"
 
-- include_tasks: configure_vhost.yml
+- name: Include configure vhosts tasks
+  ansible.builtin.include_tasks: configure_vhost.yml
   loop: "{{ apache_vhosts_config }}"
   loop_control:
     loop_var: vhost

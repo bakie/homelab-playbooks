@@ -1,8 +1,8 @@
 ---
 
-- name: add the debian repositories
+- name: Add the debian repositories
   become: true
-  replace:
+  ansible.builtin.replace:
     path: "/etc/apt/sources.list.d/debian.sources"
     regexp: '^(Components(?!.* {{ item }}).*)'
     replace: '\1 {{ item }}'
@@ -11,22 +11,22 @@
     - "non-free"
     - "non-free-firmware"
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: [ "software-properties-common", "unrar", "python3-cheroot" ]
     state: present
     update_cache: yes
 
-- name: add sabnzbd group
+- name: Add sabnzbd group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ sabnzbd_group }}"
     state: present
 
-- name: create sabnzbd user
+- name: Create sabnzbd user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ sabnzbd_user }}"
     shell: "/usr/sbin/nologin"
     home: "{{ sabnzbd_install_path }}"
@@ -34,12 +34,12 @@
     group: "{{ sabnzbd_group }}"
     state: present
 
-- name: create nesessary directories
+- name: Create nesessary directories
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: "{{ sabnzbd_user }}"
     group: "{{ sabnzbd_group }}"
-    mode: 0755
+    mode: "0755"
   loop: "{{ sabnzbd_required_paths }}"

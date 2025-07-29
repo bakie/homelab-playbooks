@@ -1,10 +1,10 @@
 ---
 
-- name: add the dns resolver ip to resolv.conf.d
+- name: Add the dns resolver ip to resolv.conf.d
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/resolvconf/resolv.conf.d/head"
     regexp: "^nameserver (.*)"
     line: "nameserver {{ resolvconf_dns_resolver_ip }}"
     state: present
-  notify: resolvconf_update
+  notify: Run resolvconf update

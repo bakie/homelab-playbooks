@@ -1,12 +1,12 @@
 ---
 
 
-- name: configure the settings
+- name: Configure the settings
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ vikunja_config_file_path }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
   loop: "{{ vikunja_config }}"
-  notify: restart vikunja
+  notify: Restart vikunja

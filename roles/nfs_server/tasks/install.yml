@@ -1,14 +1,14 @@
 ---
 
-- name: install nfs-kernel-server
+- name: Install nfs-kernel-server
   become: true
-  apt:
+  ansible.builtin.apt:
     name: [ "nfs-kernel-server" ]
     state: present
 
-- name: start and enabled
+- name: Start and enabled
   become: true
-  service:
+  ansible.builtin.service:
     name: nfs-kernel-server
     state: started
     enabled: yes

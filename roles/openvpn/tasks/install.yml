@@ -1,7 +1,7 @@
 ---
 
-- name: install openvpn
+- name: Install openvpn
   become: true
-  apt:
+  ansible.builtin.apt:
     name: openvpn
     state: present

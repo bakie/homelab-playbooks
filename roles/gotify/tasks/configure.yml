@@ -1,20 +1,20 @@
 ---
 
-- name: create gotify configuration directory
+- name: Create gotify configuration directory
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ gotify_config_path }}"
     state: directory
     owner: "{{ gotify_user }}"
     group: "{{ gotify_group }}"
-    mode: 0755
+    mode: "0755"
 
-- name: configure gotify
+- name: Configure gotify
   become: true
-  template:
+  ansible.builtin.template:
     src: "gotify.yml.j2"
     dest: "{{ gotify_config_file_path }}"
     owner: "{{ gotify_user }}"
     group: "{{ gotify_group }}"
-    mode: 0640
-  notify: restart gotify
+    mode: "0640"
+  notify: Restart gotify

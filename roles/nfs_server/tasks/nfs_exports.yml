@@ -1,9 +1,9 @@
 ---
 
-- name: template the exports file
+- name: Template the exports file
   become: true
-  template:
+  ansible.builtin.template:
     src: "exports.j2"
     dest: "/etc/exports"
-    mode: 0644
-  notify: restart nfs
+    mode: "0644"
+  notify: Restart nfs

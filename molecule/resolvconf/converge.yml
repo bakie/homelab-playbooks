@@ -1,6 +1,6 @@
 ---
 
-- name: converge
+- name: Converge
   hosts: all
   vars:
     resolvconf_dns_resolver_ip: 10.1.1.25

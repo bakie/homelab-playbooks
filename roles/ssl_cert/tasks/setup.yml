@@ -1,8 +1,8 @@
 ---
 
-- name: ensure the ssl group {{ ssl_group }} exists
+- name: Ensure the ssl group exists
   become: true
-  group:
-    name: "{{ ssl_group }}"
+  ansible.builtin.group:
+    name: "{{ ssl_cert_group }}"
     system: yes
     state: "present"

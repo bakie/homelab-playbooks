@@ -1,8 +1,8 @@
 ---
 
-- name: add After and Wants to service file to wait until network is online
+- name: Add After and Wants to service file to wait until network is online
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/lib/systemd/system/nfs-kernel-server.service"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
@@ -12,4 +12,4 @@
     - { regexp: "After=network-online.target", line: "After=network-online.target" }
     - { regexp: "Wants=network-online.target", line: "Wants=network-online.target" }
   notify:
-    - restart nfs
+    - Restart nfs

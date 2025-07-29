@@ -1,39 +1,39 @@
 ---
 
-- name: configure openvpn
+- name: Configure openvpn
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: "/etc/default/openvpn"
     line: "AUTOSTART=\"all\""
     regexp: "^(#)?AUTOSTART=\"all\""
     state: present
 
-- name: create openvpn config file
+- name: Create openvpn config file
   become: true
-  template:
+  ansible.builtin.template:
     src: "{{ openvpn_name }}.ovpn.j2"
     dest: "/etc/openvpn/{{ openvpn_name }}.conf"
-    mode: 0640
-  notify: restart openvpn
+    mode: "0640"
+  notify: Restart openvpn
 
-- name: create openvpn_auth_user_pass_file_path
+- name: Create openvpn_auth_user_pass_file_path
   become: true
-  template:
+  ansible.builtin.template:
     src: auth_user_pass.j2
     dest: "{{ openvpn_auth_user_pass_file_path }}"
-    mode: 0600
-  notify: restart openvpn
+    mode: "0600"
+  notify: Restart openvpn
 
-- name: start and enable openvpn
+- name: Start and enable openvpn
   become: true
-  service:
+  ansible.builtin.service:
     name: openvpn
     enabled: yes
     state: started
 
-- name: "start and enable openvpn {{ openvpn_name }}"
+- name: Start and enable openvpn
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: "openvpn@{{ openvpn_name }}"
     enabled: yes
     state: started

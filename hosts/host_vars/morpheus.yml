@@ -9,7 +9,7 @@ apache_vhosts_config:
     template: "proxy_pass"
 
 # nfs_client
-nfs_imports:
+nfs_client_imports:
   - local_dir: "/mnt/nas/tvshows"
     remote_dir: "/share/MD0_DATA/Multimedia/tvshows/"
     nfs_server: "azmodan.local"

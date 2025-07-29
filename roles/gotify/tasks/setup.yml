@@ -1,21 +1,21 @@
 ---
 
-- name: install required packages
+- name: Install required packages
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "unzip"
     state: present
 
-- name: create gotify group
+- name: Create gotify group
   become: true
-  group:
+  ansible.builtin.group:
     name: "{{ gotify_group }}"
     system: yes
     state: present
 
-- name: create gotify user
+- name: Create gotify user
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ gotify_user }}"
     shell: "/usr/sbin/nologin"
     system: yes
@@ -23,11 +23,11 @@
     create_home: no
     home: "{{ gotify_install_path }}"
 
-- name: create gotify config path
+- name: Create gotify config path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ gotify_config_path }}"
     state: directory
-    mode: 0755
+    mode: "0755"
     owner: "{{ gotify_user }}"
     group: "{{ gotify_group }}"

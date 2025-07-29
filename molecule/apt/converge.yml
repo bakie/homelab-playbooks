@@ -1,6 +1,6 @@
 ---
 
-- name: converge
+- name: Converge
   hosts: all
 
   roles:

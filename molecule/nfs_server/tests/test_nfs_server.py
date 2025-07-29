@@ -18,7 +18,7 @@ def test_nfs_kernel_server_is_running(host):
     "/home/dir2/dir host2.local(rw,sync,no_root_squash,no_subtree_check)",
     "/home/dir1/test host3.local(rw,sync,no_root_squash,no_subtree_check)"
 ])
-def test_nfs_exports(host, export):
+def test_nfs_server_exports(host, export):
     assert host.file("/etc/exports").contains(export)
 
 

@@ -1,9 +1,9 @@
 ---
 
-- name: template the miniflux config file
+- name: Template the miniflux config file
   become: true
-  template:
+  ansible.builtin.template:
     src: "miniflux.conf.j2"
     dest: "/etc/miniflux.conf"
-    mode: 0644
-  notify: restart miniflux
+    mode: "0644"
+  notify: Restart miniflux

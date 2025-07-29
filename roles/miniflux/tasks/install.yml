@@ -2,6 +2,6 @@
 
 - name: Install miniflux
   become: true
-  apt:
+  ansible.builtin.apt:
     name: "miniflux"
     state: present

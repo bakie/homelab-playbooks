@@ -1,14 +1,14 @@
 ---
 
-- name: install vikunja deb file
+- name: Install vikunja deb file
   become: true
-  apt:
+  ansible.builtin.apt:
     deb: "{{ vikunja_download_url }}"
     state: "present"
 
-- name: set owner/group on {{ vikunja_install_path }}
+- name: Set owner/group on vikunja install path
   become: true
-  file:
+  ansible.builtin.file:
     path: "{{ vikunja_install_path }}"
     owner: "{{ vikunja_user }}"
     group: "{{ vikunja_group }}"

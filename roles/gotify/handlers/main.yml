@@ -1,7 +1,7 @@
 ---
 
-- name: restart gotify
+- name: Restart gotify
   become: true
-  service:
+  ansible.builtin.service:
     name: gotify
     state: restarted
