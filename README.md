@@ -86,13 +86,14 @@ if host.system_info.distribution == "ubuntu" and host.system_info.release < "18.
 ### Expose ports for local testing
 Sometimes you need to expose the port to your localhost for testing. Add the published_ports to the platforms config.
 ```
-  - name: ubuntu-focal-${MOLECULE_SCENARIO_NAME:-instance}
-    image: ubuntu:20.04
+  - name: debian-bookworm-${MOLECULE_SCENARIO_NAME:-instance}
+    image: debian:bookworm
     privileged: true
     pre_build_image: false
     command: "/lib/systemd/systemd"
     volumes:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    cgroupns_mode: host
     published_ports:
       - 9090:8080
 ```
