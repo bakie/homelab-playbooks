@@ -483,6 +483,22 @@ rich = ">=9.5.1"
 test = ["mock (>=3.0.5)", "pytest (>=5.4.0)", "pytest-cov (>=2.7.1)", "pytest-mock (>=3.3.1)", "pytest-plus", "pytest-xdist (>=1.29.0)"]
 
 [[package]]
+name = "execnet"
+version = "2.1.1"
+description = "execnet: rapid multi-Python deployment"
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "execnet-2.1.1-py3-none-any.whl", hash = "sha256:26dee51f1b80cebd6d0ca8e74dd8745419761d3bef34163928cbebbdc4749fdc"},
+    {file = "execnet-2.1.1.tar.gz", hash = "sha256:5189b52c6121c24feae288166ab41b32549c7e2348652736540b9e6e7d4e72e3"},
+]
+
+[package.extras]
+testing = ["hatch", "pre-commit", "pytest", "tox"]
+
+[[package]]
 name = "filelock"
 version = "3.18.0"
 description = "A platform independent file lock."
@@ -952,6 +968,73 @@ pygments = ">=2.7.2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-ansible"
+version = "25.6.3"
+description = "Plugin for pytest to simplify calling ansible modules from tests or fixtures"
+optional = false
+python-versions = ">=3.10"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "pytest_ansible-25.6.3-py3-none-any.whl", hash = "sha256:d11a0ba5add24385e7aaab9933187a1f73a19aa9da0942f22fd9d7edba41a907"},
+    {file = "pytest_ansible-25.6.3.tar.gz", hash = "sha256:ee6743108493765dd4e56e7f7e9e9e5adcbd76aef63e5ebb0c827f70b0ef6d3b"},
+]
+
+[package.dependencies]
+ansible-compat = ">=4.1.11"
+ansible-core = ">=2.14"
+packaging = "*"
+pytest = ">=6"
+pytest-plus = "*"
+pytest-sugar = "*"
+pytest-xdist = "*"
+typing-extensions = "*"
+
+[package.extras]
+docs = ["mkdocs-ansible (>=0.2.0)"]
+test = ["ansible-core", "coverage[toml]", "molecule", "mypy", "pip", "pre-commit", "pydoclint", "pylint", "pytest", "pytest-github-actions-annotate-failures (>=0.3.0)", "pytest-plus (>=0.8.1)", "pytest-xdist", "ruff", "toml-sort", "tox", "types-PyYAML", "uv"]
+
+[[package]]
+name = "pytest-plus"
+version = "0.8.1"
+description = "PyTest Plus Plugin :: extends pytest functionality"
+optional = false
+python-versions = ">=3.10"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "pytest_plus-0.8.1-py3-none-any.whl", hash = "sha256:2b8e9037716c9d7b708074863933897681f86d852d9c4e9717271be143dbdfb6"},
+    {file = "pytest_plus-0.8.1.tar.gz", hash = "sha256:02dfb28f1a914e8df3b6e3525df7e94feabc0681ecea626912e8028e9355f02c"},
+]
+
+[package.dependencies]
+pytest = ">=7.4.2"
+
+[package.extras]
+test = ["coverage (>=7.0.0)", "pytest-html"]
+
+[[package]]
+name = "pytest-sugar"
+version = "1.0.0"
+description = "pytest-sugar is a plugin for pytest that changes the default look and feel of pytest (e.g. progressbar, show tests that fail instantly)."
+optional = false
+python-versions = "*"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "pytest-sugar-1.0.0.tar.gz", hash = "sha256:6422e83258f5b0c04ce7c632176c7732cab5fdb909cb39cca5c9139f81276c0a"},
+    {file = "pytest_sugar-1.0.0-py3-none-any.whl", hash = "sha256:70ebcd8fc5795dc457ff8b69d266a4e2e8a74ae0c3edc749381c64b5246c8dfd"},
+]
+
+[package.dependencies]
+packaging = ">=21.3"
+pytest = ">=6.2.0"
+termcolor = ">=2.1.0"
+
+[package.extras]
+dev = ["black", "flake8", "pre-commit"]
+
+[[package]]
 name = "pytest-testinfra"
 version = "10.2.2"
 description = "Test infrastructures"
@@ -977,6 +1060,28 @@ salt = ["distro", "looseversion", "msgpack", "salt", "tornado"]
 test = ["ansible", "distro", "looseversion", "msgpack", "paramiko", "pytest-cov", "pytest-xdist", "pywinrm", "salt", "tornado"]
 typing = ["mypy", "types-paramiko"]
 winrm = ["pywinrm"]
+
+[[package]]
+name = "pytest-xdist"
+version = "3.8.0"
+description = "pytest xdist plugin for distributed testing, most importantly across multiple CPUs"
+optional = false
+python-versions = ">=3.9"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "pytest_xdist-3.8.0-py3-none-any.whl", hash = "sha256:202ca578cfeb7370784a8c33d6d05bc6e13b4f25b5053c30a152269fd10f0b88"},
+    {file = "pytest_xdist-3.8.0.tar.gz", hash = "sha256:7e578125ec9bc6050861aa93f2d59f1d8d085595d6551c2c90b6f4fad8d3a9f1"},
+]
+
+[package.dependencies]
+execnet = ">=2.1"
+pytest = ">=7.0.0"
+
+[package.extras]
+psutil = ["psutil (>=3.0)"]
+setproctitle = ["setproctitle"]
+testing = ["filelock"]
 
 [[package]]
 name = "python-dateutil"
@@ -1370,6 +1475,35 @@ docs = ["argparse-manpage", "cairosvg", "markdown-include", "mkdocs", "mkdocs-gi
 test = ["enrich (>=1.2.6)", "molecule (>=3.4.0)", "pytest (>=6.2.5)", "pytest-cov (>=2.12.1)", "pytest-plus (>=0.2)", "pytest-xdist (>=2.3.0)"]
 
 [[package]]
+name = "termcolor"
+version = "3.1.0"
+description = "ANSI color formatting for output in terminal"
+optional = false
+python-versions = ">=3.9"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "termcolor-3.1.0-py3-none-any.whl", hash = "sha256:591dd26b5c2ce03b9e43f391264626557873ce1d379019786f99b0c2bee140aa"},
+    {file = "termcolor-3.1.0.tar.gz", hash = "sha256:6a6dd7fbee581909eeec6a756cff1d7f7c376063b14e4a298dc4980309e55970"},
+]
+
+[package.extras]
+tests = ["pytest", "pytest-cov"]
+
+[[package]]
+name = "typing-extensions"
+version = "4.14.1"
+description = "Backported and Experimental Type Hints for Python 3.9+"
+optional = false
+python-versions = ">=3.9"
+groups = ["dev"]
+markers = "sys_platform == \"linux2\" or sys_platform == \"linux\" or sys_platform != \"linux2\" and sys_platform != \"linux\""
+files = [
+    {file = "typing_extensions-4.14.1-py3-none-any.whl", hash = "sha256:d1e1e3b58374dc93031d6eda2420a48ea44a36c2b4766a4fdeb3710755731d76"},
+    {file = "typing_extensions-4.14.1.tar.gz", hash = "sha256:38b39f4aeeab64884ce9f74c94263ef78f3c22467c8724005483154c26648d36"},
+]
+
+[[package]]
 name = "uritemplate"
 version = "4.2.0"
 description = "Implementation of RFC 6570 URI Templates"
@@ -1442,4 +1576,4 @@ bracex = ">=2.1.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "e8d0b82fec703027af63f8e2ced391d7b7d70aaea1b93cec5d31d5d2e84db808"
+content-hash = "fc1e32d6dd329f2679a66cc57b8889025a3c97191059115c7ea7a3f82b8ea694"
