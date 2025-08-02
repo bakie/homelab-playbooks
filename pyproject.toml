@@ -22,6 +22,7 @@ docker = "^7.1.0"
 pytest-testinfra = "^10.2.2"
 pre-commit = "^4.2.0"
 pytest-ansible = "^v25.6.3"
+ansible-lint = "^25.7.0"
 
 [tool.pytest.ini_options]
 norecursedirs="molecule"

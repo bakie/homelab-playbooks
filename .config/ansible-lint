@@ -1,0 +1,10 @@
+---
+
+profile: production
+
+skip_list:
+  - yaml[line-length]
+# skip_list:
+#   - meta-no-info  # meta/main.yml should contain relevant info
+#   - package-latest  # Package installs should not use latest
+#   - yaml
