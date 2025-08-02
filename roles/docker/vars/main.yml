@@ -1,0 +1,5 @@
+---
+
+docker_required_packages: [ "ca-certificates", "curl" ]
+docker_apt_key_url: "https://download.docker.com/linux/debian/gpg"
+docker_apt_repo_url: "deb [arch={{ deb_architecture.stdout }}] https://download.docker.com/linux/debian {{ ansible_distribution_release }} stable"

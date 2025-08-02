@@ -1,0 +1,18 @@
+---
+
+- name: Get the deb architecture
+  ansible.builtin.command: dpkg --print-architecture
+  register: deb_architecture
+  changed_when: false
+
+- name: Add docker apt signing key
+  become: true
+  ansible.builtin.apt_key:
+    url: "{{ docker_apt_key_url }}"
+    state: present
+
+- name: Add docker repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "{{ docker_apt_repo_url }}"
+    state: present

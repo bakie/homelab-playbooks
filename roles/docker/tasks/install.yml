@@ -1,0 +1,20 @@
+---
+
+- name: Install required packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ docker_required_packages }}"
+    state: present
+
+- name: Install docker
+  become: true
+  ansible.builtin.apt:
+    name: [ "docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin" ]
+    state: present
+
+- name: Start and enable docker
+  become: true
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes

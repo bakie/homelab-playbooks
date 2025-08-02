@@ -1,0 +1,46 @@
+---
+
+name: "bakie.homelab.docker"
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'roles/docker/**'
+      - 'molecule/docker/**'
+      - '.github/workflows/docker.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
+  pull_request:
+    paths:
+      - 'roles/docker/**'
+      - 'molecule/docker/**'
+      - '.github/workflows/docker.yml'
+      - '.config/molecule/**'
+      - 'poetry.lock'
+  schedule:
+    - cron: '40 3 * * 6'
+  workflow_dispatch:
+jobs:
+  molecule:
+    runs-on: ubuntu-24.04
+    env:
+      PY_COLORS: 1
+      ANSIBLE_FORCE_COLOR: 1
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+
+      - name: Install dependencies
+        run: |
+          python -m pip install poetry==2.1.2
+          python -m poetry install
+
+      - name: Run role tests
+        run: |
+          python -m poetry run molecule test -s docker
