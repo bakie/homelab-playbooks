@@ -23,6 +23,13 @@ pytest-testinfra = "^10.2.2"
 pre-commit = "^4.2.0"
 pytest-ansible = "^v25.6.3"
 
+[tool.pytest.ini_options]
+norecursedirs="molecule"
+# testinfra and pytest-ansible conflict as pytest
+# plugins. We disable testinfra when running "all" tests,
+# and disable `pytest-ansible` when running each molecule test
+addopts = "-p no:pytest11.testinfra"
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"

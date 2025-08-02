@@ -34,6 +34,11 @@ verifier:
     # Without these options pytest takes about 10 - 20 times longer to run
     connection: docker
     hosts: root@debian-bookworm-${MOLECULE_SCENARIO_NAME:-instance}
+    # pytest-ansible conflicts with --connection
+    p: "no:pytest-ansible"
+    # avoid loading global pyproject.toml options, so we don't
+    # load the setting that says "disable testinfra"
+    c: "."
 scenario:
   create_sequence:
     - create
