@@ -6,7 +6,7 @@
   ansible.builtin.import_tasks: version_check.yml
 - name: Include install tasks
   ansible.builtin.include_tasks: install.yml
-  when: install_prometheus_node_exporter
+  when: prometheus_node_exporter_install
 - name: Import configure tasks
   ansible.builtin.import_tasks: configure.yml
 - name: Include textfile script tasks

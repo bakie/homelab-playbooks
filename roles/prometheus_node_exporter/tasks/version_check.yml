@@ -18,4 +18,4 @@
 
 - name: Set fact to install prometheus_node_exporter
   ansible.builtin.set_fact:
-    install_prometheus_node_exporter: "{{ not prometheus_node_exporter_binary.stat.exists or prometheus_node_exporter_current_version.stdout != prometheus_node_exporter_version }}"
+    prometheus_node_exporter_install: "{{ not prometheus_node_exporter_binary.stat.exists or prometheus_node_exporter_current_version.stdout != prometheus_node_exporter_version }}"
