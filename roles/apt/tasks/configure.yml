@@ -2,7 +2,7 @@
 
 - name: Set reboot time
   ansible.builtin.set_fact:
-    reboot_time: "0{{ 3 | random(start=1, seed=ansible_hostname) }}:{{ 59 | random(start=10, seed=ansible_host) }}"
+    apt_reboot_time: "0{{ 3 | random(start=1, seed=ansible_hostname) }}:{{ 59 | random(start=10, seed=ansible_host) }}"
 
 - name: Configure unattended-upgrades
   become: true
@@ -14,7 +14,7 @@
   loop:
     - { regexp: "Unattended-Upgrade::Remove-Unused-Dependencies ", line: "Unattended-Upgrade::Remove-Unused-Dependencies \"true\";" }
     - { regexp: "Unattended-Upgrade::Automatic-Reboot ", line: "Unattended-Upgrade::Automatic-Reboot \"true\";" }
-    - { regexp: "Unattended-Upgrade::Automatic-Reboot-Time", line: "Unattended-Upgrade::Automatic-Reboot-Time \"{{ reboot_time }}\";" }
+    - { regexp: "Unattended-Upgrade::Automatic-Reboot-Time", line: "Unattended-Upgrade::Automatic-Reboot-Time \"{{ apt_reboot_time }}\";" }
 
 - name: Enable unattended-upgrades
   become: true
