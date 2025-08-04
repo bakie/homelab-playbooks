@@ -4,9 +4,6 @@ Install and configure komodo_core on the remote hosts.
 ## Requirements
 The [docker role](docker.md) is required for running komodo core
 
-komodo_core_db_username: "admin"
-komodo_core_db_password: "admin"
-
 ## Role defaults
 Available defaults are listed below, along with default value (see [defaults/main.yml](../roles/komodo_core/defaults/main.yml))
 ```yaml
