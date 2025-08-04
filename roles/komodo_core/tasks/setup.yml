@@ -1,0 +1,38 @@
+---
+
+- name: Create komodo_core group
+  become: true
+  ansible.builtin.group:
+    name: "{{ komodo_core_group }}"
+    system: yes
+    state: present
+
+- name: Create komodo_core user
+  become: true
+  ansible.builtin.user:
+    name: "{{ komodo_core_user }}"
+    shell: "/usr/sbin/nologin"
+    system: yes
+    group: "{{ komodo_core_group }}"
+    append: true
+    groups: "docker"
+    create_home: yes
+    home: "{{ komodo_core_install_path }}"
+
+- name: Copy komodo docker compose file
+  become: true
+  ansible.builtin.template:
+    src: "komodo_core_compose.yaml.j2"
+    dest: "{{ komodo_core_install_path }}/compose.yaml"
+    owner: "{{ komodo_core_user }}"
+    group: "{{ komodo_core_group }}"
+    mode: "0755"
+
+- name: Copy komodo docker compose env file
+  become: true
+  ansible.builtin.template:
+    src: "komodo_core_compose.env.j2"
+    dest: "{{ komodo_core_install_path }}/compose.env"
+    owner: "{{ komodo_core_user }}"
+    group: "{{ komodo_core_group }}"
+    mode: "0755"

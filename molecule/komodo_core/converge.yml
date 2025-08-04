@@ -1,0 +1,8 @@
+---
+
+- name: Converge
+  hosts: all
+
+  roles:
+    - role: docker
+    - role: komodo_core
