@@ -1,0 +1,13 @@
+---
+
+- name: Import setup tasks
+  ansible.builtin.import_tasks: setup.yml
+- name: Import version check tasks
+  ansible.builtin.import_tasks: version_check.yml
+- name: Include install tasks
+  ansible.builtin.include_tasks: install.yml
+  when: komodo_periphery_install
+- name: Import configure tasks
+  ansible.builtin.import_tasks: configure.yml
+- name: Import service tasks
+  ansible.builtin.import_tasks: service.yml

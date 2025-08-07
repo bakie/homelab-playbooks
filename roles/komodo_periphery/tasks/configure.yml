@@ -1,0 +1,20 @@
+---
+
+- name: Create the komodo_periphery_config_path
+  become: true
+  ansible.builtin.file:
+    path: "{{ komodo_periphery_config_path }}"
+    owner: "{{ komodo_periphery_user }}"
+    group: "{{ komodo_periphery_group }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy the komodo_periphery config file
+  become: true
+  ansible.builtin.template:
+    src: config.toml.j2
+    dest: "{{ komodo_periphery_config_path }}/config.toml"
+    owner: "{{ komodo_periphery_user }}"
+    group: "{{ komodo_periphery_group }}"
+    mode: "0644"
+  notify: Restart komodo_periphery

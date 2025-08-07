@@ -1,0 +1,10 @@
+---
+
+- name: Prepare
+  hosts: all
+
+  tasks:
+    - name: Create the docker group so it exists
+      ansible.builtin.group:
+        name: docker
+        state: present

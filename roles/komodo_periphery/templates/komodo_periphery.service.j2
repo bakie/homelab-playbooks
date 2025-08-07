@@ -1,0 +1,16 @@
+[Unit]
+Description=Komodo periphery agent
+After=network-online.target
+
+[Service]
+Type=simple
+User={{ komodo_periphery_user }}
+Group={{ komodo_periphery_group }}
+ExecStart={{ komodo_periphery_install_path }}/periphery --config-path {{ komodo_periphery_config_path }}/config.toml
+SyslogIdentifier=komodo_periphery
+Restart=always
+RestartSec=1
+StartLimitInterval=0
+
+[Install]
+WantedBy=default.target

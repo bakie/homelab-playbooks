@@ -1,0 +1,10 @@
+---
+
+- name: Converge
+  hosts: all
+  vars:
+    komodo_periphery_api_allowed_ips: [ "127.0.0.1" ]
+    komodo_periphery_api_passkeys: [ "test_passkey" ]
+
+  roles:
+    - role: komodo_periphery

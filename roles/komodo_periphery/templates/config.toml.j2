@@ -1,0 +1,83 @@
+################################
+# 🦎 KOMODO PERIPHERY CONFIG 🦎 #
+################################
+
+## The port the server runs on.
+port = {{ komodo_periphery_listen_port }}
+
+## The IP address the periphery agent will bind to.
+bind_ip = "[::]"
+
+## The directory periphery will use as the default base for the directories it uses.
+## The periphery user must have write access to this directory.
+root_directory = "{{ komodo_periphery_base_path }}"
+
+## The directory periphery will use to manage repos.
+## The periphery user must have write access to this directory.
+repo_dir = "{{ komodo_periphery_repo_path }}"
+
+## The directory periphery will use to manage stacks.
+## The periphery user must have write access to this directory.
+stack_dir = "{{ komodo_periphery_stack_path }}"
+
+## The directory periphery will use to manage builds.
+## The periphery user must have write access to this directory
+build_dir = "{{ komodo_periphery_build_path }}"
+
+########
+# AUTH #
+########
+
+## Limit the ip addresses which can call the periphery api.
+## Env: PERIPHERY_ALLOWED_IPS
+allowed_ips = {{ komodo_periphery_api_allowed_ips }}
+
+## Require callers to provide one of the provided passkeys to access the periphery api.
+## Env: PERIPHERY_PASSKEYS or PERIPHERY_PASSKEYS_FILE
+passkeys = {{ komodo_periphery_api_passkeys }}
+
+############
+# Security #
+############
+
+## Enable HTTPS server using the given key and cert.
+## If true and a key / cert at the given paths are not found, 
+## self signed keys will be generated using openssl.
+## Env: PERIPHERY_SSL_ENABLED
+ssl_enabled = true
+
+## Path to the ssl key.
+## Env: PERIPHERY_SSL_KEY_FILE
+## Default: ${root_directory}/ssl/key.pem
+# ssl_key_file = "/etc/komodo/ssl/key.pem"
+
+## Path to the ssl cert.
+## Env: PERIPHERY_SSL_CERT_FILE
+## Default: ${root_directory}/ssl/cert.pem
+# ssl_cert_file = "/etc/komodo/ssl/cert.pem"
+
+###########
+# LOGGING #
+###########
+
+## Specify the logging verbosity
+## Options: off, error, warn, info, debug, trace
+## Default: info
+## Env: PERIPHERY_LOGGING_LEVEL
+logging.level = "info"
+
+## Specify the logging format for stdout / stderr.
+## Env: PERIPHERY_LOGGING_STDIO
+## Options: standard, json, none
+## Default: standard
+logging.stdio = "standard"
+
+## Specify whether logging is more human readable.
+## Note. Single logs will span multiple lines.
+## Env: PERIPHERY_LOGGING_PRETTY
+## Default: false
+logging.pretty = false
+
+## Specify whether startup config log is more human readable (multi-line)
+## Env: PERIPHERY_PRETTY_STARTUP_CONFIG
+pretty_startup_config = true

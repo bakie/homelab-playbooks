@@ -1,0 +1,21 @@
+---
+
+- name: Stat komodo_periphery binary
+  ansible.builtin.stat:
+    path: "{{ komodo_periphery_install_path }}/periphery"
+  register: komodo_periphery_binary
+
+- name: Get current komodo_periphery version
+  ansible.builtin.shell: |
+    set -o pipefail
+    ./periphery --version 2>&1 | awk '{print $2}'
+  args:
+    chdir: "{{ komodo_periphery_install_path }}"
+    executable: /bin/bash
+  when: komodo_periphery_binary.stat.exists
+  changed_when: false
+  register: komodo_periphery_current_version
+
+- name: Set fact to install komodo_periphery
+  ansible.builtin.set_fact:
+    komodo_periphery_install: "{{ not komodo_periphery_binary.stat.exists or komodo_periphery_current_version.stdout != (komodo_periphery_version | replace('v', '')) }}"

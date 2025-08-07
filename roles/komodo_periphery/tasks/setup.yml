@@ -1,0 +1,29 @@
+---
+
+- name: Create komodo_periphery group
+  become: true
+  ansible.builtin.group:
+    name: "{{ komodo_periphery_group }}"
+    system: yes
+    state: present
+
+- name: Create komodo_periphery user
+  become: true
+  ansible.builtin.user:
+    name: "{{ komodo_periphery_user }}"
+    shell: "/usr/sbin/nologin"
+    system: yes
+    group: "{{ komodo_periphery_group }}"
+    append: true
+    groups: "docker"
+    create_home: yes
+    home: "{{ komodo_periphery_base_path }}"
+
+- name: Create komodo_periphery_config_path
+  become: true
+  ansible.builtin.file:
+    path: "{{ komodo_periphery_config_path }}"
+    owner: "{{ komodo_periphery_user }}"
+    group: "{{ komodo_periphery_group }}"
+    state: directory
+    mode: "0755"

@@ -1,0 +1,32 @@
+---
+
+- name: Create the komodo periphery required dirs
+  become: true
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ komodo_periphery_user }}"
+    group: "{{ komodo_periphery_group }}"
+    mode: "0755"
+  loop:
+    - "{{ komodo_periphery_install_path }}"
+    - "{{ komodo_periphery_repo_path }}"
+    - "{{ komodo_periphery_stack_path }}"
+    - "{{ komodo_periphery_build_path }}"
+
+- name: Remove currently installed komodo_periphery version
+  become: true
+  ansible.builtin.file:
+    path: "{{ komodo_periphery_install_path }}/periphery"
+    state: absent
+
+- name: Download Komodo Periphery Agent
+  become: true
+  ansible.builtin.get_url:
+    url: "{{ komodo_periphery_download_url }}"
+    dest: "{{ komodo_periphery_install_path }}/periphery"
+    mode: "0755"
+    owner: "{{ komodo_periphery_user }}"
+    group: "{{ komodo_periphery_group }}"
+    force: true
+  notify: Restart komodo_periphery

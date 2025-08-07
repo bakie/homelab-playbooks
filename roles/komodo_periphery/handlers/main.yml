@@ -1,0 +1,7 @@
+---
+
+- name: Restart komodo_periphery
+  become: true
+  ansible.builtin.service:
+    name: komodo_periphery
+    state: restarted

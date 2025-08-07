@@ -1,0 +1,14 @@
+---
+
+komodo_periphery_user: "komodo"
+komodo_periphery_group: "komodo"
+komodo_periphery_base_path: "/opt/komodo"
+komodo_periphery_install_path: "{{ komodo_periphery_base_path }}/bin"
+komodo_periphery_config_path: "{{ komodo_periphery_base_path }}/config"
+komodo_periphery_repo_path: "{{ komodo_periphery_base_path }}/repos"
+komodo_periphery_stack_path: "{{ komodo_periphery_base_path }}/stacks"
+komodo_periphery_build_path: "{{ komodo_periphery_base_path }}/builds"
+komodo_periphery_version: "v1.18.4"
+komodo_periphery_listen_port: 8120
+komodo_periphery_api_allowed_ips: []
+komodo_periphery_api_passkeys: []
