@@ -13,7 +13,7 @@ komodo_core_group: "komodo_core"
 The name and password of the komodo_core user running the docker containers. 
 
 ```yaml
-komodo_core_install_path: "/opt/komodo"
+komodo_core_base_path: "/opt/komodo"
 ```
 The path where we install the komodo core docker file and env file.
 

@@ -17,13 +17,13 @@
     append: true
     groups: "docker"
     create_home: yes
-    home: "{{ komodo_core_install_path }}"
+    home: "{{ komodo_core_base_path }}"
 
 - name: Copy komodo docker compose file
   become: true
   ansible.builtin.template:
     src: "komodo_core_compose.yaml.j2"
-    dest: "{{ komodo_core_install_path }}/compose.yaml"
+    dest: "{{ komodo_core_base_path }}/compose.yaml"
     owner: "{{ komodo_core_user }}"
     group: "{{ komodo_core_group }}"
     mode: "0755"
@@ -32,7 +32,7 @@
   become: true
   ansible.builtin.template:
     src: "komodo_core_compose.env.j2"
-    dest: "{{ komodo_core_install_path }}/compose.env"
+    dest: "{{ komodo_core_base_path }}/compose.env"
     owner: "{{ komodo_core_user }}"
     group: "{{ komodo_core_group }}"
     mode: "0755"

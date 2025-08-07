@@ -4,7 +4,7 @@
   become: true
   become_user: "{{ komodo_core_user }}"
   community.docker.docker_compose_v2:
-    project_src: "{{ komodo_core_install_path }}"
+    project_src: "{{ komodo_core_base_path }}"
     env_files:
       - "compose.env"
     wait: true

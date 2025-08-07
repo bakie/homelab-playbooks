@@ -2,7 +2,7 @@
 
 komodo_core_user: "komodo"
 komodo_core_group: "komodo"
-komodo_core_install_path: "/opt/komodo"
+komodo_core_base_path: "/opt/komodo"
 komodo_core_version: "1.18"
 komodo_core_ferretdb_version: "2.4.0"
 komodo_core_postgres_documentdb_version: "16-0.105.0-ferretdb-2.4.0"
