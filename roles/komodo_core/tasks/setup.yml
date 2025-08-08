@@ -27,6 +27,7 @@
     owner: "{{ komodo_core_user }}"
     group: "{{ komodo_core_group }}"
     mode: "0755"
+  notify: Restart komodo core services
 
 - name: Copy komodo docker compose env file
   become: true
@@ -36,3 +37,4 @@
     owner: "{{ komodo_core_user }}"
     group: "{{ komodo_core_group }}"
     mode: "0755"
+  notify: Restart komodo core services

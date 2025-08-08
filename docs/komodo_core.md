@@ -30,5 +30,10 @@ komodo_core_db_password: "admin"
 ```
 Database settings for running komodo core.
 
+```yaml
+komodo_core_passkey: "a_random_passkey"
+```
+Configure a secure passkey to authenticate between Core / Periphery.
+
 ## Role variables
 None

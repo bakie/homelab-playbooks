@@ -2,6 +2,8 @@
 
 - name: Converge
   hosts: all
+  vars:
+    komodo_core_passkey: "a_new_passkey"
 
   roles:
     - role: docker

@@ -24,3 +24,7 @@ def test_komodo_core_is_running(host):
 ])
 def test_komodo_containers_are_running(host, container_name):
     assert container_name in host.run("docker ps --format \"{{.Names}}\" | xargs echo -n").stdout.split(' ')
+
+
+def test_komodo_core_env_file(host):
+    assert host.file(KOMODO_INSTALL_PATH + "/compose.env").contains("a_new_passkey")
