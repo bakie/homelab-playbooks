@@ -1,0 +1,12 @@
+---
+
+- name: Import the base playbook
+  import_playbook: base.yml
+
+- name: Play for mifune host
+  hosts: mifune
+  roles:
+    - role: docker
+      tags: [ "docker" ]
+    - role: komodo_core
+      tags: [ "komodo", "komodo_core" ]

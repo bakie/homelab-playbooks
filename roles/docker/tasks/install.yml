@@ -1,11 +1,5 @@
 ---
 
-- name: Install required packages
-  become: true
-  ansible.builtin.apt:
-    name: "{{ docker_required_packages }}"
-    state: present
-
 - name: Install docker
   become: true
   ansible.builtin.apt:

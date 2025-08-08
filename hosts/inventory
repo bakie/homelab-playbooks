@@ -9,3 +9,6 @@ morpheus ansible_host=morpheus.local
 
 [information]
 link ansible_host=link.local
+
+[komodo]
+mifune ansible_host=mifune.local

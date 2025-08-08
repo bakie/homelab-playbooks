@@ -10,7 +10,7 @@ Available defaults are listed below, along with default value (see [defaults/mai
 ## Role variables
 Available variables are listed below, along with default value (see [vars/main.yml](../roles/docker/vars/main.yml))
 ```yaml
-docker_required_packages: [ "ca-certificates", "curl" ]
+docker_required_packages: [ "ca-certificates", "curl", "gpg" ]
 ```
 A list of required packages for installing and running docker.
 
